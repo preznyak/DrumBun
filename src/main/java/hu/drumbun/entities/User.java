@@ -10,7 +10,7 @@ import javax.persistence.*;
  * @version 1.0
  */
 
-@Entity
+@Entity(name = "User")
 public class User {
 
     /**
@@ -18,6 +18,7 @@ public class User {
      */
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Id
+    @Column(name = "id")
     private long id;
 
     /**

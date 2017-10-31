@@ -3,18 +3,39 @@ package hu.drumbun.entities;
 import hu.drumbun.enums.DriverLicense;
 import hu.drumbun.enums.Gender;
 
-import javax.persistence.Entity;
+import javax.persistence.*;
 import java.util.Date;
+
+/**
+ * <h1>User profile class</h1>
+ * A class that stores the user's profile (birthdate,gender,etc.)
+ *
+ * @author Preznyak Laszlo
+ * @version 1.0
+ */
 
 @Entity
 public class UserProfile {
 
+
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Id
     private long id;
+
+    @JoinColumn(table = "User",name = "user_id",referencedColumnName = "id")
     private long userId;
+
+    @Column(name = "fullName",nullable = false)
     private String fullName;
+
+    @Column(name = "birthDate",nullable = false)
     private Date birthDate;
     //Profile picture needed.
+
+    @Column(name = "gender",nullable = false)
     private Gender gender;
+
+    @Column(name = "driverLicense",nullable = false)
     private DriverLicense driverLicense;
 
     public UserProfile(long id, long userId, String fullName, Date birthDate, Gender gender, DriverLicense driverLicense) {
