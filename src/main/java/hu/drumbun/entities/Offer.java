@@ -1,15 +1,28 @@
 package hu.drumbun.entities;
 
-import javax.persistence.Entity;
+import javax.persistence.*;
 import java.util.Date;
 
 @Entity(name = "Offer")
 public class Offer {
+
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Id
     private long id;
+
+    @JoinColumn(table = "User", name = "user_id", referencedColumnName = "id")
     private long userId;
+
+    @JoinColumn(table = "Path", name = "path_id", referencedColumnName = "id")
     private long pathId;
+
+    @Column(name = "start_place",nullable = false)
     private String startPlace;
+
+    @Column(name = "comment")
     private String comment;
+
+    @Column(name = "start_time", nullable = false)
     private Date startTime;
 
     public Offer(long id, long userId, long pathId, String startPlace, String comment, Date startTime) {
