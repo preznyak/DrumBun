@@ -10,11 +10,11 @@ public class Offer {
     @Id
     private long id;
 
-    @JoinColumn(table = "User", name = "user_id", referencedColumnName = "id")
-    private long userId;
+    @ManyToOne(targetEntity = User.class)
+    private User user;
 
-    @JoinColumn(table = "Path", name = "path_id", referencedColumnName = "id")
-    private long pathId;
+    @OneToOne(targetEntity = Path.class)
+    private Path path;
 
     @Column(name = "start_place",nullable = false)
     private String startPlace;
@@ -25,9 +25,9 @@ public class Offer {
     @Column(name = "start_time", nullable = false)
     private Date startTime;
 
-    public Offer(long userId, long pathId, String startPlace, String comment, Date startTime) {
-        this.userId = userId;
-        this.pathId = pathId;
+    public Offer(User user, Path path, String startPlace, String comment, Date startTime) {
+        this.user = user;
+        this.path = path;
         this.startPlace = startPlace;
         this.comment = comment;
         this.startTime = startTime;
@@ -41,20 +41,20 @@ public class Offer {
         this.id = id;
     }
 
-    public long getUserId() {
-        return userId;
+    public User getUser() {
+        return user;
     }
 
-    public void setUserId(long userId) {
-        this.userId = userId;
+    public void setUser(User user) {
+        this.user = user;
     }
 
-    public long getPathId() {
-        return pathId;
+    public Path getPath() {
+        return path;
     }
 
-    public void setPathId(long pathId) {
-        this.pathId = pathId;
+    public void setPath(Path path) {
+        this.path = path;
     }
 
     public String getStartPlace() {
@@ -81,15 +81,4 @@ public class Offer {
         this.startTime = startTime;
     }
 
-    @Override
-    public String toString() {
-        return "Offer{" +
-                "id=" + id +
-                ", userId=" + userId +
-                ", pathId=" + pathId +
-                ", startPlace='" + startPlace + '\'' +
-                ", comment='" + comment + '\'' +
-                ", startTime=" + startTime +
-                '}';
-    }
 }

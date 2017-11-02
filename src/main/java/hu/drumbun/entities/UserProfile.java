@@ -22,8 +22,8 @@ public class UserProfile {
     @Id
     private long id;
 
-    @JoinColumn(table = "User",name = "user_id",referencedColumnName = "id")
-    private long userId;
+    @OneToOne(targetEntity = User.class)
+    private User user;
 
     @Column(name = "fullName",nullable = false)
     private String fullName;
@@ -38,8 +38,8 @@ public class UserProfile {
     @Column(name = "driverLicense",nullable = false)
     private DriverLicense driverLicense;
 
-    public UserProfile(long userId, String fullName, Date birthDate, Gender gender, DriverLicense driverLicense) {
-        this.userId = userId;
+    public UserProfile(User user, String fullName, Date birthDate, Gender gender, DriverLicense driverLicense) {
+        this.user = user;
         this.fullName = fullName;
         this.birthDate = birthDate;
         this.gender = gender;
@@ -54,12 +54,12 @@ public class UserProfile {
         this.id = id;
     }
 
-    public long getUserId() {
-        return userId;
+    public User getUser() {
+        return user;
     }
 
-    public void setUserId(long userId) {
-        this.userId = userId;
+    public void setUser(User user) {
+        this.user = user;
     }
 
     public String getFullName() {
@@ -98,7 +98,7 @@ public class UserProfile {
     public String toString() {
         return "UserProfile{" +
                 "id=" + id +
-                ", userId=" + userId +
+                ", user=" + user +
                 ", fullName='" + fullName + '\'' +
                 ", birthDate=" + birthDate +
                 ", gender=" + gender +
