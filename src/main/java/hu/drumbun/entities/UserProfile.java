@@ -38,8 +38,7 @@ public class UserProfile {
     @Column(name = "driverLicense",nullable = false)
     private DriverLicense driverLicense;
 
-    public UserProfile(long id, long userId, String fullName, Date birthDate, Gender gender, DriverLicense driverLicense) {
-        this.id = id;
+    public UserProfile(long userId, String fullName, Date birthDate, Gender gender, DriverLicense driverLicense) {
         this.userId = userId;
         this.fullName = fullName;
         this.birthDate = birthDate;

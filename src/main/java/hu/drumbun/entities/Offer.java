@@ -25,8 +25,7 @@ public class Offer {
     @Column(name = "start_time", nullable = false)
     private Date startTime;
 
-    public Offer(long id, long userId, long pathId, String startPlace, String comment, Date startTime) {
-        this.id = id;
+    public Offer(long userId, long pathId, String startPlace, String comment, Date startTime) {
         this.userId = userId;
         this.pathId = pathId;
         this.startPlace = startPlace;
