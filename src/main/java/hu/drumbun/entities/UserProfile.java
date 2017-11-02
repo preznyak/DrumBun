@@ -14,7 +14,7 @@ import java.util.Date;
  * @version 1.0
  */
 
-@Entity
+@Entity(name = "Profile")
 public class UserProfile {
 
 
