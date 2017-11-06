@@ -1,0 +1,24 @@
+<nav class="navbar navbar-inverse bg-inverse">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a routerLink='' class="navbar-brand">DrumBun</a>
+    </div>
+    <div class="collapse navbar-collapse" >
+      <ul class="nav navbar-nav navbar-right">
+        <li class="nav navbar-nav"><a routerLink="/login" *ngIf="!authenticationService.isAuthenticated()">Login</a></li>
+        <li class="dropdown" *ngIf="authenticationService.isAuthenticated()" appDropdown>
+          <a class="dropdown-toggle" role="button">Profile <span class="caret"></span></a>
+            <ul class="dropdown-menu">
+              <li routerLinkActive="active"><a routerLink="/myrequests">Requests</a></li>
+              <li routerLinkActive="active"><a routerLink="/myoffers">Offers</a></li>
+              <li class="divider"></li>
+              <li routerLinkActive="active"><a routerLink="/profile">Profile</a></li>
+              <li routerLinkActive="active"><a routerLink="/profile-edit">Settings</a></li>
+              <li class="divider" *ngIf=""></li>
+              <li><a style="cursor: pointer;" (click)="onLogout()" routerLink="''">Logout</a></li>
+            </ul>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
