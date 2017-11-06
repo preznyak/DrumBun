@@ -13,6 +13,10 @@ import { ProfileEditComponent } from './home/profile/profile-edit/profile-edit.c
 import { AppRoutingModule } from './app-routing.module';
 import { RequestsComponent } from './home/profile/requests/requests.component';
 import { OffersComponent } from './home/profile/offers/offers.component';
+import {FormsModule} from "@angular/forms";
+import {AuthenticationService} from "./_shared/authentication.service";
+import {AuthenticationGuardService} from "./_shared/authentication-guard.service";
+
 
 @NgModule({
   declarations: [
@@ -30,9 +34,10 @@ import { OffersComponent } from './home/profile/offers/offers.component';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FormsModule
   ],
-  providers: [],
+  providers: [AuthenticationService, AuthenticationGuardService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
