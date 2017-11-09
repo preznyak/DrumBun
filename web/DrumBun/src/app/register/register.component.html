@@ -5,25 +5,25 @@
   <div class="col-md-offset-8">
     <form (ngSubmit)="onSignup(f)" #f="ngForm" style="margin-top: 10%;">
       <div id="user-data" ngModelGroup="userData">
-      <div class="form-group">
-        <label for="firstname">First Name</label>
-        <input type="firstname" id="firstname" name="firstname" ngModel class="form-control">
-      </div>
-      <div class="form-group">
-        <label for="lastname">Last Name</label>
-        <input type="lastname" id="lastname" name="lastname" ngModel class="form-control">
-      </div>
+        <div class="form-group">
+          <label for="firstname">First Name</label>
+          <input type="firstname" id="firstname" name="firstname" ngModel class="form-control">
+        </div>
+        <div class="form-group">
+          <label for="lastname">Last Name</label>
+          <input type="lastname" id="lastname" name="lastname" ngModel class="form-control">
+        </div>
       </div>
       <div class="user-auth" ngModelGroup="userAuthenticationData">
-      <div class="form-group">
-        <label for="email">E-Mail Address</label>
-        <input type="email" id="email" name="email" ngModel class="form-control" required email #email="ngModel">
-        <span class="help-block" *ngIf="!email.valid">Please enter a valid email!</span>
-      </div>
-      <div class="form-group">
-        <label for="password">Password</label>
-        <input type="password" id="password" name="password" ngModel class="form-control" required>
-      </div>
+        <div class="form-group">
+          <label for="email">E-Mail Address</label>
+          <input type="email" id="email" name="email" ngModel class="form-control" required email #email="ngModel">
+          <span class="help-block" *ngIf="!email.valid">Please enter a valid email!</span>
+        </div>
+        <div class="form-group">
+          <label for="password">Password</label>
+          <input type="password" id="password" name="password" ngModel class="form-control" required>
+        </div>
       </div>
       <button class="btn btn-primary" type="submit" [disabled]="!f.valid">Sign Up</button>
     </form>

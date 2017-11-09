@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { ICarouselConfig, AnimationConfig } from 'angular4-carousel';
+import {Component, OnInit} from '@angular/core';
+import {ICarouselConfig, AnimationConfig} from 'angular4-carousel';
 
 
 @Component({
@@ -9,7 +9,8 @@ import { ICarouselConfig, AnimationConfig } from 'angular4-carousel';
 })
 export class SlideComponent implements OnInit {
 
-  constructor() { }
+  constructor() {
+  }
 
   ngOnInit() {
   }

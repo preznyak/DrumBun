@@ -19,12 +19,12 @@ export class RegisterComponent implements OnInit {
   ngOnInit() {
   }
 
-  onSignup(){
+  onSignup() {
     this.user.firstName = this.signupForm.value.userData.firstname;
     this.user.lastName = this.signupForm.value.userData.lastname;
     this.user.email = this.signupForm.value.userAuthenticationData.email;
     this.user.password = this.signupForm.value.userAuthenticationData.password;
-    this.authenticationService.signUpUser(this.user.email,this.user.password);
+    this.authenticationService.signUpUser(this.user.email, this.user.password);
   }
 
 

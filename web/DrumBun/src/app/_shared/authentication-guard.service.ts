@@ -3,13 +3,13 @@ import {Injectable} from "@angular/core";
 import {AuthenticationService} from "./authentication.service";
 
 @Injectable()
-export class AuthenticationGuardService implements CanActivate{
+export class AuthenticationGuardService implements CanActivate {
 
-  constructor(private authenticationServce: AuthenticationService){
+  constructor(private authenticationServce: AuthenticationService) {
 
   }
 
-  canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot){
+  canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
     return this.authenticationServce.isAuthenticated();
   }
 }

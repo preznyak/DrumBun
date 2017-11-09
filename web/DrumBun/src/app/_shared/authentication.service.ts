@@ -3,21 +3,21 @@ import {Router} from "@angular/router";
 import {Injectable} from "@angular/core";
 
 @Injectable()
-export class AuthenticationService{
+export class AuthenticationService {
   token: string;
 
-  constructor(private router: Router){
+  constructor(private router: Router) {
 
   }
 
-  signUpUser(email: string, password: string){
+  signUpUser(email: string, password: string) {
     firebase.auth().createUserWithEmailAndPassword(email, password)
       .catch(
         error => console.log(error)
       )
   }
 
-  signInUser(email: string, password: string){
+  signInUser(email: string, password: string) {
     firebase.auth().signInWithEmailAndPassword(email, password)
       .then(
         response => {
@@ -38,7 +38,7 @@ export class AuthenticationService{
     this.token = null;
   }
 
-  isAuthenticated(){
+  isAuthenticated() {
     return this.token != null;
   }
 }
