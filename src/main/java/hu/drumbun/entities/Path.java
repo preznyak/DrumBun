@@ -1,6 +1,7 @@
 package hu.drumbun.entities;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 /**
  * <h1>Path Entity class</h1>
@@ -9,8 +10,9 @@ import javax.persistence.*;
  * @author Preznyak Laszlo
  * @version 1.0
  */
-@Entity(name = "Path")
-public class Path {
+@Entity
+@Table(name = "Path")
+public class Path implements Serializable {
 
     /**
      * id of the path

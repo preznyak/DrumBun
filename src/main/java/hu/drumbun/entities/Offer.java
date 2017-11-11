@@ -1,6 +1,7 @@
 package hu.drumbun.entities;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.Date;
 
 /**
@@ -11,8 +12,9 @@ import java.util.Date;
  * @version 1.0
  */
 
-@Entity(name = "Offer")
-public class Offer {
+@Entity
+@Table(name = "Offer")
+public class Offer implements Serializable{
 
     /**
      * id of the offer

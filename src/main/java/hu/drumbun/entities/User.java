@@ -1,6 +1,7 @@
 package hu.drumbun.entities;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 /**
  * <h1>User Entity class</h1>
@@ -10,8 +11,9 @@ import javax.persistence.*;
  * @version 1.0
  */
 
-@Entity(name = "User")
-public class User {
+@Entity
+@Table(name = "User")
+public class User implements Serializable{
 
     /**
      * an id for the user

@@ -4,6 +4,7 @@ import hu.drumbun.enums.DriverLicense;
 import hu.drumbun.enums.Gender;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.Date;
 
 /**
@@ -14,8 +15,9 @@ import java.util.Date;
  * @version 1.0
  */
 
-@Entity(name = "Profile")
-public class UserProfile {
+@Entity
+@Table(name = "User_Profile")
+public class UserProfile implements Serializable{
 
     /**
      * an id for the User Profile entity
