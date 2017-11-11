@@ -62,6 +62,8 @@ public class User implements Serializable{
         this.oauth_uid = oauth_uid;
     }
 
+    protected User(){}
+
     /**
      *  @return the user's id
      */
