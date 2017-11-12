@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {NgForm} from "@angular/forms";
 import {AuthenticationService} from "../_shared/authentication.service";
 
@@ -9,15 +9,16 @@ import {AuthenticationService} from "../_shared/authentication.service";
 })
 export class LoginComponent implements OnInit {
 
-  constructor(private authenticationService: AuthenticationService) { }
+  constructor(private authenticationService: AuthenticationService) {
+  }
 
   ngOnInit() {
   }
 
-  onSignin(form: NgForm){
+  onSignin(form: NgForm) {
     const email = form.value.email;
     const password = form.value.password;
-    this.authenticationService.signInUser(email,password);
+    this.authenticationService.signInUser(email, password);
   }
 
 }
