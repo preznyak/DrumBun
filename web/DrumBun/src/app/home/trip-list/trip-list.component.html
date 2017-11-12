@@ -1,19 +1,8 @@
-<p>
-  trip-list works!
-</p>
 <div class="row">
   <div class="col-xs-12">
-    <a class="list-group-item clearfix">
-      <div class="pull-left">
-        <h4 class="list-group-item-heading">ID</h4>
-        <p class="list-group-item-text">User ID</p>
-        <p class="list-group-item-text">From</p>
-        <p class="list-group-item-text">To</p>
-        <p class="list-group-item-text">Description</p>
-        <p class="list-group-item-text">When</p>
-      </div>
-    </a>
-    <app-trip-item></app-trip-item>
+    <app-trip-item
+      *ngFor="let tripElement of trips"
+      [trip]="tripElement"></app-trip-item>
   </div>
 </div>
 

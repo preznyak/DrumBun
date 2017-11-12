@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {Trip} from "../../_models/trip.model";
+import {TripService} from "../../_shared/trip.service";
 
 @Component({
   selector: 'app-trip-list',
@@ -7,13 +8,12 @@ import {Trip} from "../../_models/trip.model";
   styleUrls: ['./trip-list.component.css']
 })
 export class TripListComponent implements OnInit {
-  trips: Trip[] = [
-    new Trip(1,1,"fromTestTrip","toTestTrip","foo","now")
-  ];
+  trips: Trip[];
 
-  constructor() { }
+  constructor(private tripService: TripService) { }
 
   ngOnInit() {
+    this.trips = this.tripService.getTrips();
   }
 
 }
