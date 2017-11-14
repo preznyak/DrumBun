@@ -1,20 +1,25 @@
 <div class="list-group-item" style="margin-top: 1%">
-  <form class="form-inline" style=" display: inline-block">
+  <form class="form-inline" (ngSubmit)="justLog(search)" #search="ngForm" style=" display: inline-block">
+
     <div class="form-group">
-      <label for="from">From:</label>
-      <input type="from" class="form-control" id="from">
+      <label for="fromLocation">From:</label>
+      <input type="fromLocation" id="fromLocation" name="fromLocation" ngModel class="form-control">
     </div>
+
     <div class="form-group">
-      <label for="to">To:</label>
-      <input type="to" class="form-control" id="to">
+      <label for="toLocation">To:</label>
+      <input type="toLocation" id="toLocation" name="toLocation" ngModel class="form-control">
     </div>
+
     <div class="form-group">
-      <label for="type">Type:</label>
-      <select type="radio" class="form-control" id="type">
-        <option value="1">Offers</option>
-        <option value="2">Needs</option>
+      <label for="searchType">Type:</label>
+      <select type="searchType" id="searchType" name="searchType" ngModel class="form-control">
+        <option value="offers">Offers</option>
+        <option value="requests">Requests</option>
       </select>
     </div>
+
     <button type="submit" class="btn btn-default">Submit</button>
+
   </form>
 </div>

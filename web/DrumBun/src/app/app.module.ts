@@ -19,8 +19,9 @@ import {AuthenticationGuardService} from "./_shared/authentication-guard.service
 import {User} from "./_models/user.model";
 import {CarouselModule} from 'angular4-carousel';
 import {SlideComponent} from './slide/slide.component';
-import { TripListComponent } from './home/trip-list/trip-list.component';
-import { TripItemComponent } from './home/trip-list/trip-item/trip-item.component';
+import {TripListComponent} from './home/trip-list/trip-list.component';
+import {TripItemComponent} from './home/trip-list/trip-item/trip-item.component';
+import {HttpClientModule} from "@angular/common/http";
 
 
 @NgModule({
@@ -44,7 +45,8 @@ import { TripItemComponent } from './home/trip-list/trip-item/trip-item.componen
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    CarouselModule
+    CarouselModule,
+    HttpClientModule
   ],
   providers: [AuthenticationService, AuthenticationGuardService, User],
   bootstrap: [AppComponent]
