@@ -4,10 +4,7 @@ import hu.drumbun.entities.User;
 import hu.drumbun.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -25,5 +22,28 @@ public class UserController {
     @RequestMapping(method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE, value = "/users/{id}")
     public User getUserById(@PathVariable long id){
         return userService.getUserById(id);
+    }
+
+    @RequestMapping(method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE, value = "/adduser")
+    public String addUser(@RequestBody User user){
+        userService.addUser(new User(user.getEmail(),user.getPassword()));
+        return "User added to DB!";
+    }
+
+    @RequestMapping(method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE, value = "/addfuser")
+    public String addForeignUser(@RequestBody User user){
+        userService.addUser(new User(user.getEmail(),user.getPassword(),user.getOauth_provider(),user.getOauth_uid()));
+        return "User added to DB!";
+    }
+
+    @RequestMapping(method = RequestMethod.DELETE, value = "/delete/{id}")
+    public String deleteUserById(@PathVariable long id){
+        userService.removeUserById(id);
+        return "User deleted from DB";
+    }
+
+    @RequestMapping(method = RequestMethod.GET, value = "/users/{email}")
+    public User getUserByEmail(@PathVariable String email){
+        return userService.getUserByEmail(email);
     }
 }

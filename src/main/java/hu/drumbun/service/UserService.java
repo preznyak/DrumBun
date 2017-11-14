@@ -9,6 +9,8 @@ public interface UserService {
 
     User getUserById(long id);
 
+    User getUserByEmail(String email);
+
     String removeUserById(long id);
 
     String addUser(User user);
