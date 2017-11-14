@@ -13,8 +13,11 @@ import java.util.Date;
  */
 
 @Entity
-@Table(name = "Offer")
+@Table(name = "offer")
 public class Offer implements Serializable{
+
+    private static final long serialVersionUID = 1L;
+
 
     /**
      * id of the offer
@@ -26,13 +29,13 @@ public class Offer implements Serializable{
     /**
      * user object
      */
-    @ManyToOne(targetEntity = User.class)
+    @ManyToOne(targetEntity = User.class, fetch = FetchType.LAZY)
     private User user;
 
     /**
      * path object
      */
-    @OneToOne(targetEntity = Path.class)
+    @OneToOne(targetEntity = Path.class, fetch = FetchType.LAZY)
     private Path path;
 
     /**

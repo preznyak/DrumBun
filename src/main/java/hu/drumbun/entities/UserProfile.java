@@ -16,8 +16,11 @@ import java.util.Date;
  */
 
 @Entity
-@Table(name = "User_Profile")
+@Table(name = "user_profile")
 public class UserProfile implements Serializable{
+
+    private static final long serialVersionUID = 1L;
+
 
     /**
      * an id for the User Profile entity
@@ -29,7 +32,7 @@ public class UserProfile implements Serializable{
     /**
      * onetoone relation between a user and user profile
      */
-    @OneToOne(targetEntity = User.class)
+    @OneToOne(targetEntity = User.class, fetch = FetchType.EAGER)
     private User user;
 
     /**
@@ -48,12 +51,14 @@ public class UserProfile implements Serializable{
     /**
      * user's gender
      */
+    @Enumerated(EnumType.STRING)
     @Column(name = "gender",nullable = false)
     private Gender gender;
 
     /**
      * field that represents if a user have driver license
      */
+    @Enumerated(EnumType.STRING)
     @Column(name = "driverLicense",nullable = false)
     private DriverLicense driverLicense;
 

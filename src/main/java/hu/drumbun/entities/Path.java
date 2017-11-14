@@ -11,8 +11,11 @@ import java.io.Serializable;
  * @version 1.0
  */
 @Entity
-@Table(name = "Path")
+@Table(name = "path")
 public class Path implements Serializable {
+
+    private static final long serialVersionUID = 1L;
+
 
     /**
      * id of the path

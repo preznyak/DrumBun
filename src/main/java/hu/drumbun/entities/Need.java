@@ -12,7 +12,7 @@ import java.util.Date;
  * @version 1.0
  */
 @Entity
-@Table(name = "Need")
+@Table(name = "need")
 public class Need implements Serializable{
 
     /**
@@ -25,7 +25,7 @@ public class Need implements Serializable{
     /**
      * user
      */
-    @ManyToOne(targetEntity = User.class)
+    @ManyToOne(targetEntity = User.class, fetch = FetchType.LAZY)
     private User user;
 
     /**

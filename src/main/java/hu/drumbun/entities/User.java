@@ -3,6 +3,8 @@ package hu.drumbun.entities;
 import javax.persistence.*;
 import java.io.Serializable;
 
+
+
 /**
  * <h1>User Entity class</h1>
  * A User class that represents a user in the db
@@ -12,8 +14,10 @@ import java.io.Serializable;
  */
 
 @Entity
-@Table(name = "User")
+@Table(name = "d_user")
 public class User implements Serializable{
+
+    private static final long serialVersionUID = 1L;
 
     /**
      * an id for the user
@@ -60,6 +64,11 @@ public class User implements Serializable{
         this.password = password;
         this.oauth_provider = oauth_provider;
         this.oauth_uid = oauth_uid;
+    }
+
+    public User(String email, String password) {
+        this.email = email;
+        this.password = password;
     }
 
     protected User(){}
