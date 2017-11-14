@@ -4,6 +4,7 @@ import hu.drumbun.enums.DriverLicense;
 import hu.drumbun.enums.Gender;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.Date;
 
 /**
@@ -14,8 +15,12 @@ import java.util.Date;
  * @version 1.0
  */
 
-@Entity(name = "Profile")
-public class UserProfile {
+@Entity
+@Table(name = "user_profile")
+public class UserProfile implements Serializable{
+
+    private static final long serialVersionUID = 1L;
+
 
     /**
      * an id for the User Profile entity
@@ -27,7 +32,7 @@ public class UserProfile {
     /**
      * onetoone relation between a user and user profile
      */
-    @OneToOne(targetEntity = User.class)
+    @OneToOne(targetEntity = User.class, fetch = FetchType.EAGER)
     private User user;
 
     /**
@@ -46,12 +51,14 @@ public class UserProfile {
     /**
      * user's gender
      */
+    @Enumerated(EnumType.STRING)
     @Column(name = "gender",nullable = false)
     private Gender gender;
 
     /**
      * field that represents if a user have driver license
      */
+    @Enumerated(EnumType.STRING)
     @Column(name = "driverLicense",nullable = false)
     private DriverLicense driverLicense;
 

@@ -1,6 +1,7 @@
 package hu.drumbun.entities;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.Date;
 
 /**
@@ -10,8 +11,9 @@ import java.util.Date;
  * @author Preznyak Laszlo
  * @version 1.0
  */
-@Entity(name ="Need")
-public class Need {
+@Entity
+@Table(name = "need")
+public class Need implements Serializable{
 
     /**
      * id of the need
@@ -23,7 +25,7 @@ public class Need {
     /**
      * user
      */
-    @ManyToOne(targetEntity = User.class)
+    @ManyToOne(targetEntity = User.class, fetch = FetchType.LAZY)
     private User user;
 
     /**

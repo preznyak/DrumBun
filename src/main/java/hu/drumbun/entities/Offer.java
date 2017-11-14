@@ -1,6 +1,7 @@
 package hu.drumbun.entities;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.Date;
 
 /**
@@ -11,8 +12,12 @@ import java.util.Date;
  * @version 1.0
  */
 
-@Entity(name = "Offer")
-public class Offer {
+@Entity
+@Table(name = "offer")
+public class Offer implements Serializable{
+
+    private static final long serialVersionUID = 1L;
+
 
     /**
      * id of the offer
@@ -24,13 +29,13 @@ public class Offer {
     /**
      * user object
      */
-    @ManyToOne(targetEntity = User.class)
+    @ManyToOne(targetEntity = User.class, fetch = FetchType.LAZY)
     private User user;
 
     /**
      * path object
      */
-    @OneToOne(targetEntity = Path.class)
+    @OneToOne(targetEntity = Path.class, fetch = FetchType.LAZY)
     private Path path;
 
     /**
