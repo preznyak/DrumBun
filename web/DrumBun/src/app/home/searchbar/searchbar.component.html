@@ -1,9 +1,25 @@
-<p>
-  //TODO
-</p>
-<p>
-  //TODO Searchbar 2 keresomezovel, utas/utak dropdownnal, kereses gombbal
-</p>
-<p>
-  //TODO Placeholder itemek es annak a collapseos
-</p>
+<div class="list-group-item" style="margin-top: 1%">
+  <form class="form-inline" (ngSubmit)="justLog(search)" #search="ngForm" style=" display: inline-block">
+
+    <div class="form-group">
+      <label for="fromLocation">From:</label>
+      <input type="fromLocation" id="fromLocation" name="fromLocation" ngModel class="form-control" required>
+    </div>
+
+    <div class="form-group">
+      <label for="toLocation">To:</label>
+      <input type="toLocation" id="toLocation" name="toLocation" ngModel class="form-control" required>
+    </div>
+
+    <div class="form-group">
+      <label for="searchType">Type:</label>
+      <select type="searchType" id="searchType" name="searchType" ngModel class="form-control" required>
+        <option value="offers">Offers</option>
+        <option value="requests">Requests</option>
+      </select>
+    </div>
+
+    <button type="submit" class="btn btn-default" [disabled]="!search.valid">Submit</button>
+
+  </form>
+</div>
