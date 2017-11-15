@@ -1,7 +1,8 @@
-package hu.drumbun.service;
+package hu.drumbun.service.user;
 
 import hu.drumbun.entities.User;
-import hu.drumbun.repository.UserRepository;
+import hu.drumbun.repository.user.UserRepository;
+import hu.drumbun.service.user.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

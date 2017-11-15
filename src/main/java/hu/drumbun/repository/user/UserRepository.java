@@ -1,4 +1,4 @@
-package hu.drumbun.repository;
+package hu.drumbun.repository.user;
 
 import hu.drumbun.entities.User;
 import org.springframework.data.jpa.repository.JpaRepository;

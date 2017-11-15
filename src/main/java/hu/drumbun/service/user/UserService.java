@@ -1,4 +1,4 @@
-package hu.drumbun.service;
+package hu.drumbun.service.user;
 
 import hu.drumbun.entities.User;
 

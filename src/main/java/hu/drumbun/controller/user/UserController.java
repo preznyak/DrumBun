@@ -1,7 +1,7 @@
-package hu.drumbun.controller;
+package hu.drumbun.controller.user;
 
 import hu.drumbun.entities.User;
-import hu.drumbun.service.UserService;
+import hu.drumbun.service.user.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
