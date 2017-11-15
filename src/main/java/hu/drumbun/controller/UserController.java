@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+@CrossOrigin(origins = "http://localhost:4200")
 @RestController
 public class UserController {
 
@@ -24,9 +25,10 @@ public class UserController {
         return userService.getUserById(id);
     }
 
-    @RequestMapping(method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE, value = "/adduser")
+    @RequestMapping(method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE, value = "/registeruser")
     public String addUser(@RequestBody User user){
         userService.addUser(new User(user.getEmail(),user.getPassword()));
+
         return "User added to DB!";
     }
 

@@ -24,6 +24,8 @@ import {TripItemComponent} from './home/trip-list/trip-item/trip-item.component'
 import {HttpClientModule} from "@angular/common/http";
 import {HttpModule} from "@angular/http";
 import {RequestService} from "./_shared/request.service";
+import { UserListComponent } from './home/trip-list/user-list/user-list.component';
+import {UserService} from "./_shared/user.service";
 
 
 @NgModule({
@@ -41,7 +43,8 @@ import {RequestService} from "./_shared/request.service";
     OffersComponent,
     SlideComponent,
     TripListComponent,
-    TripItemComponent
+    TripItemComponent,
+    UserListComponent
   ],
   imports: [
     BrowserModule,
@@ -51,7 +54,7 @@ import {RequestService} from "./_shared/request.service";
     HttpClientModule,
     HttpModule
   ],
-  providers: [AuthenticationService, AuthenticationGuardService,RequestService, User],
+  providers: [AuthenticationService, AuthenticationGuardService,UserService,RequestService, User],
   bootstrap: [AppComponent]
 })
 export class AppModule {
