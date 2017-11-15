@@ -22,6 +22,8 @@ import {SlideComponent} from './slide/slide.component';
 import {TripListComponent} from './home/trip-list/trip-list.component';
 import {TripItemComponent} from './home/trip-list/trip-item/trip-item.component';
 import {HttpClientModule} from "@angular/common/http";
+import {HttpModule} from "@angular/http";
+import {RequestService} from "./_shared/request.service";
 
 
 @NgModule({
@@ -46,9 +48,10 @@ import {HttpClientModule} from "@angular/common/http";
     AppRoutingModule,
     FormsModule,
     CarouselModule,
-    HttpClientModule
+    HttpClientModule,
+    HttpModule
   ],
-  providers: [AuthenticationService, AuthenticationGuardService, User],
+  providers: [AuthenticationService, AuthenticationGuardService,RequestService, User],
   bootstrap: [AppComponent]
 })
 export class AppModule {
