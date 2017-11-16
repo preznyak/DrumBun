@@ -8,20 +8,11 @@ import java.util.Date;
 
 public class CreateUserProfileRequest {
 
-    private User user;
     private Date birthDate;
     private Gender gender;
     private DriverLicense driverLicense;
 
     public CreateUserProfileRequest() {
-    }
-
-    public User getUser() {
-        return user;
-    }
-
-    public void setUser(User user) {
-        this.user = user;
     }
 
     public Date getBirthDate() {

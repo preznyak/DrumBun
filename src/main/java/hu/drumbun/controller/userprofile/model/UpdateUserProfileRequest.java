@@ -9,20 +9,11 @@ import java.util.Date;
 public class UpdateUserProfileRequest {
 
     private long id;
-    private User user;
     private Date birthDate;
     private Gender gender;
     private DriverLicense driverLicense;
 
     public UpdateUserProfileRequest() {
-    }
-
-    public User getUser() {
-        return user;
-    }
-
-    public void setUser(User user) {
-        this.user = user;
     }
 
     public Date getBirthDate() {
