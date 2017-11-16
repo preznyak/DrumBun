@@ -43,12 +43,6 @@ public class UserProfileServiceImpl implements UserProfileService{
     }
 
     @Override
-    public UserProfileResponse findUserProfileByUserId(long id) {
-        //TODO
-        return null;
-    }
-
-    @Override
     public List<UserProfileResponse> findAllByDriverLicense(DriverLicense driverLicense) {
         return userProfileRepository.findAllByDriverLicense(driverLicense).stream()
                 .map(userProfileResponseConverter::from)
@@ -65,7 +59,7 @@ public class UserProfileServiceImpl implements UserProfileService{
     @Override
     public void createUserProfile(CreateUserProfileRequest createUserProfileRequest) {
         UserProfile userProfile = createUserProfileRequestConverter.from(createUserProfileRequest);
-        userProfileRepository.save(new UserProfile(userProfile.getUser(),userProfile.getBirthDate(),userProfile.getGender(),userProfile.getDriverLicense()));
+        userProfileRepository.save(new UserProfile(userProfile.getBirthDate(),userProfile.getGender(),userProfile.getDriverLicense()));
     }
 
     @Override
