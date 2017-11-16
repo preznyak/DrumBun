@@ -1,6 +1,6 @@
 package hu.drumbun.service.need.impl;
 
-import hu.drumbun.controller.need.NeedModel;
+import hu.drumbun.controller.need.model.NeedModel;
 import hu.drumbun.repository.need.NeedRepository;
 import hu.drumbun.service.need.NeedService;
 import hu.drumbun.service.need.converter.NeedModelConverter;

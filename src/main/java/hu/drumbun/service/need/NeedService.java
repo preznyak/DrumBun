@@ -1,7 +1,6 @@
 package hu.drumbun.service.need;
 
-import hu.drumbun.controller.need.NeedModel;
-import hu.drumbun.entities.Need;
+import hu.drumbun.controller.need.model.NeedModel;
 
 import java.util.List;
 
