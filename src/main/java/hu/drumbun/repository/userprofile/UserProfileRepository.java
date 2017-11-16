@@ -12,8 +12,6 @@ import java.util.List;
 @Repository
 public interface UserProfileRepository extends JpaRepository<UserProfile, Long>{
 
-    UserProfile findByUser(User user);
-
     List<UserProfile> findAll();
 
     List<UserProfile> findAllByDriverLicense(DriverLicense driverLicense);
