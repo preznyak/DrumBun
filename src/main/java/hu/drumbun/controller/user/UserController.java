@@ -34,7 +34,7 @@ public class UserController {
 
     @RequestMapping(method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE, value = "/adduser")
     public String addUser(@RequestBody CreateUserRequest createUserRequest) {
-        userService.addUser(new CreateUserRequest(createUserRequest.getFirstName(),createUserRequest.getLastName(),createUserRequest.getEmail(),createUserRequest.getPassword()));
+        userService.addUser(new CreateUserRequest(createUserRequest.getFirstName(), createUserRequest.getLastName(), createUserRequest.getEmail(), createUserRequest.getPassword()));
         return "User added to DB!";
     }
 
@@ -45,8 +45,8 @@ public class UserController {
         return "User deleted from DB";
     }
 
-    @RequestMapping(method = RequestMethod.PUT,value = "/update")
-    public String updateUser(@RequestBody UpdateUserRequest updateUserRequest){
+    @RequestMapping(method = RequestMethod.PUT, value = "/update")
+    public String updateUser(@RequestBody UpdateUserRequest updateUserRequest) {
         userService.updateUser(updateUserRequest);
         return "User updated";
     }
