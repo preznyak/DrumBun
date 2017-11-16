@@ -1,6 +1,8 @@
 package hu.drumbun.service.userprofile.impl;
 
+import hu.drumbun.controller.userprofile.model.CreateUserProfileRequest;
 import hu.drumbun.controller.userprofile.model.UserProfileResponse;
+import hu.drumbun.entities.UserProfile;
 import hu.drumbun.enums.DriverLicense;
 import hu.drumbun.enums.Gender;
 import hu.drumbun.repository.userprofile.UserProfileRepository;
@@ -57,5 +59,11 @@ public class UserProfileServiceImpl implements UserProfileService{
         return userProfileRepository.findAllByGender(gender).stream()
                 .map(userProfileResponseConverter::from)
                 .collect(Collectors.toList());
+    }
+
+    @Override
+    public void createUserProfile(CreateUserProfileRequest createUserProfileRequest) {
+        UserProfile userProfile = createUserProfileRequestConverter.from(createUserProfileRequest);
+        userProfileRepository.save(new UserProfile(userProfile.getUser(),userProfile.getBirthDate(),userProfile.getGender(),userProfile.getDriverLicense()));
     }
 }
