@@ -35,11 +35,6 @@ public class UserProfile implements Serializable{
     @OneToOne(targetEntity = User.class, fetch = FetchType.EAGER)
     private User user;
 
-    /**
-     * user's full name
-     */
-    @Column(name = "fullName",nullable = false)
-    private String fullName;
 
     /**
      * user's birthdate
@@ -65,14 +60,12 @@ public class UserProfile implements Serializable{
     /**
      * Constructor
      * @param user the user
-     * @param fullName user's full name
      * @param birthDate user's birthdate
      * @param gender user's gender
      * @param driverLicense driverlicense
      */
-    public UserProfile(User user, String fullName, Date birthDate, Gender gender, DriverLicense driverLicense) {
+    public UserProfile(User user, Date birthDate, Gender gender, DriverLicense driverLicense) {
         this.user = user;
-        this.fullName = fullName;
         this.birthDate = birthDate;
         this.gender = gender;
         this.driverLicense = driverLicense;
@@ -110,21 +103,6 @@ public class UserProfile implements Serializable{
         this.user = user;
     }
 
-    /**
-     * Getter method for full name attribute
-     * @return user's full name
-     */
-    public String getFullName() {
-        return fullName;
-    }
-
-    /**
-     * Setter method for full name
-     * @param fullName user's full name
-     */
-    public void setFullName(String fullName) {
-        this.fullName = fullName;
-    }
 
     /**
      * Getter method for birthdate
@@ -183,8 +161,6 @@ public class UserProfile implements Serializable{
         return "UserProfile{" +
                 "id=" + id +
                 ", user=" + user +
-                ", fullName='" + fullName + '\'' +
-                ", birthDate=" + birthDate +
                 ", gender=" + gender +
                 ", driverLicense=" + driverLicense +
                 '}';

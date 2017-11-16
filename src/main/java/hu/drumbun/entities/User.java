@@ -28,9 +28,21 @@ public class User implements Serializable{
     private long id;
 
     /**
+     * first name for the user
+     */
+    @Column(name = "firstname",nullable = false)
+    private String firstName;
+
+    /**
+     * last name for the user
+     */
+    @Column(name = "lastname", nullable = false)
+    private String lastName;
+
+    /**
      * email address for the user
      */
-    @Column(name = "email", nullable = false)
+    @Column(name = "email", nullable = false, unique = true)
     private String email;
 
     /**
@@ -54,23 +66,31 @@ public class User implements Serializable{
     /**
      * Constructor
      *
+     * @param firstName user's first name
+     * @param lastName user's last name
      * @param email the user's email
      * @param password the user's password
      * @param oauth_provider the user's profile provider's name
      * @param oauth_uid the user's id by the provider
      */
-    public User(String email, String password, String oauth_provider, String oauth_uid) {
+    public User(String firstName, String lastName, String email, String password, String oauth_provider, String oauth_uid) {
+        this.firstName = firstName;
+        this.lastName = lastName;
         this.email = email;
         this.password = password;
         this.oauth_provider = oauth_provider;
         this.oauth_uid = oauth_uid;
     }
 
+
     public User(String email, String password) {
         this.email = email;
         this.password = password;
     }
 
+    /**
+     * Default constructor for the User class
+     */
     protected User(){}
 
     /**
@@ -88,8 +108,41 @@ public class User implements Serializable{
         this.id = id;
     }
 
+
     /**
-     *
+     * gets the user's first name
+     * @return user's first name
+     */
+    public String getFirstName() {
+        return firstName;
+    }
+
+    /**
+     * Sets the user's first name
+     * @param firstName user's first name
+     */
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    /**
+     * Gets the user's last name.
+     * @return user's last name
+     */
+    public String getLastName() {
+        return lastName;
+    }
+
+    /**
+     * Sets the user's last name
+     * @param lastName user's last name
+     */
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
+    /**
+     * Gets the user's email address
      * @return the user's email address
      */
     public String getEmail() {
@@ -105,7 +158,7 @@ public class User implements Serializable{
     }
 
     /**
-     *
+     * Gets the user's password
      * @return the user's password
      */
     public String getPassword() {
@@ -160,6 +213,8 @@ public class User implements Serializable{
     public String toString() {
         return "User{" +
                 "id=" + id +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
                 ", email='" + email + '\'' +
                 ", password='" + password + '\'' +
                 ", oauth_provider='" + oauth_provider + '\'' +
