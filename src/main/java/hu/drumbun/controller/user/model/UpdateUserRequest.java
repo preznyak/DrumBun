@@ -2,6 +2,7 @@ package hu.drumbun.controller.user.model;
 
 public class UpdateUserRequest {
 
+    private long id;
     private String firstName;
     private String lastName;
     private String email;
@@ -10,6 +11,14 @@ public class UpdateUserRequest {
     private String oauth_uid;
 
     public UpdateUserRequest() {
+    }
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
     }
 
     public String getFirstName() {

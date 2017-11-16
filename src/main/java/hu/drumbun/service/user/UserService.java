@@ -1,17 +1,22 @@
 package hu.drumbun.service.user;
 
-import hu.drumbun.entities.User;
+import hu.drumbun.controller.user.model.CreateUserRequest;
+import hu.drumbun.controller.user.model.UpdateUserRequest;
+import hu.drumbun.controller.user.model.UserResponse;
 
 import java.util.List;
 
+
 public interface UserService {
-    List<User> getAllUsers();
+    List<UserResponse> getAllUsers();
 
-    User getUserById(long id);
+    UserResponse getUserById(long id);
 
-    User getUserByEmail(String email);
+    UserResponse getUserByEmail(String email);
 
-    String removeUserById(long id);
+    void removeUserById(long id);
 
-    String addUser(User user);
+    void addUser(CreateUserRequest createUserRequest);
+
+    void updateUser(UpdateUserRequest updateUserRequest);
 }
