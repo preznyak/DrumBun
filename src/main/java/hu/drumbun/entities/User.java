@@ -64,6 +64,12 @@ public class User implements Serializable{
     private String oauth_uid;
 
     /**
+     * the user's profile
+     */
+    @OneToOne(cascade = CascadeType.REMOVE, targetEntity = UserProfile.class,fetch = FetchType.LAZY)
+    private UserProfile userProfile;
+
+    /**
      * Constructor
      *
      * @param firstName user's first name
@@ -72,16 +78,17 @@ public class User implements Serializable{
      * @param password the user's password
      * @param oauth_provider the user's profile provider's name
      * @param oauth_uid the user's id by the provider
+     * @param userProfile user's profile
      */
-    public User(String firstName, String lastName, String email, String password, String oauth_provider, String oauth_uid) {
+    public User(String firstName, String lastName, String email, String password, String oauth_provider, String oauth_uid, UserProfile userProfile) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
         this.password = password;
         this.oauth_provider = oauth_provider;
         this.oauth_uid = oauth_uid;
+        this.userProfile = userProfile;
     }
-
 
     public User(String firstName,String lastName,String email, String password) {
         this.firstName = firstName;
@@ -205,6 +212,22 @@ public class User implements Serializable{
      */
     public void setOauth_uid(String oauth_uid) {
         this.oauth_uid = oauth_uid;
+    }
+
+    /**
+     * Gets the user's profile
+     * @return UserProfile object
+     */
+    public UserProfile getUserProfile() {
+        return userProfile;
+    }
+
+    /**
+     * Sets the user's profile
+     * @param userProfile user's profile
+     */
+    public void setUserProfile(UserProfile userProfile) {
+        this.userProfile = userProfile;
     }
 
     /**

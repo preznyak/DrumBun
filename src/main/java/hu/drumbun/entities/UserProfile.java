@@ -29,12 +29,6 @@ public class UserProfile implements Serializable{
     @Id
     private long id;
 
-    /**
-     * onetoone relation between a user and user profile
-     */
-    @OneToOne(targetEntity = User.class, fetch = FetchType.EAGER)
-    private User user;
-
 
     /**
      * user's birthdate
@@ -59,13 +53,11 @@ public class UserProfile implements Serializable{
 
     /**
      * Constructor
-     * @param user the user
      * @param birthDate user's birthdate
      * @param gender user's gender
      * @param driverLicense driverlicense
      */
-    public UserProfile(User user, Date birthDate, Gender gender, DriverLicense driverLicense) {
-        this.user = user;
+    public UserProfile(Date birthDate, Gender gender, DriverLicense driverLicense) {
         this.birthDate = birthDate;
         this.gender = gender;
         this.driverLicense = driverLicense;
@@ -89,23 +81,6 @@ public class UserProfile implements Serializable{
     public void setId(long id) {
         this.id = id;
     }
-
-    /**
-     * Getter method for user
-     * @return the user
-     */
-    public User getUser() {
-        return user;
-    }
-
-    /**
-     * Setter method for user
-     * @param user user
-     */
-    public void setUser(User user) {
-        this.user = user;
-    }
-
 
     /**
      * Getter method for birthdate
@@ -163,7 +138,7 @@ public class UserProfile implements Serializable{
     public String toString() {
         return "UserProfile{" +
                 "id=" + id +
-                ", user=" + user +
+                ", birthDate=" + birthDate +
                 ", gender=" + gender +
                 ", driverLicense=" + driverLicense +
                 '}';
