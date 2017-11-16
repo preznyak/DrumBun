@@ -1,4 +1,4 @@
-package hu.drumbun.controller.need;
+package hu.drumbun.controller.need.model;
 
 import hu.drumbun.entities.Path;
 
