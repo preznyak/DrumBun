@@ -28,17 +28,8 @@ public class Need implements Serializable{
     @ManyToOne(targetEntity = User.class, fetch = FetchType.LAZY)
     private User user;
 
-    /**
-     * start place of the need
-     */
-    @Column(name = "start")
-    private String start;
-
-    /**
-     * destination
-     */
-    @Column(name = "destination")
-    private String destination;
+    @OneToOne(fetch = FetchType.EAGER, targetEntity = Path.class)
+    private Path path;
 
     /**
      * additional comment to the need
@@ -52,19 +43,16 @@ public class Need implements Serializable{
     @Column(name = "date")
     private Date date;
 
-
     /**
      * Constructor
      * @param user user who created the need
-     * @param start start place
-     * @param destination destination
+     * @param path path
      * @param comment additional comment
      * @param date date
      */
-    public Need(User user, String start, String destination, String comment, Date date) {
+    public Need(User user, Path path, String comment, Date date) {
         this.user = user;
-        this.start = start;
-        this.destination = destination;
+        this.path = path;
         this.comment = comment;
         this.date = date;
     }
@@ -105,35 +93,19 @@ public class Need implements Serializable{
     }
 
     /**
-     * Getter method for the start place
-     * @return start place
+     * Getter method for path
+     * @return path
      */
-    public String getStart() {
-        return start;
+    public Path getPath() {
+        return path;
     }
 
     /**
-     * Setter method for the start place
-     * @param start start place
+     * Setter method for path
+     * @param path path
      */
-    public void setStart(String start) {
-        this.start = start;
-    }
-
-    /**
-     * Getter method for the destination
-     * @return destination
-     */
-    public String getDestination() {
-        return destination;
-    }
-
-    /**
-     * Setter method for the destination
-     * @param destination destination
-     */
-    public void setDestination(String destination) {
-        this.destination = destination;
+    public void setPath(Path path) {
+        this.path = path;
     }
 
     /**
@@ -177,8 +149,7 @@ public class Need implements Serializable{
         return "Need{" +
                 "id=" + id +
                 ", user=" + user +
-                ", start='" + start + '\'' +
-                ", destination='" + destination + '\'' +
+                ", path=" + path +
                 ", comment='" + comment + '\'' +
                 ", date=" + date +
                 '}';

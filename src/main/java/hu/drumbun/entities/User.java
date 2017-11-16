@@ -66,7 +66,7 @@ public class User implements Serializable{
     /**
      * the user's profile
      */
-    @OneToOne(cascade = CascadeType.REMOVE, targetEntity = UserProfile.class,fetch = FetchType.LAZY)
+    @OneToOne(targetEntity = UserProfile.class,fetch = FetchType.EAGER)
     private UserProfile userProfile;
 
     /**
@@ -244,6 +244,7 @@ public class User implements Serializable{
                 ", password='" + password + '\'' +
                 ", oauth_provider='" + oauth_provider + '\'' +
                 ", oauth_uid='" + oauth_uid + '\'' +
+                ", userProfile=" + userProfile +
                 '}';
     }
 }

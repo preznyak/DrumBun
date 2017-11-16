@@ -39,12 +39,6 @@ public class Offer implements Serializable{
     private Path path;
 
     /**
-     * starting place where the journey starts
-     */
-    @Column(name = "start_place",nullable = false)
-    private String startPlace;
-
-    /**
      * additional comment for the offer
      */
     @Column(name = "comment")
@@ -60,14 +54,12 @@ public class Offer implements Serializable{
      * Constructor
      * @param user user
      * @param path path
-     * @param startPlace start place
      * @param comment comment
      * @param startTime start time
      */
-    public Offer(User user, Path path, String startPlace, String comment, Date startTime) {
+    public Offer(User user, Path path, String comment, Date startTime) {
         this.user = user;
         this.path = path;
-        this.startPlace = startPlace;
         this.comment = comment;
         this.startTime = startTime;
     }
@@ -124,22 +116,6 @@ public class Offer implements Serializable{
     }
 
     /**
-     * Getter method for start place
-     * @return start place
-     */
-    public String getStartPlace() {
-        return startPlace;
-    }
-
-    /**
-     * Setter method for start place
-     * @param startPlace start place
-     */
-    public void setStartPlace(String startPlace) {
-        this.startPlace = startPlace;
-    }
-
-    /**
      * Getter method for comment
      * @return comment
      */
@@ -181,7 +157,6 @@ public class Offer implements Serializable{
                 "id=" + id +
                 ", user=" + user +
                 ", path=" + path +
-                ", startPlace='" + startPlace + '\'' +
                 ", comment='" + comment + '\'' +
                 ", startTime=" + startTime +
                 '}';
