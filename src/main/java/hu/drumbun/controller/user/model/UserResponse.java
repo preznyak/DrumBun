@@ -1,5 +1,7 @@
 package hu.drumbun.controller.user.model;
 
+import hu.drumbun.entities.UserProfile;
+
 public class UserResponse {
 
     private long id;
@@ -9,6 +11,7 @@ public class UserResponse {
     private String password;
     private String oauth_provider;
     private String oauth_uid;
+    private UserProfile userProfile;
 
     public UserResponse() {
     }
@@ -67,5 +70,13 @@ public class UserResponse {
 
     public void setOauth_uid(String oauth_uid) {
         this.oauth_uid = oauth_uid;
+    }
+
+    public UserProfile getUserProfile() {
+        return userProfile;
+    }
+
+    public void setUserProfile(UserProfile userProfile) {
+        this.userProfile = userProfile;
     }
 }
