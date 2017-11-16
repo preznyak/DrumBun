@@ -1,6 +1,7 @@
 package hu.drumbun.service.userprofile;
 
 import hu.drumbun.controller.userprofile.model.CreateUserProfileRequest;
+import hu.drumbun.controller.userprofile.model.UpdateUserProfileRequest;
 import hu.drumbun.controller.userprofile.model.UserProfileResponse;
 import hu.drumbun.entities.UserProfile;
 import hu.drumbun.enums.DriverLicense;
@@ -19,5 +20,7 @@ public interface UserProfileService {
     List<UserProfileResponse> findAllByGender(Gender gender);
 
     void createUserProfile(CreateUserProfileRequest createUserProfileRequest);
+
+    void updateUserProfile(UpdateUserProfileRequest updateUserProfileRequest);
 
 }

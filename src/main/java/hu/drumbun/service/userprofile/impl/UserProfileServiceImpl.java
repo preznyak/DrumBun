@@ -1,6 +1,7 @@
 package hu.drumbun.service.userprofile.impl;
 
 import hu.drumbun.controller.userprofile.model.CreateUserProfileRequest;
+import hu.drumbun.controller.userprofile.model.UpdateUserProfileRequest;
 import hu.drumbun.controller.userprofile.model.UserProfileResponse;
 import hu.drumbun.entities.UserProfile;
 import hu.drumbun.enums.DriverLicense;
@@ -65,5 +66,15 @@ public class UserProfileServiceImpl implements UserProfileService{
     public void createUserProfile(CreateUserProfileRequest createUserProfileRequest) {
         UserProfile userProfile = createUserProfileRequestConverter.from(createUserProfileRequest);
         userProfileRepository.save(new UserProfile(userProfile.getUser(),userProfile.getBirthDate(),userProfile.getGender(),userProfile.getDriverLicense()));
+    }
+
+    @Override
+    public void updateUserProfile(UpdateUserProfileRequest updateUserProfileRequest) {
+        UserProfile updatedUserProfile = updateUserProfileRequestConverter.from(updateUserProfileRequest);
+        UserProfile oldUserProfile = userProfileRepository.findOne(updatedUserProfile.getId());
+        oldUserProfile.setBirthDate(updatedUserProfile.getBirthDate());
+        oldUserProfile.setGender(updatedUserProfile.getGender());
+        oldUserProfile.setDriverLicense(updatedUserProfile.getDriverLicense());
+        userProfileRepository.save(oldUserProfile);
     }
 }
