@@ -72,6 +72,7 @@ public class UserServiceImpl implements UserService {
         oldUser.setPassword(updatedUser.getPassword());
         oldUser.setOauth_provider(updatedUser.getOauth_provider());
         oldUser.setOauth_uid(updatedUser.getOauth_uid());
+        oldUser.setUserProfile(updatedUser.getUserProfile());
         userRepository.save(oldUser);
     }
 }
