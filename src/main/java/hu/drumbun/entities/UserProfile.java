@@ -71,6 +71,9 @@ public class UserProfile implements Serializable{
         this.driverLicense = driverLicense;
     }
 
+    public UserProfile() {
+    }
+
     /**
      * Getter method for id
      * @return the user's id

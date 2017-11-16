@@ -69,6 +69,9 @@ public class Need implements Serializable{
         this.date = date;
     }
 
+    public Need() {
+    }
+
     /**
      * Getter method for the id
      * @return id of the need

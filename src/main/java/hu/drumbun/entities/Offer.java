@@ -72,6 +72,9 @@ public class Offer implements Serializable{
         this.startTime = startTime;
     }
 
+    public Offer() {
+    }
+
     /**
      * Getter method for the id
      * @return id
