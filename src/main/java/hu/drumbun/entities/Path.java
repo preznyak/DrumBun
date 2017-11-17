@@ -54,6 +54,9 @@ public class Path implements Serializable {
         this.enroute = enroute;
     }
 
+    public Path() {
+    }
+
     /**
      * Getter method for id
      * @return id of the path
