@@ -4,10 +4,7 @@ import hu.drumbun.controller.need.model.NeedModel;
 import hu.drumbun.service.need.NeedService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -27,4 +24,25 @@ public class NeedController {
     public NeedModel findNeedById(@PathVariable long id){
         return needService.findById(id);
     }
+
+    @RequestMapping(method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE, value = "/dest/{destination}")
+    List<NeedModel> findByPath_Destination(@PathVariable String destination){
+        return needService.findByPath_Destination(destination);
+    }
+
+    @RequestMapping(method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE, value = "/start/{start}")
+    List<NeedModel> findByPath_Start(@PathVariable String start){
+        return needService.findByPath_Start(start);
+    }
+
+    @RequestMapping(method = RequestMethod.PUT, consumes = MediaType.APPLICATION_JSON_VALUE, value = "/update")
+    void updateNeed(@RequestBody NeedModel needModel){
+        needService.updateNeed(needModel);
+    }
+
+    @RequestMapping(method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE, value = "/new")
+    void createNeed(@RequestBody NeedModel needModel){
+        needService.createNeed(needModel);
+    }
+
 }

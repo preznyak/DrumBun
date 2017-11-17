@@ -6,11 +6,20 @@ import java.util.Date;
 
 public class OfferModel {
 
+    private long id;
     private Path path;
     private String comment;
     private Date startTime;
 
     public OfferModel() {
+    }
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
     }
 
     public Path getPath() {
