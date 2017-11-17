@@ -9,4 +9,6 @@ public interface PathService {
     Path findById(long id);
     Path findByStart(String start);
     Path findByDestination(String destination);
+    void updatePath(Path path);
+    void createPath(Path path);
 }

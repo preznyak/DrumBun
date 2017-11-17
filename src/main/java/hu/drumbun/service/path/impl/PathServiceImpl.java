@@ -37,4 +37,14 @@ public class PathServiceImpl implements PathService {
     public Path findByDestination(String destination) {
         return pathRepository.findByDestination(destination);
     }
+
+    @Override
+    public void updatePath(Path path) {
+        pathRepository.save(path);
+    }
+
+    @Override
+    public void createPath(Path path) {
+        pathRepository.save(new Path(path.getStart(),path.getDestination(),path.getEnroute()));
+    }
 }
