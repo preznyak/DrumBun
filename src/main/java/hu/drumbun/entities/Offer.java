@@ -35,7 +35,7 @@ public class Offer implements Serializable{
     /**
      * path object
      */
-    @OneToOne(targetEntity = Path.class, fetch = FetchType.EAGER)
+    @OneToOne(targetEntity = Path.class, fetch = FetchType.EAGER, cascade = CascadeType.REMOVE)
     private Path path;
 
     /**

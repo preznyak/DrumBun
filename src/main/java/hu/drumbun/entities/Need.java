@@ -28,7 +28,7 @@ public class Need implements Serializable{
     @ManyToOne(targetEntity = User.class, fetch = FetchType.LAZY)
     private User user;
 
-    @OneToOne(fetch = FetchType.EAGER, targetEntity = Path.class)
+    @OneToOne(fetch = FetchType.EAGER, targetEntity = Path.class, cascade = CascadeType.REMOVE)
     private Path path;
 
     /**
