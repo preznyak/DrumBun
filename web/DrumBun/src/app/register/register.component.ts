@@ -3,6 +3,7 @@ import {NgForm} from "@angular/forms";
 import {AuthenticationService} from "../_shared/authentication.service";
 import {User} from "../_models/user.model";
 import {UserService} from "../_shared/user.service";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-register',
@@ -10,12 +11,12 @@ import {UserService} from "../_shared/user.service";
   styleUrls: ['./register.component.css']
 })
 
-@Injectable()
 export class RegisterComponent implements OnInit {
   @ViewChild('f') signupForm: NgForm;
 
   constructor(private authenticationService: AuthenticationService,
-              private user: User, private userService: UserService) {
+              private user: User,
+              private router: Router) {
 
   }
 
@@ -29,7 +30,13 @@ export class RegisterComponent implements OnInit {
     this.user.password = this.signupForm.value.userAuthenticationData.password;
     // this.authenticationService.signUpUser(this.user.email, this.user.password);
     console.log("onSignup called");
-    this.userService.registerUser(this.user).subscribe((response) => console.log(response),(error) => error.log(error));
+    this.authenticationService.registerUser(this.user)
+        .subscribe(
+          (response) => {
+            this.router.navigate(['/login'])
+            console.log(response)},
+              (error) => console.log(error)
+          );
   }
 
 

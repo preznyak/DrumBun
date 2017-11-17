@@ -14,6 +14,7 @@ export class UserService {
   constructor(private http: Http) {
   }
 
+  //test purposes
   findAll(): Observable<UserdetailsModel[]>  {
     return this.http.get(this.apiUrl + "/users")
       .map((res:Response) => res.json())
@@ -22,12 +23,6 @@ export class UserService {
 
   findById(id: number): Observable<UserdetailsModel> {
     return null;
-  }
-
-  registerUser(user: User){
-    console.log("before register user" + user.email + user.password);
-    return this.http.post(this.apiUrl + "/registeruser", user);
-      // .catch((error:any) => Observable.throw(error.json().error || 'Server error'));
   }
 
   deleteUserById(id: number): Observable<boolean> {
