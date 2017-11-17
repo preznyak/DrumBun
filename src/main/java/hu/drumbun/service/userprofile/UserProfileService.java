@@ -20,4 +20,6 @@ public interface UserProfileService {
 
     void updateUserProfile(UpdateUserProfileRequest updateUserProfileRequest);
 
+    void deleteUserProfileById(long id);
+
 }

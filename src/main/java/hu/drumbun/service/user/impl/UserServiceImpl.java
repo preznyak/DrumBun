@@ -75,4 +75,9 @@ public class UserServiceImpl implements UserService {
         oldUser.setUserProfile(updatedUser.getUserProfile());
         userRepository.save(oldUser);
     }
+
+    @Override
+    public User findUserByUserProfileId(long id) {
+        return userRepository.findByUserProfileId(id);
+    }
 }
