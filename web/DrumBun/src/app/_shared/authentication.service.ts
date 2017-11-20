@@ -27,7 +27,11 @@ export class AuthenticationService {
 
   logoutUser() {
     this.token = null;
-    return this.http.post(this.apiUrl + "/logoutuser", this.token);
+    return this.http.post(this.apiUrl + "/logout", this.token);
+  }
+
+  getToken(){
+    return this.token;
   }
 
   signUpUser(email: string, password: string) {

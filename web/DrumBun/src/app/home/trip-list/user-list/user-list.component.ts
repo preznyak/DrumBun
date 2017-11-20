@@ -1,6 +1,7 @@
 import {Component, Injectable, OnInit} from '@angular/core';
 import { UserService } from "../../../_shared/user.service";
 import { UserdetailsModel } from "../../../_models/userdetails.model";
+import {User} from "../../../_models/user.model";
 
 @Component({
   selector: 'app-user-list',
@@ -10,8 +11,8 @@ import { UserdetailsModel } from "../../../_models/userdetails.model";
 })
 @Injectable()
 export class UserListComponent implements OnInit {
-
-  private users: UserdetailsModel[];
+  // TODO test, to delete
+  private users: User[];
 
   constructor(private userService: UserService) { }
 

@@ -14,11 +14,21 @@ export class UserService {
   constructor(private http: Http) {
   }
 
-  //test purposes
-  findAll(): Observable<UserdetailsModel[]>  {
+  // TODO test purposes, to be deleted
+  findAll(): Observable<User[]>  {
     return this.http.get(this.apiUrl + "/users")
       .map((res:Response) => res.json())
       .catch((error:any) => Observable.throw(error.json().error || 'Server error'));
+  }
+
+  getUserDetails(token: String) {
+    return this.http.get(this.apiUrl + "/usersdetails", token)
+      .map(
+        (response: Response) => {
+          const data = response.json();
+          return data;
+        }
+      )
   }
 
   findById(id: number): Observable<UserdetailsModel> {
