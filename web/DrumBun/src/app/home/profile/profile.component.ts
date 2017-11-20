@@ -23,11 +23,13 @@ export class ProfileComponent implements OnInit {
       "Lajos",
       "Kovacs",
       "1996.12.04",
-      "ecetke@gmail.com",
-      "0712312412123",
+    "Male",
+
+    "Romania",
       "LakatosCity",
-      "Romania",
-      "Male",
+    "ecetke@gmail.com",
+    "0712312412123",
+
       "B");
 
   ngOnInit() {
