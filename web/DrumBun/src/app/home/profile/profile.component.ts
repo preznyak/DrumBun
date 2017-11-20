@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {UserService} from "../../_shared/user.service";
 import {UserdetailsModel} from "../../_models/userdetails.model";
 import {AuthenticationService} from "../../_shared/authentication.service";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-profile',
@@ -12,7 +13,8 @@ export class ProfileComponent implements OnInit {
   userDetails: UserdetailsModel;
 
   constructor(private userService: UserService,
-              private authenticationService: AuthenticationService) {
+              private authenticationService: AuthenticationService,
+              private router: Router) {
   }
 
 
@@ -36,6 +38,10 @@ export class ProfileComponent implements OnInit {
       );
     console.log("success");
     console.log(this.userDetailsteszt);
+  }
+
+  toEdit(){
+    this.router.navigate(['/profile-edit']);
   }
 
 }
