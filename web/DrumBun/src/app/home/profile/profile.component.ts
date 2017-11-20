@@ -15,6 +15,19 @@ export class ProfileComponent implements OnInit {
               private authenticationService: AuthenticationService) {
   }
 
+
+  userDetailsteszt: UserdetailsModel = new UserdetailsModel(
+      "https://vignette.wikia.nocookie.net/phobia/images/b/bd/Boy.jpg/revision/latest?cb=20161123121117",
+      "Teszt Lajos",
+      "Teszt Kovacs",
+      "1996.12.04",
+      "ecetke@gmail.com",
+      "0712312412123",
+      "LakatosCity",
+      "Romania",
+      "Male",
+      "B");
+
   ngOnInit() {
     this.userService.getUserDetails(this.authenticationService.getToken())
       .subscribe(
@@ -22,5 +35,7 @@ export class ProfileComponent implements OnInit {
         (error) => console.log(error)
       );
     console.log("success");
+    console.log(this.userDetailsteszt);
   }
+
 }

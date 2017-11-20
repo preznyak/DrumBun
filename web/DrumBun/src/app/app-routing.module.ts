@@ -14,7 +14,7 @@ const appRoutes: Routes = [
   {path: 'home', component: HomeComponent},
   {path: 'myrequests', component: RequestsComponent, canActivate: [AuthenticationGuardService]},
   {path: 'myoffers', component: OffersComponent, canActivate: [AuthenticationGuardService]},
-  {path: 'profile', component: ProfileComponent, canActivate: [AuthenticationGuardService]},
+  {path: 'profile', component: ProfileComponent}, //, canActivate: [AuthenticationGuardService]
   {path: 'profile-edit', component: ProfileEditComponent, canActivate: [AuthenticationGuardService]},
   {path: 'search', redirectTo: 'home'},
   {path: 'login', component: LoginComponent},
