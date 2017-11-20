@@ -18,8 +18,8 @@ export class ProfileComponent implements OnInit {
 
   userDetailsteszt: UserdetailsModel = new UserdetailsModel(
       "https://vignette.wikia.nocookie.net/phobia/images/b/bd/Boy.jpg/revision/latest?cb=20161123121117",
-      "Teszt Lajos",
-      "Teszt Kovacs",
+      "Lajos",
+      "Kovacs",
       "1996.12.04",
       "ecetke@gmail.com",
       "0712312412123",
