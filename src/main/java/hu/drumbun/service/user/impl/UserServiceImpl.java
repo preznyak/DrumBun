@@ -80,4 +80,10 @@ public class UserServiceImpl implements UserService {
     public User findUserByUserProfileId(long id) {
         return userRepository.findByUserProfileId(id);
     }
+
+    @Override
+    public void registerUser(CreateUserRequest createUserRequest) {
+        User user = createUserRequestConverter.from(createUserRequest);
+        userRepository.save(new User(user.getUsername(),user.getPassword()));
+    }
 }
