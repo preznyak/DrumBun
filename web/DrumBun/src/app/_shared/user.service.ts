@@ -23,7 +23,7 @@ export class UserService {
   }
 
   getUserDetails(token: String) {
-    return this.http.get(this.apiUrl + "/usersdetails", token)
+    return this.http.get(this.apiUrl + "/userdetails", token)
       .map(
         (response: Response) => {
           const data = response.json();
@@ -38,8 +38,9 @@ export class UserService {
 
   setUserDetailsAtUserService(data: UserdetailsModel){
     this.userDetails = data;
-    console.log("=====FromUserService=====")
+    console.log("=====FromUserService=====setUserDetailsAtUserService=======")
     console.log(this.userDetails)
+    return this.http.post(this.apiUrl + "/updateuserdetails", data);
   }
 
   findById(id: number): Observable<UserdetailsModel> {

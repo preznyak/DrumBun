@@ -22,15 +22,15 @@ export class ProfileComponent implements OnInit {
       "https://vignette.wikia.nocookie.net/phobia/images/b/bd/Boy.jpg/revision/latest?cb=20161123121117",
       "Lajos",
       "Kovacs",
-      "1996.12.04",
+      "1996-12-04",
     "Male",
-
+    "LakatosCity",
     "Romania",
-      "LakatosCity",
+
     "ecetke@gmail.com",
     "0712312412123",
 
-      "B");
+      "Yes");
 
   ngOnInit() {
     this.userService.getUserDetails(this.authenticationService.getToken())
