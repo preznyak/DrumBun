@@ -8,6 +8,7 @@ import hu.drumbun.service.user.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.MediaType;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -19,6 +20,12 @@ public class UserController {
     @Autowired
     @Qualifier("userService")
     UserService userService;
+
+    private BCryptPasswordEncoder bCryptPasswordEncoder;
+
+    public UserController(BCryptPasswordEncoder bCryptPasswordEncoder) {
+        this.bCryptPasswordEncoder = bCryptPasswordEncoder;
+    }
 
     @RequestMapping(method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     public List<UserResponse> getAllUsers() {
@@ -32,10 +39,11 @@ public class UserController {
         return userService.getUserById(id);
     }
 
-    @RequestMapping(method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE, value = "/adduser")
+    @RequestMapping(method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE, value = "/registeruser")
     public String addUser(@RequestBody CreateUserRequest createUserRequest) {
-        userService.addUser(new CreateUserRequest(createUserRequest.getFirstName(), createUserRequest.getLastName(), createUserRequest.getEmail(), createUserRequest.getPassword()));
-        return "User added to DB!";
+        createUserRequest.setPassword(bCryptPasswordEncoder.encode(createUserRequest.getPassword()));
+        userService.addUser(new CreateUserRequest(createUserRequest.getUsername(),createUserRequest.getFirstName(), createUserRequest.getLastName(), createUserRequest.getEmail(), createUserRequest.getPassword()));
+        return "User registered!";
     }
 
 
