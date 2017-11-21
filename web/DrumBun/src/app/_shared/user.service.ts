@@ -9,6 +9,7 @@ import {User} from "../_models/user.model";
 @Injectable()
 export class UserService {
 
+  private userDetails: UserdetailsModel;
   private apiUrl = 'http://localhost:8080';
 
   constructor(private http: Http) {
@@ -17,8 +18,8 @@ export class UserService {
   // TODO test purposes, to be deleted
   findAll(): Observable<User[]>  {
     return this.http.get(this.apiUrl + "/users")
-      .map((res:Response) => res.json())
-      .catch((error:any) => Observable.throw(error.json().error || 'Server error'));
+      .map((res:Response) => res.json());
+      // .catch((error:any) => Observable.throw(error.json().error || 'Server error'));
   }
 
   getUserDetails(token: String) {
@@ -29,6 +30,16 @@ export class UserService {
           return data;
         }
       )
+  }
+
+  getUserDetailsFromUserService(){
+    return this.userDetails;
+  }
+
+  setUserDetailsAtUserService(data: UserdetailsModel){
+    this.userDetails = data;
+    console.log("=====FromUserService=====")
+    console.log(this.userDetails)
   }
 
   findById(id: number): Observable<UserdetailsModel> {

@@ -40,9 +40,12 @@ export class ProfileComponent implements OnInit {
       );
     console.log("success");
     console.log(this.userDetailsteszt);
+    // console.log("success");
+    // console.log(this.userDetails);
   }
 
   toEdit(){
+    this.userService.setUserDetailsAtUserService(this.userDetailsteszt);
     this.router.navigate(['/profile-edit']);
   }
 
