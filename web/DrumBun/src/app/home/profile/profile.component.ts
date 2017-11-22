@@ -30,6 +30,8 @@ export class ProfileComponent implements OnInit {
     "0712312412123",
       "Yes");
 
+
+  //TODO fetch Data method so we wait for data first
   ngOnInit() {
     this.userService.getUserDetails(this.authenticationService.getToken())
       .subscribe(
