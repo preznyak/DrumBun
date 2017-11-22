@@ -15,14 +15,29 @@ export class AuthenticationService {
 
   }
 
-  loginUser(email: String, password: String){
+  loginUser(email: String, password: String) {
     console.log("before login user" + email + password);
-    return this.http.post(this.apiUrl + "/loginuser", email,password);
+    return this.http.post(this.apiUrl + "/loginuser", email, password)
+      .map(
+        (response) => {
+          this.token = response.json();
+          this.router.navigate(['/home']);
+        }
+      )
   }
 
-  registerUser(user: User){
+  registerUser(user: User) {
     console.log("before register user" + user.email + user.password);
-    return this.http.post(this.apiUrl + "/registeruser", user);
+    return this.http.post(this.apiUrl + "/registeruser", user).subscribe(
+      (response) => {
+        this.router.navigate(['/login']);
+        console.log(response);
+      },
+      (error) => {
+        // this.router.navigate(['/login']);
+        console.log(error);
+      }
+    );
   }
 
   logoutUser() {
@@ -30,7 +45,7 @@ export class AuthenticationService {
     return this.http.post(this.apiUrl + "/logout", this.token);
   }
 
-  getToken(){
+  getToken() {
     return this.token;
   }
 

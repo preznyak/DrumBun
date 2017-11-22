@@ -23,13 +23,14 @@ export class RegisterComponent implements OnInit {
   ngOnInit() {
   }
 
-  passwordCheck(){
-    if (this.user.password != this.user.confirmpassword){
+  passwordCheck() {
+    if (this.user.password != this.user.confirmpassword) {
       return false;
-    }else{
+    } else {
       return true;
     }
   }
+
 
   onSignup() {
     this.user.firstName = this.signupForm.value.userData.firstname;
@@ -38,18 +39,12 @@ export class RegisterComponent implements OnInit {
     this.user.username = this.signupForm.value.userAuthenticationData.username;
     this.user.password = this.signupForm.value.userAuthenticationData.password;
     this.user.confirmpassword = this.signupForm.value.userAuthenticationData.confirmpassword;
-    if(this.passwordCheck()){
-    // this.authenticationService.signUpUser(this.user.email, this.user.password);
-    console.log("onSignup called");
-    console.log(this.user);
-    this.authenticationService.registerUser(this.user)
-        .subscribe(
-          (response) => {
-            this.router.navigate(['/login'])
-            console.log(response)},
-              (error) => console.log(error)
-          );
-   }
+    if (this.passwordCheck()) {
+      // this.authenticationService.signUpUser(this.user.email, this.user.password);
+      // console.log("onSignup called");
+      // console.log(this.user);
+      this.authenticationService.registerUser(this.user);
+    }
   }
 
 

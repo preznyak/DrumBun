@@ -22,12 +22,7 @@ export class LoginComponent implements OnInit {
     const email = form.value.email;
     const password = form.value.password;
     this.authenticationService.signInUser(email, password);
-    this.authenticationService.loginUser(email,password).subscribe(
-      (response) => {
-        this.router.navigate(['/home'])
-        console.log(response)},
-      (error) => console.log(error)
-    );
+    this.authenticationService.loginUser(email,password);
   }
 
 }
