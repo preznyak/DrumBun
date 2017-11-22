@@ -26,10 +26,8 @@ export class ProfileComponent implements OnInit {
     "Male",
     "LakatosCity",
     "Romania",
-
     "ecetke@gmail.com",
     "0712312412123",
-
       "Yes");
 
   ngOnInit() {

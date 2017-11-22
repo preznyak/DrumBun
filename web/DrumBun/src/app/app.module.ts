@@ -24,7 +24,6 @@ import {TripItemComponent} from './home/trip-list/trip-item/trip-item.component'
 import {HttpClientModule} from "@angular/common/http";
 import {HttpModule} from "@angular/http";
 import {RequestService} from "./_shared/request.service";
-import { UserListComponent } from './home/trip-list/user-list/user-list.component';
 import {UserService} from "./_shared/user.service";
 
 
@@ -43,8 +42,7 @@ import {UserService} from "./_shared/user.service";
     OffersComponent,
     SlideComponent,
     TripListComponent,
-    TripItemComponent,
-    UserListComponent
+    TripItemComponent
   ],
   imports: [
     BrowserModule,

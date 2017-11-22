@@ -15,13 +15,6 @@ export class UserService {
   constructor(private http: Http) {
   }
 
-  // TODO test purposes, to be deleted
-  findAll(): Observable<User[]>  {
-    return this.http.get(this.apiUrl + "/users")
-      .map((res:Response) => res.json());
-      // .catch((error:any) => Observable.throw(error.json().error || 'Server error'));
-  }
-
   getUserDetails(token: String) {
     return this.http.get(this.apiUrl + "/userdetails", token)
       .map(
