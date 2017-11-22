@@ -33,11 +33,11 @@ export class ProfileComponent implements OnInit {
 
   //TODO fetch Data method so we wait for data first
   ngOnInit() {
-    this.userService.getUserDetails(this.authenticationService.getToken())
-      .subscribe(
-        (data) => this.userDetails = data,
-        (error) => console.log(error)
-      );
+    // this.userService.getUserDetails(this.authenticationService.getToken())
+    //   .subscribe(
+    //     (data) => this.userDetails = data,
+    //     (error) => console.log(error)
+    //   );
     console.log("success");
     console.log(this.userDetailsteszt);
     // console.log("success");

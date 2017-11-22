@@ -3,6 +3,7 @@ import {Router} from "@angular/router";
 import {Injectable} from "@angular/core";
 import {User} from "../_models/user.model";
 import {Http} from "@angular/http";
+import {UserService} from "./user.service";
 
 @Injectable()
 export class AuthenticationService {
@@ -11,18 +12,22 @@ export class AuthenticationService {
   private apiUrl = 'http://localhost:8080';
 
   constructor(private router: Router,
-              private http: Http) {
+              private http: Http,
+              private userService: UserService) {
 
   }
 
-  loginUser(email: String, password: String) {
-    console.log("before login user" + email + password);
-    return this.http.post(this.apiUrl + "/loginuser", email, password)
-      .map(
+  loginUser(username: String, password: String) {
+    console.log("before login user" + username + password);
+    return this.http.post(this.apiUrl + "/login", JSON.stringify({username: username, password: password}))
+      .subscribe(
         (response) => {
-          this.token = response.json();
+          this.token = response.text();
+          //XML Parse error here, because of idk;
           this.router.navigate(['/home']);
-        }
+          this.userService.getUserDetails(this.token);
+        },
+        (error) => console.log(error)
       )
   }
 
