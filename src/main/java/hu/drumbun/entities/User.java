@@ -27,7 +27,7 @@ public class User implements Serializable{
     @Column(name = "id")
     private long id;
 
-    @Column(name = "username")
+    @Column(name = "username", unique = true, nullable = false)
     private String username;
 
     /**
@@ -45,7 +45,7 @@ public class User implements Serializable{
     /**
      * email address for the user
      */
-    @Column(name = "email", nullable = false, unique = true)
+    @Column(name = "email", unique = true)
     private String email;
 
     /**
@@ -95,7 +95,8 @@ public class User implements Serializable{
         this.userProfile = userProfile;
     }
 
-    public User(String firstName,String lastName,String email, String password) {
+    public User(String username, String firstName,String lastName,String email, String password) {
+        this.username = username;
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
