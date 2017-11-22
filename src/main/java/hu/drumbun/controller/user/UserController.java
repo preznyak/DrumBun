@@ -14,25 +14,21 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/users")
 public class UserController {
 
     @Autowired
     @Qualifier("userService")
     UserService userService;
 
-    private BCryptPasswordEncoder bCryptPasswordEncoder;
-
-    public UserController(BCryptPasswordEncoder bCryptPasswordEncoder) {
-        this.bCryptPasswordEncoder = bCryptPasswordEncoder;
+    public UserController() {
     }
 
-    @RequestMapping(method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    @RequestMapping(method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE, value = "/users")
     public List<UserResponse> getAllUsers() {
         return userService.getAllUsers();
     }
 
-    @RequestMapping(method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE, value = "/{id}")
+    @RequestMapping(method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE, value = "/users/{id}")
     public UserResponse getUserById(@PathVariable long id) {
 
         System.out.println(id);
@@ -41,19 +37,18 @@ public class UserController {
 
     @RequestMapping(method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE, value = "/registeruser")
     public String addUser(@RequestBody CreateUserRequest createUserRequest) {
-        createUserRequest.setPassword(bCryptPasswordEncoder.encode(createUserRequest.getPassword()));
-        userService.addUser(new CreateUserRequest(createUserRequest.getUsername(),createUserRequest.getFirstName(), createUserRequest.getLastName(), createUserRequest.getEmail(), createUserRequest.getPassword()));
+        userService.addUser(new CreateUserRequest(createUserRequest.getUsername(),createUserRequest.getFirstName(), createUserRequest.getLastName(), createUserRequest.getEmail(), createUserRequest.getPassword(), createUserRequest.getConfirmPassword()));
         return "User registered!";
     }
 
 
-    @RequestMapping(method = RequestMethod.DELETE, value = "/delete/{id}")
+    @RequestMapping(method = RequestMethod.DELETE, value = "users/delete/{id}")
     public String deleteUserById(@PathVariable long id) {
         userService.removeUserById(id);
         return "User deleted from DB";
     }
 
-    @RequestMapping(method = RequestMethod.PUT, value = "/update")
+    @RequestMapping(method = RequestMethod.PUT, value = "users/update")
     public String updateUser(@RequestBody UpdateUserRequest updateUserRequest) {
         userService.updateUser(updateUserRequest);
         return "User updated";
