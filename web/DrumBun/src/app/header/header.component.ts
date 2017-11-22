@@ -20,14 +20,14 @@ export class HeaderComponent implements OnInit {
   ngOnInit() {
   }
 
-  toProfile(){
-    this.userDetailsService.getUserDetails(this.authenticationService.getToken())
-      .subscribe(
-        (data) => {this.data = data;
-        this.router.navigate(['/profile'],this.data)},
-        (error) => console.log(error)
-      );
-  }
+  // toProfile(){
+  //   this.userDetailsService.getUserDetails(this.authenticationService.getToken())
+  //     .subscribe(
+  //       (data) => {this.data = data;
+  //       this.router.navigate(['/profile'],this.data)},
+  //       (error) => console.log(error)
+  //     );
+  // }
 
   onLogout() {
     this.authenticationService.logout();

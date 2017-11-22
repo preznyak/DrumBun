@@ -4,7 +4,7 @@ import { Http, Response } from "@angular/http";
 import 'rxjs/add/operator/map'
 import 'rxjs/add/operator/catch';
 import { Observable } from "rxjs/Observable";
-import {User} from "../_models/user.model";
+
 
 @Injectable()
 export class UserService {
@@ -16,12 +16,26 @@ export class UserService {
   }
 
   getUserDetails(token: String) {
-    return this.http.get(this.apiUrl + "/userdetails", token)
-      .map(
-        (response: Response) => {
-          const data = response.json();
-          return data;
-        }
+
+    // 'Content-Type': 'application/json',
+    // 'Accept': 'application/json',
+
+
+    const headers = new Headers(  {
+                                    'Authorization': `Bearer ${token}`,
+                                  });
+    console.log(headers);
+
+
+    //Testing fucntion with 1 object returned in request
+    return this.http.get(this.apiUrl + "/users/1",)
+      .subscribe(
+        (response) => {
+          // const data = response.json();
+          console.log(response);
+          // return data;
+        },
+        (error) => console.log(error)
       )
   }
 
