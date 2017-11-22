@@ -1,3 +1,80 @@
-<p>
-  profile-edit works!
-</p>
+<button class="btn btn-primary" (click)="loadData()">Load Current Profile</button>
+<button class="btn btn-primary" (click)="clearData()">Clear Fields</button>
+<button class="btn btn-primary" (click)="cancelEdit()">Cancel</button>
+<button class="btn btn-primary" (click)="saveData()">Save</button>
+
+<form #editForm="ngForm">
+    <div class="form-group row">
+      <label for="profilePicture" class="col-md-2">Profile picture</label>
+      <div class="col-md-10">
+        <input class="form-control" type="url" ngModel name="profilePicture" id="profilePicture">
+      </div>
+    </div>
+  <div class="form-group row">
+    <label for="firstName" class="col-md-2">First Name</label>
+    <div class="col-md-10">
+      <input class="form-control" type="text" ngModel name="firstName" id="firstName">
+    </div>
+  </div>
+  <div class="form-group row">
+    <label for="lastName" class="col-md-2">Last Name</label>
+    <div class="col-md-10">
+      <input class="form-control" type="text" ngModel name="lastName" id="lastName">
+    </div>
+  </div>
+  <div class="form-group row">
+    <label for="birthdate" class="col-md-2">Date</label>
+    <div class="col-md-10">
+      <input class="form-control" type="date" ngModel name="birthdate" id="birthdate">
+    </div>
+  </div>
+
+  <div class="form-group row">
+    <label for="gender" class="col-md-2">Gender</label>
+    <div class="col-md-10">
+    <select class="form-control" name="gender" ngModel id="gender">
+      <option>Male</option>
+      <option>Female</option>
+    </select>
+    </div>
+  </div>
+
+  <div class="form-group row">
+    <label for="addressCity" class="col-md-2">City</label>
+    <div class="col-md-10">
+      <input class="form-control" type="text" ngModel name="addressCity" id="addressCity">
+    </div>
+  </div>
+
+  <div class="form-group row">
+    <label for="addressCountry" class="col-md-2">City</label>
+    <div class="col-md-10">
+      <input class="form-control" type="text" ngModel name="addressCountry" id="addressCountry">
+    </div>
+  </div>
+
+  <div class="form-group row">
+    <label for="email" class="col-md-2">Email</label>
+    <div class="col-md-10">
+      <input class="form-control" type="email" ngModel name="email" id="email">
+    </div>
+  </div>
+
+  <div class="form-group row">
+    <label for="phone" class="col-md-2">Phone Number</label>
+    <div class="col-md-10">
+      <input class="form-control" type="tel" ngModel name="phone" id="phone">
+    </div>
+  </div>
+
+  <div class="form-group row">
+    <label for="driverLicense" class="col-md-2">Driver License</label>
+    <div class="col-md-10">
+      <select class="form-control" name="driverLicense" ngModel id="driverLicense">
+        <option>Yes</option>
+        <option>No</option>
+      </select>
+
+    </div>
+  </div>
+  </form>

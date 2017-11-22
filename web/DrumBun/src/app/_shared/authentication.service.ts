@@ -1,13 +1,37 @@
 import * as firebase from 'firebase';
 import {Router} from "@angular/router";
 import {Injectable} from "@angular/core";
+import {User} from "../_models/user.model";
+import {Http} from "@angular/http";
 
 @Injectable()
 export class AuthenticationService {
-  token: string;
 
-  constructor(private router: Router) {
+  private token: string;
+  private apiUrl = 'http://localhost:8080';
 
+  constructor(private router: Router,
+              private http: Http) {
+
+  }
+
+  loginUser(email: String, password: String){
+    console.log("before login user" + email + password);
+    return this.http.post(this.apiUrl + "/loginuser", email,password);
+  }
+
+  registerUser(user: User){
+    console.log("before register user" + user.email + user.password);
+    return this.http.post(this.apiUrl + "/registeruser", user);
+  }
+
+  logoutUser() {
+    this.token = null;
+    return this.http.post(this.apiUrl + "/logout", this.token);
+  }
+
+  getToken(){
+    return this.token;
   }
 
   signUpUser(email: string, password: string) {

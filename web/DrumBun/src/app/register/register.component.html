@@ -1,17 +1,17 @@
-<div class="row" style="padding-top: 10%;">
-  <div class="col-md-7">
+<div class="row" style="padding-top: 5%">
+  <div class="col-md-8">
     <app-slide></app-slide>
   </div>
-  <div class="col-md-offset-8">
-    <form (ngSubmit)="onSignup(f)" #f="ngForm" style="margin-top: 10%;">
+  <div class="col-md-offset-9">
+    <form (ngSubmit)="onSignup(f)" #f="ngForm">
       <div id="user-data" ngModelGroup="userData">
         <div class="form-group">
           <label for="firstname">First Name</label>
-          <input type="firstname" id="firstname" name="firstname" ngModel class="form-control">
+          <input type="firstname" id="firstname" name="firstname" ngModel class="form-control" required>
         </div>
         <div class="form-group">
           <label for="lastname">Last Name</label>
-          <input type="lastname" id="lastname" name="lastname" ngModel class="form-control">
+          <input type="lastname" id="lastname" name="lastname" ngModel class="form-control" required>
         </div>
       </div>
       <div class="user-auth" ngModelGroup="userAuthenticationData">
@@ -21,8 +21,17 @@
           <span class="help-block" *ngIf="!email.valid">Please enter a valid email!</span>
         </div>
         <div class="form-group">
+          <label for="username">Username</label>
+          <input type="username" id="username" name="username" ngModel class="form-control" required>
+        </div>
+        <div class="form-group">
           <label for="password">Password</label>
           <input type="password" id="password" name="password" ngModel class="form-control" required>
+        </div>
+        <div class="form-group">
+          <label for="confirmpassword">Confirm Password</label>
+          <input type="password" id="confirmpassword" name="confirmpassword" ngModel class="form-control" required>
+          <span class="help-block" *ngIf="!passwordCheck()">Passwords don't match.</span>
         </div>
       </div>
       <button class="btn btn-primary" type="submit" [disabled]="!f.valid">Sign Up</button>

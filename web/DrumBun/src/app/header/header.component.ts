@@ -1,5 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {AuthenticationService} from "../_shared/authentication.service";
+import {Router} from "@angular/router";
+import {UserService} from "../_shared/user.service";
 
 @Component({
   selector: 'app-header',
@@ -8,7 +10,8 @@ import {AuthenticationService} from "../_shared/authentication.service";
 })
 export class HeaderComponent implements OnInit {
 
-  constructor(private authenticationService: AuthenticationService) {
+  constructor(private authenticationService: AuthenticationService,
+              private router: Router) {
   }
 
   ngOnInit() {
@@ -16,6 +19,14 @@ export class HeaderComponent implements OnInit {
 
   onLogout() {
     this.authenticationService.logout();
+    // TODO firebase
+    this.authenticationService.logoutUser()
+      .subscribe(
+        (response) => {
+          this.router.navigate(['/login'])
+          console.log(response)},
+        (error) => console.log(error)
+      );
   }
 
 }
