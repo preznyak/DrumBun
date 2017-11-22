@@ -59,7 +59,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public void addUser(CreateUserRequest createUserRequest) {
         User user = createUserRequestConverter.from(createUserRequest);
-        userRepository.save(new User(user.getFirstName(),user.getLastName(),user.getEmail(),user.getPassword()));
+        userRepository.save(new User(user.getUsername(),user.getFirstName(),user.getLastName(),user.getEmail(),user.getPassword()));
     }
 
     @Override
@@ -79,5 +79,16 @@ public class UserServiceImpl implements UserService {
     @Override
     public User findUserByUserProfileId(long id) {
         return userRepository.findByUserProfileId(id);
+    }
+
+    @Override
+    public void registerUser(CreateUserRequest createUserRequest) {
+        User user = createUserRequestConverter.from(createUserRequest);
+        userRepository.save(new User(user.getUsername(),user.getPassword()));
+    }
+
+    @Override
+    public User findByUsername(String username) {
+        return userRepository.findByUsername(username);
     }
 }

@@ -22,4 +22,8 @@ public interface UserService {
     void updateUser(UpdateUserRequest updateUserRequest);
 
     User findUserByUserProfileId(long id);
+
+    void registerUser(CreateUserRequest createUserRequest);
+
+    User findByUsername(String username);
 }

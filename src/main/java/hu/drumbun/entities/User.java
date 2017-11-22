@@ -27,22 +27,25 @@ public class User implements Serializable{
     @Column(name = "id")
     private long id;
 
+    @Column(name = "username", unique = true, nullable = false)
+    private String username;
+
     /**
      * first name for the user
      */
-    @Column(name = "firstname",nullable = false)
+    @Column(name = "firstname")
     private String firstName;
 
     /**
      * last name for the user
      */
-    @Column(name = "lastname", nullable = false)
+    @Column(name = "lastname")
     private String lastName;
 
     /**
      * email address for the user
      */
-    @Column(name = "email", nullable = false, unique = true)
+    @Column(name = "email", unique = true)
     private String email;
 
     /**
@@ -72,6 +75,7 @@ public class User implements Serializable{
     /**
      * Constructor
      *
+     * @param username user's username
      * @param firstName user's first name
      * @param lastName user's last name
      * @param email the user's email
@@ -80,7 +84,8 @@ public class User implements Serializable{
      * @param oauth_uid the user's id by the provider
      * @param userProfile user's profile
      */
-    public User(String firstName, String lastName, String email, String password, String oauth_provider, String oauth_uid, UserProfile userProfile) {
+    public User(String username, String firstName, String lastName, String email, String password, String oauth_provider, String oauth_uid, UserProfile userProfile) {
+        this.username = username;
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
@@ -90,10 +95,16 @@ public class User implements Serializable{
         this.userProfile = userProfile;
     }
 
-    public User(String firstName,String lastName,String email, String password) {
+    public User(String username, String firstName,String lastName,String email, String password) {
+        this.username = username;
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
+        this.password = password;
+    }
+
+    public User(String username, String password) {
+        this.username = username;
         this.password = password;
     }
 
@@ -117,6 +128,13 @@ public class User implements Serializable{
         this.id = id;
     }
 
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
 
     /**
      * gets the user's first name
