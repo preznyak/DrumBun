@@ -24,4 +24,6 @@ public interface UserService {
     User findUserByUserProfileId(long id);
 
     void registerUser(CreateUserRequest createUserRequest);
+
+    User findByUsername(String username);
 }
