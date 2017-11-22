@@ -29,11 +29,16 @@ public class UserController {
         return userService.getAllUsers();
     }
 
-    @RequestMapping(method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE, value = "/users/{id}")
+    @RequestMapping(method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE, value = "/users/id/{id}")
     public UserResponse getUserById(@PathVariable long id) {
 
         System.out.println(id);
         return userService.getUserById(id);
+    }
+
+    @RequestMapping(method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE, value = "/users/username/{username}")
+    public UserResponse getUserById(@PathVariable String username) {
+        return userService.findUserResponseByUsername(username);
     }
 
     @RequestMapping(method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE, value = "/registeruser")

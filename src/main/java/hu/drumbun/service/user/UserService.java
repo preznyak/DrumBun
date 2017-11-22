@@ -4,6 +4,7 @@ import hu.drumbun.controller.user.model.CreateUserRequest;
 import hu.drumbun.controller.user.model.UpdateUserRequest;
 import hu.drumbun.controller.user.model.UserResponse;
 import hu.drumbun.entities.User;
+import hu.drumbun.entities.UserProfile;
 
 import java.util.List;
 
@@ -26,4 +27,6 @@ public interface UserService {
     void registerUser(CreateUserRequest createUserRequest);
 
     User findByUsername(String username);
+
+    UserResponse findUserResponseByUsername(String username);
 }
