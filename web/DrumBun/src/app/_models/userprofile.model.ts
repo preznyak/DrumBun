@@ -3,4 +3,5 @@ export class UserprofileModel{
   firstName: string;
   lastName: string;
   email: string;
+  
 }
