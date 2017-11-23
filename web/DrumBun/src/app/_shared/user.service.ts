@@ -17,19 +17,10 @@ export class UserService {
               private httpClient: HttpClient) {
   }
 
-  getUserDetails(token: String) {
-
-    // 'Content-Type': 'application/json',
-    // 'Accept': 'application/json',
-
-
-    // const headers = new Headers(  {
-    //                                 'Authorization': `Bearer ${token}`,
-    //                               });
-    // console.log(headers);
+  getUserDetails(username: String) {
 
     //Testing fucntion with 1 object returned in request
-    return this.httpClient.get(this.apiUrl + "/users")
+    return this.httpClient.get(this.apiUrl + "/users/username/" + username)
       .subscribe(
         (response) => {
           // const data = response.json();

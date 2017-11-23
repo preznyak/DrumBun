@@ -28,7 +28,7 @@ export class AuthenticationService {
           //XML Parse error here, because of idk;
           console.log(this.tokenService.token);
           this.router.navigate(['/home']);
-          this.userService.getUserDetails(this.tokenService.token);
+          this.userService.getUserDetails(username);
         },
         (error) => console.log(error)
       )
