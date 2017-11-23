@@ -27,6 +27,7 @@ import {RequestService} from "./_shared/request.service";
 import {UserService} from "./_shared/user.service";
 import {TokenInterceptor} from "./_shared/token.interceptor";
 import {TokenService} from "./_shared/token.service";
+import {UserprofileService} from "./_shared/userprofile.service";
 
 
 @NgModule({
@@ -58,6 +59,7 @@ import {TokenService} from "./_shared/token.service";
     AuthenticationService,
     AuthenticationGuardService,
     UserService,
+    UserprofileService,
     RequestService,
     User,
     TokenInterceptor,

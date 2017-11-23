@@ -5,6 +5,8 @@ import 'rxjs/add/operator/map'
 import 'rxjs/add/operator/catch';
 import { Observable } from "rxjs/Observable";
 import {HttpClient} from "@angular/common/http";
+import {UserprofileService} from "./userprofile.service";
+import {UserprofileModel} from "../_models/userprofile.model";
 
 
 @Injectable()
@@ -14,7 +16,8 @@ export class UserService {
   private apiUrl = 'http://localhost:8080';
 
   constructor(private http: Http,
-              private httpClient: HttpClient) {
+              private httpClient: HttpClient,
+              private userProfileService: UserprofileService) {
   }
 
   getUserDetails(username: String) {
@@ -22,10 +25,11 @@ export class UserService {
     //Testing fucntion with 1 object returned in request
     return this.httpClient.get(this.apiUrl + "/users/username/" + username)
       .subscribe(
-        (response) => {
-          // const data = response.json();
-          console.log(response);
-          // return data;
+        (response: UserprofileModel) => {
+          this.userProfileService.setUserProfile(response);
+          // console.log(response);
+          // console.log("********************");
+          console.log(this.userProfileService.getUserProfile());
         },
         (error) => console.log(error)
       )
