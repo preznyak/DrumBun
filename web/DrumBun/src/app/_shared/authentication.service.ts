@@ -4,16 +4,18 @@ import {Injectable} from "@angular/core";
 import {User} from "../_models/user.model";
 import {Http} from "@angular/http";
 import {UserService} from "./user.service";
+import {TokenService} from "./token.service";
 
 @Injectable()
 export class AuthenticationService {
 
-  private token: string;
+  // private token: string;
   private apiUrl = 'http://localhost:8080';
 
   constructor(private router: Router,
               private http: Http,
-              private userService: UserService) {
+              private userService: UserService,
+              private tokenService: TokenService) {
 
   }
 
@@ -22,10 +24,11 @@ export class AuthenticationService {
     return this.http.post(this.apiUrl + "/login", JSON.stringify({username: username, password: password}))
       .subscribe(
         (response) => {
-          this.token = response.text();
+          this.tokenService.token = response.text();
           //XML Parse error here, because of idk;
+          console.log(this.tokenService.token);
           this.router.navigate(['/home']);
-          this.userService.getUserDetails(this.token);
+          this.userService.getUserDetails(username);
         },
         (error) => console.log(error)
       )
@@ -46,13 +49,13 @@ export class AuthenticationService {
   }
 
   logoutUser() {
-    this.token = null;
-    return this.http.post(this.apiUrl + "/logout", this.token);
+    this.tokenService.token = null;
+    return this.http.post(this.apiUrl + "/logout", this.tokenService.token);
   }
 
-  getToken() {
-    return this.token;
-  }
+  // getToken() {
+  //   return this.token;
+  // }
 
   signUpUser(email: string, password: string) {
     firebase.auth().createUserWithEmailAndPassword(email, password)
@@ -68,7 +71,7 @@ export class AuthenticationService {
           this.router.navigate([''])
           firebase.auth().currentUser.getToken()
             .then(
-              (token: string) => this.token = token
+              (token: string) => this.tokenService.token = token
             )
         }
       )
@@ -79,10 +82,10 @@ export class AuthenticationService {
 
   logout() {
     firebase.auth().signOut();
-    this.token = null;
+    this.tokenService.token = null;
   }
 
   isAuthenticated() {
-    return this.token != null;
+    return this.tokenService.token != null;
   }
 }

@@ -7,13 +7,15 @@ import hu.drumbun.entities.User;
 import hu.drumbun.service.user.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@CrossOrigin(origins = "http://localhost:4200")
+@CrossOrigin
 @RestController
 public class UserController {
 
@@ -25,39 +27,38 @@ public class UserController {
     }
 
     @RequestMapping(method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE, value = "/users")
-    public List<UserResponse> getAllUsers() {
-        return userService.getAllUsers();
+    public ResponseEntity<?> getAllUsers() {
+        return new ResponseEntity<>(userService.getAllUsers(), HttpStatus.OK);
     }
 
     @RequestMapping(method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE, value = "/users/id/{id}")
-    public UserResponse getUserById(@PathVariable long id) {
-
-        System.out.println(id);
-        return userService.getUserById(id);
+    public ResponseEntity<?> getUserById(@PathVariable long id) {
+        return new ResponseEntity<>(userService.getUserById(id), HttpStatus.OK);
     }
 
     @RequestMapping(method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE, value = "/users/username/{username}")
-    public UserResponse getUserById(@PathVariable String username) {
-        return userService.findUserResponseByUsername(username);
+    public ResponseEntity<?> getUserById(@PathVariable String username) {
+        return new ResponseEntity<>(userService.findUserResponseByUsername(username),HttpStatus.OK);
     }
 
     @RequestMapping(method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE, value = "/registeruser")
-    public String addUser(@RequestBody CreateUserRequest createUserRequest) {
+    public ResponseEntity<?> addUser(@RequestBody CreateUserRequest createUserRequest) {
         userService.addUser(new CreateUserRequest(createUserRequest.getUsername(),createUserRequest.getFirstName(), createUserRequest.getLastName(), createUserRequest.getEmail(), createUserRequest.getPassword(), createUserRequest.getConfirmPassword()));
-        return "User registered!";
+        return new ResponseEntity<>(userService.getAllUsers(), HttpStatus.OK);
     }
 
 
     @RequestMapping(method = RequestMethod.DELETE, value = "users/delete/{id}")
-    public String deleteUserById(@PathVariable long id) {
+    public ResponseEntity<?> deleteUserById(@PathVariable long id) {
         userService.removeUserById(id);
-        return "User deleted from DB";
+        return new ResponseEntity<>(userService.getAllUsers(), HttpStatus.OK);
     }
 
     @RequestMapping(method = RequestMethod.PUT, value = "users/update")
-    public String updateUser(@RequestBody UpdateUserRequest updateUserRequest) {
+    public ResponseEntity<?> updateUser(@RequestBody UpdateUserRequest updateUserRequest) {
+
         userService.updateUser(updateUserRequest);
-        return "User updated";
+        return new ResponseEntity<>(userService.getAllUsers(), HttpStatus.OK);
     }
 
 }
