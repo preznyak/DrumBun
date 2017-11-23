@@ -63,7 +63,7 @@ public class UserProfileServiceImpl implements UserProfileService{
     @Override
     public void createUserProfile(CreateUserProfileRequest createUserProfileRequest) {
         UserProfile userProfile = createUserProfileRequestConverter.from(createUserProfileRequest);
-        userProfileRepository.save(new UserProfile(userProfile.getBirthDate(),userProfile.getGender(),userProfile.getDriverLicense()));
+        userProfileRepository.save(new UserProfile(userProfile.getBirthDate(),userProfile.getGender(),userProfile.getDriverLicense(), userProfile.getImage(), userProfile.getBio(),userProfile.getPhoneNumber(),userProfile.getFacebookProfile(),userProfile.getCity(),userProfile.getCountry()));
     }
 
     @Override

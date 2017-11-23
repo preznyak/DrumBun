@@ -55,18 +55,6 @@ public class User implements Serializable{
     private String password;
 
     /**
-     * the provider of the given profile  when the user sign up with Facebook or Google account
-     */
-    @Column(name = "oauth_provider")
-    private String oauth_provider;
-
-    /**
-     * the user id from the given provider
-     */
-    @Column(name = "oauth_uid")
-    private String oauth_uid;
-
-    /**
      * the user's profile
      */
     @OneToOne(targetEntity = UserProfile.class,fetch = FetchType.EAGER, cascade = CascadeType.REMOVE)
@@ -80,8 +68,6 @@ public class User implements Serializable{
      * @param lastName user's last name
      * @param email the user's email
      * @param password the user's password
-     * @param oauth_provider the user's profile provider's name
-     * @param oauth_uid the user's id by the provider
      * @param userProfile user's profile
      */
     public User(String username, String firstName, String lastName, String email, String password, String oauth_provider, String oauth_uid, UserProfile userProfile) {
@@ -90,8 +76,6 @@ public class User implements Serializable{
         this.lastName = lastName;
         this.email = email;
         this.password = password;
-        this.oauth_provider = oauth_provider;
-        this.oauth_uid = oauth_uid;
         this.userProfile = userProfile;
     }
 
@@ -201,38 +185,6 @@ public class User implements Serializable{
     }
 
     /**
-     *
-     * @return the user's profile provider name
-     */
-    public String getOauth_provider() {
-        return oauth_provider;
-    }
-
-    /**
-     * Sets the profile provider for the user
-     * @param oauth_provider the user's profile provider
-     */
-    public void setOauth_provider(String oauth_provider) {
-        this.oauth_provider = oauth_provider;
-    }
-
-    /**
-     *
-     * @return the user's id from the profile provider
-     */
-    public String getOauth_uid() {
-        return oauth_uid;
-    }
-
-    /**
-     * Sets the user's oauth_id
-     * @param oauth_uid the user's id given by the privider
-     */
-    public void setOauth_uid(String oauth_uid) {
-        this.oauth_uid = oauth_uid;
-    }
-
-    /**
      * Gets the user's profile
      * @return UserProfile object
      */
@@ -256,12 +208,11 @@ public class User implements Serializable{
     public String toString() {
         return "User{" +
                 "id=" + id +
+                ", username='" + username + '\'' +
                 ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
                 ", email='" + email + '\'' +
                 ", password='" + password + '\'' +
-                ", oauth_provider='" + oauth_provider + '\'' +
-                ", oauth_uid='" + oauth_uid + '\'' +
                 ", userProfile=" + userProfile +
                 '}';
     }

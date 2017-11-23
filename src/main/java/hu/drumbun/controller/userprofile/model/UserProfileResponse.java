@@ -11,6 +11,12 @@ public class UserProfileResponse {
     private Date birthDate;
     private Gender gender;
     private DriverLicense driverLicense;
+    private String image;
+    private String bio;
+    private String phoneNumber;
+    private String facebookProfile;
+    private String city;
+    private String country;
 
     public UserProfileResponse() {
     }
@@ -37,5 +43,53 @@ public class UserProfileResponse {
 
     public void setDriverLicense(DriverLicense driverLicense) {
         this.driverLicense = driverLicense;
+    }
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
+    }
+
+    public String getBio() {
+        return bio;
+    }
+
+    public void setBio(String bio) {
+        this.bio = bio;
+    }
+
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
+
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
+    }
+
+    public String getFacebookProfile() {
+        return facebookProfile;
+    }
+
+    public void setFacebookProfile(String facebookProfile) {
+        this.facebookProfile = facebookProfile;
+    }
+
+    public String getCity() {
+        return city;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
+    }
+
+    public String getCountry() {
+        return country;
+    }
+
+    public void setCountry(String country) {
+        this.country = country;
     }
 }

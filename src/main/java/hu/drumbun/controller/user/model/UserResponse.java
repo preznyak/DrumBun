@@ -1,11 +1,15 @@
 package hu.drumbun.controller.user.model;
 
+import hu.drumbun.controller.userprofile.model.UserProfileResponse;
+import hu.drumbun.entities.UserProfile;
+
 public class UserResponse {
 
     private String username;
     private String firstName;
     private String lastName;
     private String email;
+    private UserProfile userProfile;
 
     public UserResponse() {
     }
@@ -43,4 +47,11 @@ public class UserResponse {
         this.email = email;
     }
 
+    public UserProfile getUserProfile() {
+        return userProfile;
+    }
+
+    public void setUserProfile(UserProfile userProfile) {
+        this.userProfile = userProfile;
+    }
 }
