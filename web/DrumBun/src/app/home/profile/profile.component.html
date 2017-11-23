@@ -1,15 +1,15 @@
-
-    <h3>
-      My Profile
-    </h3>
+<h3>
+  My Profile
+</h3>
 <hr>
+<div *ngIf="isDataLoaded">
 <div class="row">
   <div class="col-md-4">
     <div class="panel panel-default">
       <div class="panel-body">
-        <img src={{userDetailsteszt.profilePicture}} class="img-rounded" style="width: 100%; height: 100%"
+        <img src={{userDetails.details.image}} class="img-rounded" style="width: 100%; height: 100%"
              alt="profilepicture">
-        <h3 style="padding-left: 5%;">{{userDetailsteszt.firstName}} {{userDetailsteszt.lastName}}</h3>
+        <h3 style="padding-left: 5%;">{{userDetails.firstName}} {{userDetails.lastName}}</h3>
       </div>
     </div>
   </div>
@@ -24,7 +24,7 @@
             <label>Bio:</label>
           </div>
           <div class="col-md-offset-2">
-            <p>Ez itt egy text!</p>
+            <p>{{userDetails.details.bio}}</p>
           </div>
         </div>
       </div>
@@ -38,7 +38,7 @@
             <label>Email:</label>
           </div>
           <div class="col-md-offset-2">
-            <p>{{userDetailsteszt.email}}</p>
+            <p>{{userDetails.email}}</p>
           </div>
         </div>
         <div class="row">
@@ -46,7 +46,7 @@
             <label>Mobile:</label>
           </div>
           <div class="col-md-offset-2">
-            <p>{{userDetailsteszt.phone}}</p>
+            <p>{{userDetails.details.phoneNumber}}</p>
           </div>
         </div>
         <div class="row">
@@ -54,7 +54,7 @@
             <label>Facebook:</label>
           </div>
           <div class="col-md-offset-2">
-            <p>Ide jon egy facebook profile</p>
+            <p>{{userDetails.details.facebookProfile}}</p>
           </div>
         </div>
       </div>
@@ -68,7 +68,7 @@
             <label>Address:</label>
           </div>
           <div class="col-md-offset-2">
-            <p>{{userDetailsteszt.addressCity}}, {{userDetailsteszt.addressCountry}}</p>
+            <p>{{userDetails.details.city}}, {{userDetails.details.country}}</p>
           </div>
         </div>
         <div class="row">
@@ -76,7 +76,7 @@
             <label>Gender:</label>
           </div>
           <div class="col-md-offset-2">
-            <p>{{userDetailsteszt.gender}}</p>
+            <p>{{userDetails.details.gender}}</p>
           </div>
         </div>
         <div class="row">
@@ -84,7 +84,7 @@
             <label>License:</label>
           </div>
           <div class="col-md-offset-2">
-            <p>{{userDetailsteszt.driverLicense}}</p>
+            <p>{{userDetails.details.driverLicense}}</p>
           </div>
         </div>
       </div>
@@ -92,4 +92,5 @@
     <button class="btn btn-primary" (click)="toEdit()" style="margin-left: auto; display: block">Edit Profile</button>
 
   </div>
+</div>
 </div>
