@@ -28,7 +28,7 @@ export class UserService {
         (response: UserprofileModel) => {
           this.userProfileService.setUserProfile(response);
           // console.log(response);
-          // console.log("********************");
+          console.log("********************");
           console.log(this.userProfileService.getUserProfile());
         },
         (error) => console.log(error)

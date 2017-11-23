@@ -7,7 +7,18 @@ export class UserprofileService{
 
   setUserProfile(userProfile: UserprofileModel){
     this.UserProfile = userProfile;
+    // this.UserProfile.details = new DetailsModel("En egy fasza gyerek vagyok","En egy fasza gyerek vagyok","En egy fasza gyerek vagyok","En egy fasza gyerek vagyok","En egy fasza gyerek vagyok","En egy fasza gyerek vagyok",
+    //   "En egy fasza gyerek vagyok","En egy fasza gyerek vagyok","En egy fasza gyerek vagyok");
+    // this.UserProfile.details.driverLicense = "";
+    // this.UserProfile.details.gender = "";
+    // this.UserProfile.details.birthDate = "";
+    // this.UserProfile.details.city = "";
+    // this.UserProfile.details.country = "";
+    // this.UserProfile.details.facebookProfile = "";
+    // this.UserProfile.details.image = "";
+    // this.UserProfile.details.phoneNumber = "";
   }
+
 
   getUserProfile(){
     return this.UserProfile;
