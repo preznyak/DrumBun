@@ -3,7 +3,9 @@ package hu.drumbun.controller.offer;
 import hu.drumbun.controller.offer.model.OfferModel;
 import hu.drumbun.service.offer.OfferService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -16,18 +18,18 @@ public class OfferController {
     OfferService offerService;
 
     @RequestMapping(method = RequestMethod.GET,produces = MediaType.APPLICATION_JSON_VALUE)
-    public List<OfferModel> findAllOffers(){
-        return offerService.findAll();
+    public ResponseEntity<?> findAllOffers(){
+        return new ResponseEntity<>(offerService.findAll(), HttpStatus.OK);
     }
 
     @RequestMapping(method = RequestMethod.GET,produces = MediaType.APPLICATION_JSON_VALUE,value = "/{id}")
-    public OfferModel findOfferById(@PathVariable long id){
-        return offerService.findById(id);
+    public ResponseEntity<?> findOfferById(@PathVariable long id){
+        return new ResponseEntity<>(offerService.findById(id), HttpStatus.OK);
     }
 
     @RequestMapping(method = RequestMethod.GET,produces = MediaType.APPLICATION_JSON_VALUE,value = "/start/{start}")
-    List<OfferModel> findByPath_Start(@PathVariable String start){
-        return offerService.findByPath_Start(start);
+    public ResponseEntity<?> findByPath_Start(@PathVariable String start){
+        return new ResponseEntity<>(offerService.findByPath_Start(start), HttpStatus.OK);
     }
 
     @RequestMapping(method = RequestMethod.GET,produces = MediaType.APPLICATION_JSON_VALUE,value = "/dest/{destination}")
