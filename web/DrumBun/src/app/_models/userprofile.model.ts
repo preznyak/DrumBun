@@ -4,8 +4,10 @@ export class UserprofileModel{
     public firstName: string,
     public lastName: string,
     public email: string,
-    public details: DetailsModel
+    public userProfile: DetailsModel
   ){}
+
+
 }
 
 export class DetailsModel{
@@ -25,4 +27,6 @@ export class DetailsModel{
     public birthDate: string){}
 
 }
+
+
 

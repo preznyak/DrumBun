@@ -12,7 +12,7 @@ import {UserprofileService} from "../../_shared/userprofile.service";
   styleUrls: ['./profile.component.css']
 })
 export class ProfileComponent implements OnInit {
-  userDetails: UserprofileModel = null;
+  userDetails: UserprofileModel;
   isDataLoaded: boolean = false;
 
   constructor(private userService: UserService,
@@ -26,17 +26,17 @@ export class ProfileComponent implements OnInit {
 
   //TODO pass data with promise or somehow
   ngOnInit() {
-    this.isDataLoaded = false;
-
-  }
-
-  loadData(){
-    this.userDetails = this.userProfileService.getUserProfile();
+    console.log("fromNgOnInit")
     console.log(this.userDetails);
     if(this.userDetails != null){
       this.isDataLoaded = true;
     }
 
+  }
+
+  loadData(){
+    this.userDetails = this.userProfileService.getUserProfile();
+    console.log(this.userDetails.userProfile.image.toString());
   }
 
   toEdit(){
