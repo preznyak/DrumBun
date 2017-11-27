@@ -3,6 +3,8 @@ import {UserService} from "../../../_shared/user.service";
 import {UserdetailsModel} from "../../../_models/userdetails.model";
 import {NgForm} from "@angular/forms";
 import {Router} from "@angular/router";
+import {UserprofileModel} from "../../../_models/userprofile.model";
+import {UserprofileService} from "../../../_shared/userprofile.service";
 
 @Component({
   selector: 'app-profile-edit',
@@ -12,31 +14,35 @@ import {Router} from "@angular/router";
 export class ProfileEditComponent implements OnInit {
   @ViewChild('editForm') editForm: NgForm;
 
-  private userDetails: UserdetailsModel;
+  private userDetails: UserprofileModel;
+  isDataLoaded: boolean = true;
 
-  constructor(private userService: UserService,
+  constructor(private userDetailsService: UserprofileService,
+              private userService: UserService,
               private router: Router) {
+
+
   }
 
   ngOnInit() {
-    this.userDetails = this.userService.getUserDetailsFromUserService();
-    console.log("====fromProfileEdit");
-    console.log(this.userDetails.firstName);
-
+    this.userDetails = this.userDetailsService.getUserProfile();
   }
 
   loadData(){
     this.editForm.setValue({
-      profilePicture: this.userDetails.profilePicture,
       firstName: this.userDetails.firstName,
       lastName: this.userDetails.lastName,
-      birthdate: this.userDetails.birthdate,
-      gender: this.userDetails.gender,
-      addressCity: this.userDetails.addressCity,
-      addressCountry: this.userDetails.addressCountry,
       email: this.userDetails.email,
-      phone: this.userDetails.phone,
-      driverLicense: this.userDetails.driverLicense
+      userProfile: {
+        profilePicture: this.userDetails.userProfile.image,
+        birthdate: this.userDetails.userProfile.birthDate,
+        bio: this.userDetails.userProfile.bio,
+        gender: this.userDetails.userProfile.gender,
+        addressCity: this.userDetails.userProfile.city,
+        addressCountry: this.userDetails.userProfile.country,
+        phone: this.userDetails.userProfile.phoneNumber,
+        driverLicense: this.userDetails.userProfile.driverLicense
+      }
     });
   }
 
@@ -48,17 +54,16 @@ export class ProfileEditComponent implements OnInit {
     this.router.navigate(['/profile']);
   }
 
+  //TODO test this!
   saveData(){
-    this.userDetails = this.editForm.value;
-    this.userService.setUserDetailsAtUserService(this.userDetails)
+    this.userService.saveUserDetails(this.editForm.value)
       .subscribe(
-        (response) => this.router.navigate(['/home']),
-        //temporary navigate to home
-        // (error) => console.log(error + "handle error")
-        (error) => this.router.navigate(['/home'])
-      );
+        (response) => {
+          console.log(response);
+          this.userDetailsService.setUserProfile(this.editForm.value);
+          this.router.navigate(['/profile'])
+        },
+        (error) => console.log(error)
+      )
   }
-  //TODO html look nicer.
-  //TODO Welcome page and routing
-
 }

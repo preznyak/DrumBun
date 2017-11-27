@@ -1,9 +1,11 @@
 import {DetailsModel, UserprofileModel} from "../_models/userprofile.model";
 import {Injectable} from "@angular/core";
+import {UserService} from "./user.service";
 
 @Injectable()
 export class UserprofileService{
   private UserProfile: UserprofileModel;
+
 
   createUserProfile(username: string, firstName: string, lastName: string, email: string, userProfile: DetailsModel){
     this.UserProfile = new UserprofileModel(username,firstName,lastName,email,new DetailsModel(userProfile.image,userProfile.bio,userProfile.phoneNumber,userProfile.facebookProfile,userProfile.city,

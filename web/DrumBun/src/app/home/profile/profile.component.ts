@@ -15,16 +15,13 @@ export class ProfileComponent implements OnInit {
   userDetails: UserprofileModel;
   isDataLoaded: boolean = false;
 
-  constructor(private userService: UserService,
-              private authenticationService: AuthenticationService,
-              private router: Router,
+  constructor(private router: Router,
               private userProfileService: UserprofileService) {
     this.loadData();
 
   }
 
 
-  //TODO pass data with promise or somehow
   ngOnInit() {
     console.log("fromNgOnInit")
     console.log(this.userDetails);
@@ -40,7 +37,6 @@ export class ProfileComponent implements OnInit {
   }
 
   toEdit(){
-    // this.userService.setUserDetailsAtUserService(this.userDetailsteszt);
     this.router.navigate(['/profile-edit']);
   }
 

@@ -36,6 +36,11 @@ export class UserService {
       )
   }
 
+  saveUserDetails(data: UserprofileModel){
+    console.log("HERE COMES THE REQUEST")
+    return this.httpClient.post(this.apiUrl + "/valami/" + data.username,data);
+  }
+
   getUserDetailsFromUserService(){
     return this.userDetails;
   }
