@@ -26,9 +26,10 @@ export class UserService {
     return this.httpClient.get(this.apiUrl + "/users/username/" + username)
       .subscribe(
         (response: UserprofileModel) => {
-          this.userProfileService.setUserProfile(response);
+          console.log(response);
+          this.userProfileService.createUserProfile(response.username, response.firstName, response.lastName, response.email, response.userProfile);
           // console.log(response);
-          // console.log("********************");
+          console.log("********************");
           console.log(this.userProfileService.getUserProfile());
         },
         (error) => console.log(error)

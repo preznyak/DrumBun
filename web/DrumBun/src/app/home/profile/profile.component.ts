@@ -3,6 +3,8 @@ import {UserService} from "../../_shared/user.service";
 import {UserdetailsModel} from "../../_models/userdetails.model";
 import {AuthenticationService} from "../../_shared/authentication.service";
 import {Router} from "@angular/router";
+import {DetailsModel, UserprofileModel} from "../../_models/userprofile.model";
+import {UserprofileService} from "../../_shared/userprofile.service";
 
 @Component({
   selector: 'app-profile',
@@ -10,42 +12,35 @@ import {Router} from "@angular/router";
   styleUrls: ['./profile.component.css']
 })
 export class ProfileComponent implements OnInit {
-  userDetails: UserdetailsModel;
+  userDetails: UserprofileModel;
+  isDataLoaded: boolean = false;
 
   constructor(private userService: UserService,
               private authenticationService: AuthenticationService,
-              private router: Router) {
+              private router: Router,
+              private userProfileService: UserprofileService) {
+    this.loadData();
+
   }
 
 
-  userDetailsteszt: UserdetailsModel = new UserdetailsModel(
-      "https://vignette.wikia.nocookie.net/phobia/images/b/bd/Boy.jpg/revision/latest?cb=20161123121117",
-      "Lajos",
-      "Kovacs",
-      "1996-12-04",
-    "Male",
-    "LakatosCity",
-    "Romania",
-    "ecetke@gmail.com",
-    "0712312412123",
-      "Yes");
-
-
-  //TODO fetch Data method so we wait for data first
+  //TODO pass data with promise or somehow
   ngOnInit() {
-    // this.userService.getUserDetails(this.authenticationService.getToken())
-    //   .subscribe(
-    //     (data) => this.userDetails = data,
-    //     (error) => console.log(error)
-    //   );
-    console.log("success");
-    console.log(this.userDetailsteszt);
-    // console.log("success");
-    // console.log(this.userDetails);
+    console.log("fromNgOnInit")
+    console.log(this.userDetails);
+    if(this.userDetails != null){
+      this.isDataLoaded = true;
+    }
+
+  }
+
+  loadData(){
+    this.userDetails = this.userProfileService.getUserProfile();
+    console.log(this.userDetails.userProfile.image.toString());
   }
 
   toEdit(){
-    this.userService.setUserDetailsAtUserService(this.userDetailsteszt);
+    // this.userService.setUserDetailsAtUserService(this.userDetailsteszt);
     this.router.navigate(['/profile-edit']);
   }
 
