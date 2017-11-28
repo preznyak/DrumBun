@@ -9,7 +9,6 @@ import {TokenService} from "./token.service";
 @Injectable()
 export class AuthenticationService {
 
-  // private token: string;
   private apiUrl = 'http://localhost:8080';
 
   constructor(private router: Router,
@@ -25,8 +24,6 @@ export class AuthenticationService {
       .subscribe(
         (response) => {
           this.tokenService.token = response.text();
-          //XML Parse error here, because of idk;
-          console.log(this.tokenService.token);
           this.router.navigate(['/home']);
           this.userService.getUserDetails(username);
         },
@@ -39,10 +36,8 @@ export class AuthenticationService {
     return this.http.post(this.apiUrl + "/registeruser", user).subscribe(
       (response) => {
         this.router.navigate(['/login']);
-        console.log(response);
       },
       (error) => {
-        // this.router.navigate(['/login']);
         console.log(error);
       }
     );
@@ -52,10 +47,6 @@ export class AuthenticationService {
     this.tokenService.token = null;
     return this.http.post(this.apiUrl + "/logout", this.tokenService.token);
   }
-
-  // getToken() {
-  //   return this.token;
-  // }
 
   signUpUser(email: string, password: string) {
     firebase.auth().createUserWithEmailAndPassword(email, password)
@@ -85,6 +76,7 @@ export class AuthenticationService {
     this.tokenService.token = null;
   }
 
+  //TODO make guard use token service
   isAuthenticated() {
     return this.tokenService.token != null;
   }

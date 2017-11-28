@@ -23,7 +23,6 @@ import {TripListComponent} from './home/trip-list/trip-list.component';
 import {TripItemComponent} from './home/trip-list/trip-item/trip-item.component';
 import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
 import {HttpModule} from "@angular/http";
-import {RequestService} from "./_shared/request.service";
 import {UserService} from "./_shared/user.service";
 import {TokenInterceptor} from "./_shared/token.interceptor";
 import {TokenService} from "./_shared/token.service";
@@ -60,7 +59,6 @@ import {UserprofileService} from "./_shared/userprofile.service";
     AuthenticationGuardService,
     UserService,
     UserprofileService,
-    RequestService,
     User,
     TokenInterceptor,
     TokenService,

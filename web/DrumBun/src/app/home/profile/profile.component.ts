@@ -25,18 +25,18 @@ export class ProfileComponent implements OnInit {
   ngOnInit() {
     console.log("fromNgOnInit")
     console.log(this.userDetails);
-    if(this.userDetails != null){
+    if (this.userDetails != null) {
       this.isDataLoaded = true;
     }
 
   }
 
-  loadData(){
+  loadData() {
     this.userDetails = this.userProfileService.getUserProfile();
     console.log(this.userDetails.userProfile.image.toString());
   }
 
-  toEdit(){
+  toEdit() {
     this.router.navigate(['/profile-edit']);
   }
 

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {Trip} from "../../_models/trip.model";
 import {TripService} from "../../_shared/trip.service";
 
@@ -10,7 +10,8 @@ import {TripService} from "../../_shared/trip.service";
 export class TripListComponent implements OnInit {
   trips: Trip[];
 
-  constructor(private tripService: TripService) { }
+  constructor(private tripService: TripService) {
+  }
 
   ngOnInit() {
     this.trips = this.tripService.getTrips();

@@ -28,7 +28,7 @@ export class ProfileEditComponent implements OnInit {
     this.userDetails = this.userDetailsService.getUserProfile();
   }
 
-  loadData(){
+  loadData() {
     this.editForm.setValue({
       firstName: this.userDetails.firstName,
       lastName: this.userDetails.lastName,
@@ -46,16 +46,16 @@ export class ProfileEditComponent implements OnInit {
     });
   }
 
-  clearData(){
+  clearData() {
     this.editForm.reset();
   }
 
-  cancelEdit(){
+  cancelEdit() {
     this.router.navigate(['/profile']);
   }
 
   //TODO test this!
-  saveData(){
+  saveData() {
     this.userService.saveUserDetails(this.editForm.value)
       .subscribe(
         (response) => {
