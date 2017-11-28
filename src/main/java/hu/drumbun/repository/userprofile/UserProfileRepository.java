@@ -18,4 +18,6 @@ public interface UserProfileRepository extends JpaRepository<UserProfile, Long>{
 
     List<UserProfile> findAllByGender(Gender gender);
 
+    UserProfile findByFacebookProfile(String facebookProfile);
+
 }

@@ -1,29 +1,37 @@
 package hu.drumbun.controller.user;
 
+import hu.drumbun.commons.ValidatorResult;
 import hu.drumbun.controller.user.model.CreateUserRequest;
 import hu.drumbun.controller.user.model.UpdateUserRequest;
-import hu.drumbun.controller.user.model.UserResponse;
-import hu.drumbun.entities.User;
 import hu.drumbun.service.user.UserService;
+import hu.drumbun.service.user.validator.CreateUserRequestValidator;
+import hu.drumbun.service.user.validator.UpdateUserRequestValidator;
+import hu.drumbun.service.userprofile.UserProfileService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
 
 @CrossOrigin
 @RestController
 public class UserController {
 
-    @Autowired
-    @Qualifier("userService")
-    UserService userService;
+    private UserService userService;
+    private UserProfileService userProfileService;
+    private CreateUserRequestValidator createUserRequestValidator;
+    private UpdateUserRequestValidator updateUserRequestValidator;
 
     public UserController() {
+    }
+
+    @Autowired
+    public UserController(UserService userService, UserProfileService userProfileService, CreateUserRequestValidator createUserRequestValidator, UpdateUserRequestValidator updateUserRequestValidator) {
+        this.userService = userService;
+        this.userProfileService = userProfileService;
+        this.createUserRequestValidator = createUserRequestValidator;
+        this.updateUserRequestValidator = updateUserRequestValidator;
     }
 
     @RequestMapping(method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE, value = "/users")
@@ -43,8 +51,13 @@ public class UserController {
 
     @RequestMapping(method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE, value = "/registeruser")
     public ResponseEntity<?> addUser(@RequestBody CreateUserRequest createUserRequest) {
-        userService.addUser(new CreateUserRequest(createUserRequest.getUsername(),createUserRequest.getFirstName(), createUserRequest.getLastName(), createUserRequest.getEmail(), createUserRequest.getPassword(), createUserRequest.getConfirmPassword()));
-        return new ResponseEntity<>(userService.getAllUsers(), HttpStatus.OK);
+        ValidatorResult validatorResult = createUserRequestValidator.validate(createUserRequest);
+        if(validatorResult.isValid()){
+            userService.addUser(new CreateUserRequest(createUserRequest.getUsername(),createUserRequest.getFirstName(), createUserRequest.getLastName(), createUserRequest.getEmail(), createUserRequest.getPassword(), createUserRequest.getConfirmPassword()));
+            return new ResponseEntity<>(userService.getAllUsers(), HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>(validatorResult.getMessage(), HttpStatus.BAD_REQUEST);
+        }
     }
 
 
@@ -56,9 +69,13 @@ public class UserController {
 
     @RequestMapping(method = RequestMethod.PUT, value = "users/update")
     public ResponseEntity<?> updateUser(@RequestBody UpdateUserRequest updateUserRequest) {
-
-        userService.updateUser(updateUserRequest);
-        return new ResponseEntity<>(userService.getAllUsers(), HttpStatus.OK);
+        ValidatorResult validatorResult = updateUserRequestValidator.validate(updateUserRequest);
+        if(validatorResult.isValid()){
+            userService.updateUser(updateUserRequest);
+            return new ResponseEntity<>(userService.getAllUsers(), HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>(validatorResult.getMessage(), HttpStatus.BAD_REQUEST);
+        }
     }
 
 }

@@ -60,7 +60,7 @@ public class UserProfile implements Serializable{
     @Column
     private String phoneNumber;
 
-    @Column
+    @Column(unique = true)
     private String facebookProfile;
 
     @Column
@@ -201,8 +201,6 @@ public class UserProfile implements Serializable{
      * @return string format of an UserProfile object
      */
 
-
-
     @Override
     public String toString() {
         return "UserProfile{" +
@@ -210,6 +208,12 @@ public class UserProfile implements Serializable{
                 ", birthDate=" + birthDate +
                 ", gender=" + gender +
                 ", driverLicense=" + driverLicense +
+                ", image='" + image + '\'' +
+                ", bio='" + bio + '\'' +
+                ", phoneNumber='" + phoneNumber + '\'' +
+                ", facebookProfile='" + facebookProfile + '\'' +
+                ", city='" + city + '\'' +
+                ", country='" + country + '\'' +
                 '}';
     }
 }

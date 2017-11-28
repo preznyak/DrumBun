@@ -4,7 +4,9 @@ import hu.drumbun.controller.user.model.CreateUserRequest;
 import hu.drumbun.controller.user.model.UpdateUserRequest;
 import hu.drumbun.controller.user.model.UserResponse;
 import hu.drumbun.entities.User;
+import hu.drumbun.entities.UserProfile;
 import hu.drumbun.repository.user.UserRepository;
+import hu.drumbun.repository.userprofile.UserProfileRepository;
 import hu.drumbun.service.user.UserService;
 import hu.drumbun.service.user.converter.CreateUserRequestConverter;
 import hu.drumbun.service.user.converter.UpdateUserRequestConverter;
@@ -21,13 +23,15 @@ import java.util.stream.Collectors;
 public class UserServiceImpl implements UserService {
 
     private final UserRepository userRepository;
+    private final UserProfileRepository userProfileRepository;
     private final CreateUserRequestConverter createUserRequestConverter;
     private final UpdateUserRequestConverter updateUserRequestConverter;
     private final UserResponseConverter userResponseConverter;
 
     @Autowired
-    public UserServiceImpl(UserRepository userRepository, CreateUserRequestConverter createUserRequestConverter, UpdateUserRequestConverter updateUserRequestConverter, UserResponseConverter userResponseConverter) {
+    public UserServiceImpl(UserRepository userRepository, UserProfileRepository userProfileRepository, CreateUserRequestConverter createUserRequestConverter, UpdateUserRequestConverter updateUserRequestConverter, UserResponseConverter userResponseConverter) {
         this.userRepository = userRepository;
+        this.userProfileRepository = userProfileRepository;
         this.createUserRequestConverter = createUserRequestConverter;
         this.updateUserRequestConverter = updateUserRequestConverter;
         this.userResponseConverter = userResponseConverter;
@@ -70,7 +74,19 @@ public class UserServiceImpl implements UserService {
         oldUser.setLastName(updatedUser.getLastName());
         oldUser.setEmail(updatedUser.getEmail());
         oldUser.setPassword(updatedUser.getPassword());
-        oldUser.setUserProfile(updatedUser.getUserProfile());
+        System.out.println(updatedUser.getUserProfile());
+        if(updatedUser.getUserProfile() != null) {
+            if(userProfileRepository.findOne(updatedUser.getUserProfile().getId())==null){
+                UserProfile newUserProfile = updatedUser.getUserProfile();
+                userProfileRepository.save(new UserProfile(newUserProfile.getBirthDate(),
+                        newUserProfile.getGender(), newUserProfile.getDriverLicense(),
+                        newUserProfile.getImage(), newUserProfile.getBio(), newUserProfile.getPhoneNumber(),
+                        newUserProfile.getFacebookProfile(), newUserProfile.getCity(), newUserProfile.getCountry()));
+                oldUser.setUserProfile(userProfileRepository.findByFacebookProfile(updatedUser.getUserProfile().getFacebookProfile()));
+            }
+        } else {
+            oldUser.setUserProfile(updatedUser.getUserProfile());
+        }
         userRepository.save(oldUser);
     }
 
