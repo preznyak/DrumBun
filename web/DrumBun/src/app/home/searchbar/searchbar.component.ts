@@ -21,14 +21,15 @@ export class SearchbarComponent implements OnInit {
 
   justLog() {
     console.log("From: " + this.searchForm.value.fromLocation +
-      "\nTo:" + this.searchForm.value.toLocation +
+      "\nTo: " + this.searchForm.value.toLocation +
       "\nType: " + this.searchForm.value.searchType +
-      "\nDate: " + this.searchForm.value.date);
+      "\nDate: " + this.searchForm.value.date+
+      "\nTime: " + this.searchForm.value.time);
   }
 
   fetchData() {
     this.justLog();
-    this.tripService.fetchData(this.searchForm.value.fromLocation, this.searchForm.value.toLocation, this.searchForm.value.searchType, this.searchForm.value.date);
+    // this.tripService.fetchData(this.searchForm.value.fromLocation, this.searchForm.value.toLocation, this.searchForm.value.searchType, this.searchForm.value.date);
   }
 
 }

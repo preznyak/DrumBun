@@ -17,12 +17,13 @@ export class TripService {
   }
 
   fetchData(from: string, to: string, type: string, when: string) {
-    return this.httpClient.get(this.apiUrl + "/getsomething", JSON.stringify({
-      from: from,
-      to: to,
-      type: type,
-      date: when
-    }))
+    return this.httpClient.get(this.apiUrl + "/getsomething/" + from + "/" + to + "/" + type + "/" + when)
+    // return this.httpClient.get(this.apiUrl + "/getsomething", JSON.stringify({
+    //   from: from,
+    //   to: to,
+    //   type: type,
+    //   date: when
+    // }))
       .subscribe(
         (response: Trip[]) => this.trips = response,
         (error) => console.log(error)

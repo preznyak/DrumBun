@@ -66,6 +66,7 @@ public class UserServiceImpl implements UserService {
         userRepository.save(new User(user.getUsername(),user.getFirstName(),user.getLastName(),user.getEmail(),user.getPassword()));
     }
 
+    //TODO formazd mar a datet eheto formara te ... nah meg a facebook ize
     @Override
     public void updateUser(UpdateUserRequest updateUserRequest) {
         User updatedUser = updateUserRequestConverter.from(updateUserRequest);
