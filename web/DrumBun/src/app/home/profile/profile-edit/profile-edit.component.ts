@@ -30,6 +30,7 @@ export class ProfileEditComponent implements OnInit {
 
   loadData() {
     this.editForm.setValue({
+      username: this.userDetails.username,
       firstName: this.userDetails.firstName,
       lastName: this.userDetails.lastName,
       email: this.userDetails.email,
