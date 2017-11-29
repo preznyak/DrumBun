@@ -28,9 +28,9 @@ public class UpdateUserRequestValidator implements Validator<UpdateUserRequest> 
         if(toValidate.getUsername() == null || toValidate.getUsername().equals("")){
             result = result + "Username must not be empty or null. ";
         }
-        if(toValidate.getPassword() == null || toValidate.getPassword().equals("")){
-            result = result + "Password must not be empty or null. ";
-        }
+//        if(toValidate.getPassword() == null || toValidate.getPassword().equals("")){
+//            result = result + "Password must not be empty or null. ";
+//        }
         if(toValidate.getUserProfile().getFacebookProfile().equals("") || toValidate.getUserProfile().getFacebookProfile().equals(null)){
             result = result + "Facebook profile must not be null.";
         }

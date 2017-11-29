@@ -6,7 +6,8 @@ import 'rxjs/add/operator/catch';
 import {Observable} from "rxjs/Observable";
 import {HttpClient} from "@angular/common/http";
 import {UserprofileService} from "./userprofile.service";
-import {UserprofileModel} from "../_models/userprofile.model";
+import {DetailsModel, UserprofileModel} from "../_models/userprofile.model";
+import {Router} from "@angular/router";
 
 
 @Injectable()
@@ -17,14 +18,21 @@ export class UserService {
 
   constructor(private http: Http,
               private httpClient: HttpClient,
-              private userProfileService: UserprofileService) {
+              private userProfileService: UserprofileService,
+              private router: Router) {
   }
 
   getUserDetails(username: String) {
     return this.httpClient.get(this.apiUrl + "/users/username/" + username)
       .subscribe(
         (response: UserprofileModel) => {
+          console.log(response);
+          if (response.userProfile == null){
+            this.userProfileService.createUserProfile(response.username, response.firstName, response.lastName, response.email, new DetailsModel("","","","","","","","",""));
+            this.router.navigate(['/profile-edit']);
+          }else{
           this.userProfileService.createUserProfile(response.username, response.firstName, response.lastName, response.email, response.userProfile);
+          }
         },
         (error) => console.log(error)
       )
@@ -32,7 +40,7 @@ export class UserService {
 
   saveUserDetails(data: UserprofileModel) {
     console.log("HERE COMES THE REQUEST")
-    return this.httpClient.post(this.apiUrl + "/valami/" + data.username, data);
+    return this.httpClient.put(this.apiUrl + "/users/update", data);
   }
 
   findById(id: number): Observable<UserdetailsModel> {
