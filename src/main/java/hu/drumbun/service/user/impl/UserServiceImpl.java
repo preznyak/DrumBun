@@ -69,11 +69,10 @@ public class UserServiceImpl implements UserService {
     @Override
     public void updateUser(UpdateUserRequest updateUserRequest) {
         User updatedUser = updateUserRequestConverter.from(updateUserRequest);
-        User oldUser = userRepository.findById(updatedUser.getId());
+        User oldUser = userRepository.findByUsername(updatedUser.getUsername());
         oldUser.setFirstName(updatedUser.getFirstName());
         oldUser.setLastName(updatedUser.getLastName());
         oldUser.setEmail(updatedUser.getEmail());
-        oldUser.setPassword(updatedUser.getPassword());
         System.out.println(updatedUser.getUserProfile());
         if(updatedUser.getUserProfile() != null) {
             if(userProfileRepository.findOne(updatedUser.getUserProfile().getId())==null){

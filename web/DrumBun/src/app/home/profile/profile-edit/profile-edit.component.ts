@@ -26,6 +26,9 @@ export class ProfileEditComponent implements OnInit {
 
   ngOnInit() {
     this.userDetails = this.userDetailsService.getUserProfile();
+    if (this.userDetails == null){
+      this.isDataLoaded = false;
+    }
   }
 
   loadData() {
@@ -35,13 +38,14 @@ export class ProfileEditComponent implements OnInit {
       lastName: this.userDetails.lastName,
       email: this.userDetails.email,
       userProfile: {
-        profilePicture: this.userDetails.userProfile.image,
-        birthdate: this.userDetails.userProfile.birthDate,
+        image: this.userDetails.userProfile.image,
+        facebookProfile: this.userDetails.userProfile.facebookProfile,
+        birthDate: this.userDetails.userProfile.birthDate,
         bio: this.userDetails.userProfile.bio,
         gender: this.userDetails.userProfile.gender,
-        addressCity: this.userDetails.userProfile.city,
-        addressCountry: this.userDetails.userProfile.country,
-        phone: this.userDetails.userProfile.phoneNumber,
+        city: this.userDetails.userProfile.city,
+        country: this.userDetails.userProfile.country,
+        phoneNumber: this.userDetails.userProfile.phoneNumber,
         driverLicense: this.userDetails.userProfile.driverLicense
       }
     });
