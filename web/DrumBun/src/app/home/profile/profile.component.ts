@@ -15,32 +15,28 @@ export class ProfileComponent implements OnInit {
   userDetails: UserprofileModel;
   isDataLoaded: boolean = false;
 
-  constructor(private userService: UserService,
-              private authenticationService: AuthenticationService,
-              private router: Router,
+  constructor(private router: Router,
               private userProfileService: UserprofileService) {
     this.loadData();
 
   }
 
 
-  //TODO pass data with promise or somehow
   ngOnInit() {
     console.log("fromNgOnInit")
     console.log(this.userDetails);
-    if(this.userDetails != null){
+    if (this.userDetails != null) {
       this.isDataLoaded = true;
     }
 
   }
 
-  loadData(){
+  loadData() {
     this.userDetails = this.userProfileService.getUserProfile();
     console.log(this.userDetails.userProfile.image.toString());
   }
 
-  toEdit(){
-    // this.userService.setUserDetailsAtUserService(this.userDetailsteszt);
+  toEdit() {
     this.router.navigate(['/profile-edit']);
   }
 

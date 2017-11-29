@@ -1,9 +1,9 @@
-import { Injectable } from '@angular/core';
-import { UserdetailsModel } from "../_models/userdetails.model";
-import { Http, Response } from "@angular/http";
+import {Injectable} from '@angular/core';
+import {UserdetailsModel} from "../_models/userdetails.model";
+import {Http, Response} from "@angular/http";
 import 'rxjs/add/operator/map'
 import 'rxjs/add/operator/catch';
-import { Observable } from "rxjs/Observable";
+import {Observable} from "rxjs/Observable";
 import {HttpClient} from "@angular/common/http";
 import {UserprofileService} from "./userprofile.service";
 import {UserprofileModel} from "../_models/userprofile.model";
@@ -21,30 +21,18 @@ export class UserService {
   }
 
   getUserDetails(username: String) {
-
-    //Testing fucntion with 1 object returned in request
     return this.httpClient.get(this.apiUrl + "/users/username/" + username)
       .subscribe(
         (response: UserprofileModel) => {
-          console.log(response);
           this.userProfileService.createUserProfile(response.username, response.firstName, response.lastName, response.email, response.userProfile);
-          // console.log(response);
-          console.log("********************");
-          console.log(this.userProfileService.getUserProfile());
         },
         (error) => console.log(error)
       )
   }
 
-  getUserDetailsFromUserService(){
-    return this.userDetails;
-  }
-
-  setUserDetailsAtUserService(data: UserdetailsModel){
-    this.userDetails = data;
-    console.log("=====FromUserService=====setUserDetailsAtUserService=======")
-    console.log(this.userDetails)
-    return this.http.post(this.apiUrl + "/updateuserdetails", data);
+  saveUserDetails(data: UserprofileModel) {
+    console.log("HERE COMES THE REQUEST")
+    return this.httpClient.post(this.apiUrl + "/valami/" + data.username, data);
   }
 
   findById(id: number): Observable<UserdetailsModel> {

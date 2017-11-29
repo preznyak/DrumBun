@@ -9,7 +9,8 @@ import {Trip} from "../../../_models/trip.model";
 export class TripItemComponent implements OnInit {
   @Input() trip: Trip;
 
-  constructor() { }
+  constructor() {
+  }
 
   ngOnInit() {
   }

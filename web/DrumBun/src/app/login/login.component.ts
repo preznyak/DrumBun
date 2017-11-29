@@ -11,21 +11,16 @@ import {Router} from "@angular/router";
 })
 export class LoginComponent implements OnInit {
 
-  constructor(private authenticationService: AuthenticationService,
-              private router: Router) {
+  constructor(private authenticationService: AuthenticationService) {
   }
 
   ngOnInit() {
   }
 
   onSignin(form: NgForm) {
-    // const email = form.value.email;
-    // const password = form.value.password;
-    // this.authenticationService.signInUser(email, password);
-
     const username = form.value.username;
     const password = form.value.password;
-    this.authenticationService.loginUser(username,password);
+    this.authenticationService.loginUser(username, password);
   }
 
 }

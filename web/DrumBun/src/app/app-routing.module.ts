@@ -19,7 +19,7 @@ const appRoutes: Routes = [
   {path: 'search', redirectTo: 'home'},
   {path: 'login', component: LoginComponent},
   {path: 'register', component: RegisterComponent},
-  {path: '**', redirectTo: 'home'}
+  {path: '**', redirectTo: 'login'}
 ];
 
 @NgModule({

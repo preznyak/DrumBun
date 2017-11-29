@@ -1,11 +1,11 @@
-export class TokenService{
+export class TokenService {
   public token: string;
 
-  getToken(){
+  getToken() {
     return this.token;
   }
 
-  setToken(token: string){
+  setToken(token: string) {
     this.token = token;
   }
 

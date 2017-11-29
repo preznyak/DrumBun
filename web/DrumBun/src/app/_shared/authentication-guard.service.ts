@@ -6,7 +6,6 @@ import {AuthenticationService} from "./authentication.service";
 export class AuthenticationGuardService implements CanActivate {
 
   constructor(private authenticationServce: AuthenticationService) {
-
   }
 
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
