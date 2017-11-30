@@ -1,7 +1,10 @@
 package hu.drumbun.entities;
 
+import com.fasterxml.jackson.annotation.JsonAutoDetect;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import hu.drumbun.enums.DriverLicense;
 import hu.drumbun.enums.Gender;
+import hu.drumbun.service.JsonDateSerializer;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -15,6 +18,7 @@ import java.util.Date;
  * @version 1.0
  */
 
+@JsonAutoDetect
 @Entity
 @Table(name = "user_profile")
 public class UserProfile implements Serializable{
@@ -33,6 +37,7 @@ public class UserProfile implements Serializable{
     /**
      * user's birthdate
      */
+    @JsonSerialize(using = JsonDateSerializer.class)
     @Column(name = "birthDate")
     private Date birthDate;
     //Profile picture needed.
