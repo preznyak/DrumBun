@@ -74,19 +74,28 @@ public class UserServiceImpl implements UserService {
         oldUser.setFirstName(updatedUser.getFirstName());
         oldUser.setLastName(updatedUser.getLastName());
         oldUser.setEmail(updatedUser.getEmail());
-        System.out.println(updatedUser.getUserProfile());
-        if(updatedUser.getUserProfile() != null) {
-            if(userProfileRepository.findOne(updatedUser.getUserProfile().getId())==null){
-                UserProfile newUserProfile = updatedUser.getUserProfile();
-                userProfileRepository.save(new UserProfile(newUserProfile.getBirthDate(),
-                        newUserProfile.getGender(), newUserProfile.getDriverLicense(),
+        if(userProfileRepository.findByFacebookProfile(updatedUser.getUserProfile().getFacebookProfile())==null){
+            UserProfile newUserProfile = updatedUser.getUserProfile();
+            userProfileRepository.save(
+                    new UserProfile(newUserProfile.getBirthDate(), newUserProfile.getGender(), newUserProfile.getDriverLicense(),
                         newUserProfile.getImage(), newUserProfile.getBio(), newUserProfile.getPhoneNumber(),
                         newUserProfile.getFacebookProfile(), newUserProfile.getCity(), newUserProfile.getCountry()));
-                oldUser.setUserProfile(userProfileRepository.findByFacebookProfile(updatedUser.getUserProfile().getFacebookProfile()));
-            }
+            oldUser.setUserProfile(userProfileRepository.findByFacebookProfile(updatedUser.getUserProfile().getFacebookProfile()));
         } else {
-            oldUser.setUserProfile(updatedUser.getUserProfile());
+                UserProfile userProfile = userProfileRepository.findByFacebookProfile(updateUserRequest.getUserProfile().getFacebookProfile());
+                UserProfile updatedUserProfile = updateUserRequest.getUserProfile();
+                userProfile.setDriverLicense(updatedUserProfile.getDriverLicense());
+                userProfile.setGender(updatedUserProfile.getGender());
+                userProfile.setBirthDate(updatedUserProfile.getBirthDate());
+                userProfile.setBio(updatedUserProfile.getBio());
+                userProfile.setCity(updatedUserProfile.getCity());
+                userProfile.setCountry(updatedUserProfile.getCountry());
+                userProfile.setImage(updatedUserProfile.getImage());
+                userProfile.setPhoneNumber(updatedUserProfile.getPhoneNumber());
+                userProfile.setFacebookProfile(updatedUserProfile.getFacebookProfile());
+                userProfileRepository.save(userProfile);
         }
+
         userRepository.save(oldUser);
     }
 
