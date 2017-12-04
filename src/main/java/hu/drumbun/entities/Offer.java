@@ -3,6 +3,7 @@ package hu.drumbun.entities;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 
 /**
  * <h1>Offer Entity class</h1>
@@ -35,7 +36,7 @@ public class Offer implements Serializable{
     /**
      * path object
      */
-    @OneToOne(targetEntity = Path.class, fetch = FetchType.EAGER, cascade = CascadeType.REMOVE)
+    @OneToOne(targetEntity = Path.class, fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private Path path;
 
     /**
@@ -50,18 +51,28 @@ public class Offer implements Serializable{
     @Column(name = "start_time", nullable = false)
     private Date startTime;
 
+    @ManyToMany(cascade = CascadeType.ALL)
+    private List<Need> needs;
+
+    @Column
+    private int maxSeats;
+
     /**
      * Constructor
      * @param user user
      * @param path path
      * @param comment comment
      * @param startTime start time
+     * @param needs needs
+     * @param maxSeats maxSeats
      */
-    public Offer(User user, Path path, String comment, Date startTime) {
+    public Offer(User user, Path path, String comment, Date startTime, List<Need> needs, int maxSeats) {
         this.user = user;
         this.path = path;
         this.comment = comment;
         this.startTime = startTime;
+        this.needs = needs;
+        this.maxSeats = maxSeats;
     }
 
     public Offer() {
@@ -147,6 +158,22 @@ public class Offer implements Serializable{
         this.startTime = startTime;
     }
 
+    public List<Need> getNeeds() {
+        return needs;
+    }
+
+    public void setNeeds(List<Need> needs) {
+        this.needs = needs;
+    }
+
+    public int getMaxSeats() {
+        return maxSeats;
+    }
+
+    public void setMaxSeats(int maxSeats) {
+        this.maxSeats = maxSeats;
+    }
+
     /**
      * toString method for Offer class
      * @return string format of an Offer object
@@ -159,6 +186,8 @@ public class Offer implements Serializable{
                 ", path=" + path +
                 ", comment='" + comment + '\'' +
                 ", startTime=" + startTime +
+                ", needs=" + needs +
+                ", maxSeats=" + maxSeats +
                 '}';
     }
 }

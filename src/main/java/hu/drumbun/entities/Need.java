@@ -3,6 +3,7 @@ package hu.drumbun.entities;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 
 /**
  * <h1>Need Entity class</h1>
@@ -28,7 +29,7 @@ public class Need implements Serializable{
     @ManyToOne(targetEntity = User.class, fetch = FetchType.LAZY)
     private User user;
 
-    @OneToOne(fetch = FetchType.EAGER, targetEntity = Path.class, cascade = CascadeType.REMOVE)
+    @OneToOne(fetch = FetchType.EAGER, targetEntity = Path.class, cascade = CascadeType.ALL)
     private Path path;
 
     /**
@@ -43,18 +44,23 @@ public class Need implements Serializable{
     @Column(name = "date")
     private Date date;
 
+    @ManyToMany(cascade = CascadeType.ALL)
+    private List<Offer> offers;
+
     /**
      * Constructor
      * @param user user who created the need
      * @param path path
      * @param comment additional comment
      * @param date date
+     * @param offers offers
      */
-    public Need(User user, Path path, String comment, Date date) {
+    public Need(User user, Path path, String comment, Date date, List<Offer> offers) {
         this.user = user;
         this.path = path;
         this.comment = comment;
         this.date = date;
+        this.offers = offers;
     }
 
     public Need() {
@@ -140,6 +146,14 @@ public class Need implements Serializable{
         this.date = date;
     }
 
+    public List<Offer> getOffers() {
+        return offers;
+    }
+
+    public void setOffers(List<Offer> offers) {
+        this.offers = offers;
+    }
+
     /**
      * toString method for Need class
      * @return string format of a need object
@@ -152,6 +166,7 @@ public class Need implements Serializable{
                 ", path=" + path +
                 ", comment='" + comment + '\'' +
                 ", date=" + date +
+                ", offers=" + offers +
                 '}';
     }
 }
