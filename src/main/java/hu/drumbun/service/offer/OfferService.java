@@ -1,6 +1,8 @@
 package hu.drumbun.service.offer;
 
+import hu.drumbun.controller.need.model.NeedModel;
 import hu.drumbun.controller.offer.model.OfferModel;
+import hu.drumbun.entities.Offer;
 
 import java.util.Date;
 import java.util.List;
@@ -14,5 +16,6 @@ public interface OfferService {
     List<OfferModel> findByStartTimeBefore(Date date);
     List<OfferModel> findByStartTimeAfter(Date date);
     void updateOffer(OfferModel offerModel);
-    void createOffer(OfferModel offerModel);
+    void createOffer(OfferModel offerModel, String username);
+    void addNeed(long offerId,NeedModel needModel);
 }
