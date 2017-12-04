@@ -1,15 +1,25 @@
 package hu.drumbun.controller.offer.model;
 
+import com.fasterxml.jackson.annotation.JsonAutoDetect;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import hu.drumbun.controller.need.model.NeedModel;
 import hu.drumbun.entities.Path;
+import hu.drumbun.service.JsonDateTimeSerializer;
 
 import java.util.Date;
+import java.util.List;
 
+@JsonAutoDetect
 public class OfferModel {
 
     private long id;
     private Path path;
     private String comment;
+
+    @JsonSerialize(using = JsonDateTimeSerializer.class)
     private Date startTime;
+    private List<NeedModel> needModels;
+    private int maxSeats;
 
     public OfferModel() {
     }
@@ -44,5 +54,21 @@ public class OfferModel {
 
     public void setStartTime(Date startTime) {
         this.startTime = startTime;
+    }
+
+    public List<NeedModel> getNeedModels() {
+        return needModels;
+    }
+
+    public void setNeedModels(List<NeedModel> needModels) {
+        this.needModels = needModels;
+    }
+
+    public int getMaxSeats() {
+        return maxSeats;
+    }
+
+    public void setMaxSeats(int maxSeats) {
+        this.maxSeats = maxSeats;
     }
 }

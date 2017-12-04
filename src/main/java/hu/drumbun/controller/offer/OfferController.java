@@ -1,5 +1,6 @@
 package hu.drumbun.controller.offer;
 
+import hu.drumbun.controller.need.model.NeedModel;
 import hu.drumbun.controller.offer.model.OfferModel;
 import hu.drumbun.service.offer.OfferService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -42,8 +43,14 @@ public class OfferController {
         offerService.updateOffer(offerModel);
     }
 
-    @RequestMapping(method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE, value = "/new")
-    void createOffer(@RequestBody OfferModel offerModel){
-        offerService.createOffer(offerModel);
+    @RequestMapping(method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE, value = "/new/{username}")
+    void createOffer(@RequestBody OfferModel offerModel, @PathVariable String username){
+        offerService.createOffer(offerModel, username);
+    }
+
+    @RequestMapping(method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE, value = "/add/{offerId}")
+    public ResponseEntity<?> addNewNeedToOffer(@PathVariable long offerId,@RequestBody NeedModel needModel){
+        offerService.addNeed(offerId,needModel);
+        return new ResponseEntity<>("Offer added.", HttpStatus.OK);
     }
 }
