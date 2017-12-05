@@ -1,6 +1,7 @@
 import {Injectable} from "@angular/core";
 import {HttpClient} from "@angular/common/http";
 import {NeedModel, Path} from "../_models/need.model";
+import {UserprofileService} from "./userprofile.service";
 
 @Injectable()
 export class NeedService{
@@ -12,7 +13,8 @@ export class NeedService{
     new NeedModel(3, new Path(1,"Karoly","Dioszeg","Nagyvarad"),"kovaxarny","2017-12-05 17:03","Ez itt a komment helye",["ecetke","asd"])
   ];
 
-  constructor(private httpClient: HttpClient) {
+  constructor(private httpClient: HttpClient,
+              private userProfileService: UserprofileService) {
   }
 
 
@@ -22,6 +24,10 @@ export class NeedService{
         (response: NeedModel[]) => this.needs = response,
         (error) => console.log(error)
       )
+  }
+
+  giveOffer(id: number){
+    this.httpClient.post(this.apiUrl + "/giveoffer", JSON.stringify({id: id, username: this.userProfileService.getUserProfile().username}))
   }
 
   getNeeds() {

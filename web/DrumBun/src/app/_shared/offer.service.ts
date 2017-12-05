@@ -1,6 +1,7 @@
 import {Injectable} from "@angular/core";
 import {HttpClient} from "@angular/common/http";
 import {OfferModel, Path} from "../_models/offer.model";
+import {UserprofileService} from "./userprofile.service";
 
 @Injectable()
 export class OfferService{
@@ -12,7 +13,8 @@ export class OfferService{
     new OfferModel(3, new Path(1,"Karoly","Dioszeg","Nagyvarad"),"kovaxarny","2017-12-05 17:03","Ez itt a komment helye",["ecetke","asd"],4,3)
   ];
 
-  constructor(private httpClient: HttpClient) {
+  constructor(private httpClient: HttpClient,
+              private userProfileService: UserprofileService) {
   }
 
   fetchData(from: string, to: string, type: string, date: string, time: string) {
@@ -21,6 +23,10 @@ export class OfferService{
         (response: OfferModel[]) => this.offers = response,
         (error) => console.log(error)
       )
+  }
+
+  getIn(id: number){
+    return this.httpClient.post(this.apiUrl + "/jointoride", JSON.stringify({id: id, username: this.userProfileService.getUserProfile().username}));
   }
 
   getOffers() {

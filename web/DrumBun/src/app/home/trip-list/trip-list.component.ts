@@ -21,11 +21,11 @@ export class TripListComponent implements OnInit {
 
   constructor(private needService: NeedService,
               private offerService: OfferService,
-              private communcationService: CommunicationService) {
+              private communicationService: CommunicationService) {
   }
 
   ngOnInit() {
-    this.subscription = this.communcationService.notifyObservable$.subscribe((res) => {
+    this.subscription = this.communicationService.notifyObservable$.subscribe((res) => {
       if (res.hasOwnProperty('type') && res.type === 'offers') {
         this.needData = false;
         this.offers = this.offerService.getOffers();
@@ -37,9 +37,6 @@ export class TripListComponent implements OnInit {
         // this.needService.fetchData(res.from, res.to, res.type, res.date, res.time);
       }
     });
-    // this.needData = true;
-    // this.needs = this.needService.getNeeds();
-    // this.offers = this.offerService.getOffers();
   }
 
 }
