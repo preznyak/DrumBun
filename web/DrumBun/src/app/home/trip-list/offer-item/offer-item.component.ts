@@ -17,7 +17,6 @@ export class OfferItemComponent implements OnInit {
   }
 
   getIn(index: number){
-    console.log("offer with id: " + index + "clicked");
     this.offerService.getIn(index);
   }
 
