@@ -1,7 +1,8 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
 import {NgForm} from "@angular/forms";
-import {Trip} from "../../_models/trip.model";
-import {TripService} from "../../_shared/trip.service";
+import {NeedService} from "../../_shared/need.service";
+import {OfferService} from "../../_shared/offer.service";
+import {CommunicationService} from "../../_shared/communication.service";
 
 @Component({
   selector: 'app-searchbar',
@@ -10,13 +11,13 @@ import {TripService} from "../../_shared/trip.service";
 })
 export class SearchbarComponent implements OnInit {
   @ViewChild('search') searchForm: NgForm;
-  trips: Trip[];
 
-  constructor(private tripService: TripService) {
+  constructor(private needService: NeedService,
+              private offerService: OfferService,
+              private communcationService: CommunicationService) {
   }
 
   ngOnInit() {
-    this.trips = this.tripService.getTrips();
   }
 
   justLog() {
@@ -28,8 +29,14 @@ export class SearchbarComponent implements OnInit {
   }
 
   fetchData() {
+    this.communcationService.notifyOther({from: this.searchForm.value.fromLocation,to: this.searchForm.value.toLocation,type: this.searchForm.value.searchType,date: this.searchForm.value.date,time: this.searchForm.value.time })
+    // if (this.searchForm.value.searchType.equals("offers")){
+    //   this.offerService.fetchData(this.searchForm.value.fromLocation, this.searchForm.value.toLocation, this.searchForm.value.searchType, this.searchForm.value.date, this.searchForm.value.time);
+    // }
+    // if (this.searchForm.value.searchType.equals("needs")){
+    //   this.needService.fetchData(this.searchForm.value.fromLocation, this.searchForm.value.toLocation, this.searchForm.value.searchType, this.searchForm.value.date, this.searchForm.value.time);
+    // }
     this.justLog();
-    // this.tripService.fetchData(this.searchForm.value.fromLocation, this.searchForm.value.toLocation, this.searchForm.value.searchType, this.searchForm.value.date);
   }
 
 }

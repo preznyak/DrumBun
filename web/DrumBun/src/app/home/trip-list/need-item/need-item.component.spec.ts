@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { TripItemComponent } from './trip-item.component';
+import { NeedItemComponent } from './need-item.component';
 
-describe('TripItemComponent', () => {
-  let component: TripItemComponent;
-  let fixture: ComponentFixture<TripItemComponent>;
+describe('NeedItemComponent', () => {
+  let component: NeedItemComponent;
+  let fixture: ComponentFixture<NeedItemComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ TripItemComponent ]
+      declarations: [ NeedItemComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(TripItemComponent);
+    fixture = TestBed.createComponent(NeedItemComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

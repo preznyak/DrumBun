@@ -43,16 +43,4 @@ export class UserService {
     return this.httpClient.put(this.apiUrl + "/users/update", data);
   }
 
-  findById(id: number): Observable<UserdetailsModel> {
-    return null;
-  }
-
-  deleteUserById(id: number): Observable<boolean> {
-    return null;
-  }
-
-  updateUser(user: UserdetailsModel): Observable<UserdetailsModel> {
-    return null;
-  }
-
 }
