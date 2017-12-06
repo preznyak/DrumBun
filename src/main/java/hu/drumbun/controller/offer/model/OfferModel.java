@@ -3,6 +3,7 @@ package hu.drumbun.controller.offer.model;
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import hu.drumbun.controller.need.model.NeedModel;
+import hu.drumbun.controller.need.model.OffersNeedModel;
 import hu.drumbun.entities.Path;
 import hu.drumbun.service.JsonDateTimeSerializer;
 
@@ -17,9 +18,12 @@ public class OfferModel {
     private String comment;
 
     @JsonSerialize(using = JsonDateTimeSerializer.class)
-    private Date startTime;
-    private List<NeedModel> needModels;
+    private Date date;
+    private String userUsername;
     private int maxSeats;
+    private int occupiedSeats;
+    private List<OffersNeedModel> needs;
+
 
     public OfferModel() {
     }
@@ -48,20 +52,20 @@ public class OfferModel {
         this.comment = comment;
     }
 
-    public Date getStartTime() {
-        return startTime;
+    public Date getDate() {
+        return date;
     }
 
-    public void setStartTime(Date startTime) {
-        this.startTime = startTime;
+    public void setDate(Date date) {
+        this.date = date;
     }
 
-    public List<NeedModel> getNeedModels() {
-        return needModels;
+    public String getUserUsername() {
+        return userUsername;
     }
 
-    public void setNeedModels(List<NeedModel> needModels) {
-        this.needModels = needModels;
+    public void setUserUsername(String userUsername) {
+        this.userUsername = userUsername;
     }
 
     public int getMaxSeats() {
@@ -70,5 +74,21 @@ public class OfferModel {
 
     public void setMaxSeats(int maxSeats) {
         this.maxSeats = maxSeats;
+    }
+
+    public int getOccupiedSeats() {
+        return occupiedSeats;
+    }
+
+    public void setOccupiedSeats(int occupiedSeats) {
+        this.occupiedSeats = occupiedSeats;
+    }
+
+    public List<OffersNeedModel> getNeeds() {
+        return needs;
+    }
+
+    public void setNeeds(List<OffersNeedModel> needs) {
+        this.needs = needs;
     }
 }

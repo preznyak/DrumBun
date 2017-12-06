@@ -53,4 +53,10 @@ public class OfferController {
         offerService.addNeed(offerId,needModel);
         return new ResponseEntity<>("Offer added.", HttpStatus.OK);
     }
+
+    @RequestMapping(method = RequestMethod.POST, value = "/joinOffer/{offerId}/{username}")
+    public ResponseEntity<?> joinToOffer(@PathVariable long offerId, @PathVariable String username){
+        offerService.joinToOffer(offerId,username);
+        return new ResponseEntity<>("Joined successfully.",HttpStatus.OK);
+    }
 }
