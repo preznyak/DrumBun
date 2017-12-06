@@ -3,6 +3,7 @@ package hu.drumbun.entities;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 
 /**
  * <h1>Offer Entity class</h1>
@@ -35,7 +36,7 @@ public class Offer implements Serializable{
     /**
      * path object
      */
-    @OneToOne(targetEntity = Path.class, fetch = FetchType.EAGER, cascade = CascadeType.REMOVE)
+    @OneToOne(targetEntity = Path.class, fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private Path path;
 
     /**
@@ -47,21 +48,37 @@ public class Offer implements Serializable{
     /**
      * starting time when the journey begins
      */
-    @Column(name = "start_time", nullable = false)
-    private Date startTime;
+    @Column(name = "date", nullable = false)
+    private Date date;
+
+    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, targetEntity = Need.class)
+    private List<Need> needs;
+
+    @Column
+    private int maxSeats;
+
+    @Column
+    private int occupiedSeats;
 
     /**
      * Constructor
      * @param user user
      * @param path path
      * @param comment comment
-     * @param startTime start time
+     * @param date start time
+     * @param needs needs
+     * @param maxSeats maxSeats
+     * @param occupiedSeats occupied seats
      */
-    public Offer(User user, Path path, String comment, Date startTime) {
+
+    public Offer(User user, Path path, String comment, Date date, List<Need> needs, int maxSeats, int occupiedSeats) {
         this.user = user;
         this.path = path;
         this.comment = comment;
-        this.startTime = startTime;
+        this.date = date;
+        this.needs = needs;
+        this.maxSeats = maxSeats;
+        this.occupiedSeats = occupiedSeats;
     }
 
     public Offer() {
@@ -131,20 +148,36 @@ public class Offer implements Serializable{
         this.comment = comment;
     }
 
-    /**
-     * Getter method for start time
-     * @return start time
-     */
-    public Date getStartTime() {
-        return startTime;
+    public Date getDate() {
+        return date;
     }
 
-    /**
-     * Setter method for start time
-     * @param startTime start time
-     */
-    public void setStartTime(Date startTime) {
-        this.startTime = startTime;
+    public void setDate(Date date) {
+        this.date = date;
+    }
+
+    public int getOccupiedSeats() {
+        return occupiedSeats;
+    }
+
+    public void setOccupiedSeats(int occupiedSeats) {
+        this.occupiedSeats = occupiedSeats;
+    }
+
+    public List<Need> getNeeds() {
+        return needs;
+    }
+
+    public void setNeeds(List<Need> needs) {
+        this.needs = needs;
+    }
+
+    public int getMaxSeats() {
+        return maxSeats;
+    }
+
+    public void setMaxSeats(int maxSeats) {
+        this.maxSeats = maxSeats;
     }
 
     /**
@@ -158,7 +191,10 @@ public class Offer implements Serializable{
                 ", user=" + user +
                 ", path=" + path +
                 ", comment='" + comment + '\'' +
-                ", startTime=" + startTime +
+                ", date=" + date +
+                ", needs=" + needs +
+                ", maxSeats=" + maxSeats +
+                ", occupiedSeats=" + occupiedSeats +
                 '}';
     }
 }

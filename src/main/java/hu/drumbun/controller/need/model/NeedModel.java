@@ -10,6 +10,7 @@ public class NeedModel {
     private Path path;
     private String comment;
     private Date date;
+    private String userUsername;
 
     public NeedModel() {
     }
@@ -44,5 +45,13 @@ public class NeedModel {
 
     public void setDate(Date date) {
         this.date = date;
+    }
+
+    public String getUserUsername() {
+        return userUsername;
+    }
+
+    public void setUserUsername(String userUsername) {
+        this.userUsername = userUsername;
     }
 }
