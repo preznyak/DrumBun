@@ -17,7 +17,6 @@ public interface OfferService {
     List<OfferModel> findByDateAfter(Date date);
     void updateOffer(OfferModel offerModel);
     void createOffer(OfferModel offerModel, String username);
-    void addNeed(long offerId,NeedModel needModel);
 
     void joinToOffer(long offerId, String username);
     List<OfferModel> findByAll(String start, String destination, String date);
