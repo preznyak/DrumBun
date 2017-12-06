@@ -14,4 +14,6 @@ public interface NeedRepository extends JpaRepository<Need, Long>{
     List<Need> findByPath_Start(String start);
     List<Need> findByDateAfter(Date date);
     List<Need> findByDateBefore(Date date);
+
+    List<Need> findByPath_StartAndPath_DestinationAndDateAfter(String start, String destination, Date date);
 }

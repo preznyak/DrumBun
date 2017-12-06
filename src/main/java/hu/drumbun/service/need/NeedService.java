@@ -17,5 +17,6 @@ public interface NeedService {
     void createNeed(NeedModel needModel);
 
 
-    void receiveOffer(long offerId, long needId);
+    void receiveOffer(long needId, String username);
+    List<NeedModel> findByAll(String start,String destination,String date);
 }

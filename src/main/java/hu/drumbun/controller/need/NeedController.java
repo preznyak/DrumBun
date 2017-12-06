@@ -47,10 +47,15 @@ public class NeedController {
         needService.createNeed(needModel);
     }
 
-    @RequestMapping(method = RequestMethod.POST, value = "/takeOffer/{offerId}/{needId}")
-    public ResponseEntity<?> takeAnOffer(@PathVariable long offerId, @PathVariable long needId){
-        needService.receiveOffer(offerId,needId);
+    @RequestMapping(method = RequestMethod.POST, value = "/takeOffer/{needId}/{username}")
+    public ResponseEntity<?> takeAnOffer(@PathVariable long needId,@PathVariable String username){
+        needService.receiveOffer(needId,username);
         return new ResponseEntity<>("Offer taken.", HttpStatus.OK);
+    }
+
+    @RequestMapping(method = RequestMethod.GET, value = "/find/{start}/{destination}/{date}")
+    public ResponseEntity<?> findByAll(@PathVariable String start, @PathVariable String destination, @PathVariable String date){
+        return new ResponseEntity<>(needService.findByAll(start,destination,date), HttpStatus.OK);
     }
 
 }
