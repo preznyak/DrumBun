@@ -15,4 +15,7 @@ public interface NeedService {
     List<NeedModel> findByDateBefore(Date date);
     void updateNeed(NeedModel needModel);
     void createNeed(NeedModel needModel);
+
+
+    void receiveOffer(long offerId, long needId);
 }

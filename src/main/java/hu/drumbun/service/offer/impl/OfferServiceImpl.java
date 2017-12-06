@@ -15,6 +15,9 @@ import hu.drumbun.service.offer.converter.OfferModelConverter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -123,5 +126,19 @@ public class OfferServiceImpl implements OfferService {
         offer.getNeeds().add(newNeed);
         offer.setOccupiedSeats(offer.getOccupiedSeats()+1);
         offerRepository.save(offer);
+    }
+
+    @Override
+    public List<OfferModel> findByAll(String start, String destination, String date) {
+        DateFormat formatter = new SimpleDateFormat("yyyy-MM-dd'T'hh:mm");
+        Date date1 = null;
+        try {
+            date1 = formatter.parse(date);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        return offerRepository.findByPath_StartAndPath_DestinationAndDateAfter(start, destination, date1).stream()
+                .map(offerModelConverter::fromOfferToOfferModel)
+                .collect(Collectors.toList());
     }
 }

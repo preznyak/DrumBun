@@ -9,10 +9,11 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Date;
 import java.util.List;
 
 @RestController
-@RequestMapping("/offers")
+@RequestMapping("/api/offers")
 public class OfferController {
 
     @Autowired
@@ -58,5 +59,11 @@ public class OfferController {
     public ResponseEntity<?> joinToOffer(@PathVariable long offerId, @PathVariable String username){
         offerService.joinToOffer(offerId,username);
         return new ResponseEntity<>("Joined successfully.",HttpStatus.OK);
+    }
+
+    @RequestMapping(method = RequestMethod.GET, value = "/find/{start}/{destination}/{date}")
+    public ResponseEntity<?> findOffers(@PathVariable String start, @PathVariable String destination, @PathVariable String date){
+
+        return new ResponseEntity<>(offerService.findByAll(start,destination,date), HttpStatus.OK);
     }
 }

@@ -20,4 +20,5 @@ public interface OfferService {
     void addNeed(long offerId,NeedModel needModel);
 
     void joinToOffer(long offerId, String username);
+    List<OfferModel> findByAll(String start, String destination, String date);
 }

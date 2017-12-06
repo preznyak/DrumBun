@@ -3,7 +3,9 @@ package hu.drumbun.controller.need;
 import hu.drumbun.controller.need.model.NeedModel;
 import hu.drumbun.service.need.NeedService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -43,6 +45,12 @@ public class NeedController {
     @RequestMapping(method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE, value = "/new")
     void createNeed(@RequestBody NeedModel needModel){
         needService.createNeed(needModel);
+    }
+
+    @RequestMapping(method = RequestMethod.POST, value = "/takeOffer/{offerId}/{needId}")
+    public ResponseEntity<?> takeAnOffer(@PathVariable long offerId, @PathVariable long needId){
+        needService.receiveOffer(offerId,needId);
+        return new ResponseEntity<>("Offer taken.", HttpStatus.OK);
     }
 
 }

@@ -14,5 +14,6 @@ public interface OfferRepository extends JpaRepository<Offer, Long>{
     List<Offer> findByPath_Destination(String destination);
     List<Offer> findByDateBefore(Date date);
     List<Offer> findByDateAfter(Date date);
+    List<Offer> findByPath_StartAndPath_DestinationAndDateAfter(String start, String destination, Date date);
 
 }
