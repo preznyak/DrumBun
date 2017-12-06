@@ -44,8 +44,8 @@ public class Need implements Serializable{
     @Column(name = "date")
     private Date date;
 
-    @Column
-    private List<String> transporters;
+    @OneToMany(fetch = FetchType.EAGER, targetEntity = User.class)
+    private List<User> transporters;
 
     /**
      * Constructor
@@ -55,7 +55,7 @@ public class Need implements Serializable{
      * @param date date
      * @param transporters transporters
      */
-    public Need(User user, Path path, String comment, Date date, List<String> transporters) {
+    public Need(User user, Path path, String comment, Date date, List<User> transporters) {
         this.user = user;
         this.path = path;
         this.comment = comment;
@@ -147,11 +147,11 @@ public class Need implements Serializable{
         this.date = date;
     }
 
-    public List<String> getTransporters() {
+    public List<User> getTransporters() {
         return transporters;
     }
 
-    public void setTransporters(List<String> transporters) {
+    public void setTransporters(List<User> transporters) {
         this.transporters = transporters;
     }
 

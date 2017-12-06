@@ -51,8 +51,8 @@ public class Offer implements Serializable{
     @Column(name = "date", nullable = false)
     private Date date;
 
-    @Column
-    private List<String> passengers;
+    @OneToMany
+    private List<User> passengers;
 
     @Column
     private int maxSeats;
@@ -71,7 +71,7 @@ public class Offer implements Serializable{
      * @param occupiedSeats occupied seats
      */
 
-    public Offer(User user, Path path, String comment, Date date, List<String> passengers, int maxSeats, int occupiedSeats) {
+    public Offer(User user, Path path, String comment, Date date, List<User> passengers, int maxSeats, int occupiedSeats) {
         this.user = user;
         this.path = path;
         this.comment = comment;
@@ -165,11 +165,11 @@ public class Offer implements Serializable{
         this.occupiedSeats = occupiedSeats;
     }
 
-    public List<String> getPassengers() {
+    public List<User> getPassengers() {
         return passengers;
     }
 
-    public void setPassengers(List<String> passengers) {
+    public void setPassengers(List<User> passengers) {
         this.passengers = passengers;
     }
 
