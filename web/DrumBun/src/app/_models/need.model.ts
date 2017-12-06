@@ -4,7 +4,7 @@ export class NeedModel{
               public userUsername: string,
               public date: string,
               public comment: string,
-              public offers: string[]){}
+              public transporters: string[]){}
 }
 
 export class Path{

@@ -4,7 +4,7 @@ export class OfferModel{
               public userUsername: string,
               public date: string,
               public comment: string,
-              public needs: string[],
+              public passangers: string[],
               public maxSeats: number,
               public occupiedSeats: number){}
 }
