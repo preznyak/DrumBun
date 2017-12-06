@@ -19,6 +19,7 @@ export class OfferService{
 
   fetchData(from: string, to: string, type: string, date: string, time: string) {
     return this.httpClient.get("/api/offers/find/" + from + "/" + to + "/" + date + "T" +  time);
+    // return this.httpClient.get("/api/offers");
   }
 
   getIn(id: number){
