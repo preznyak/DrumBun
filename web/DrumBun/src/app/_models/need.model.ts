@@ -1,7 +1,7 @@
 export class NeedModel{
   constructor(public id: number,
               public path: Path,
-              public username: string,
+              public userUsername: string,
               public date: string,
               public comment: string,
               public offers: string[]){}

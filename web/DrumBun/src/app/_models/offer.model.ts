@@ -1,10 +1,10 @@
 export class OfferModel{
   constructor(public id: number,
               public path: Path,
-              public username: string,
+              public userUsername: string,
               public date: string,
               public comment: string,
-              public passangers: string[],
+              public needs: string[],
               public maxSeats: number,
               public occupiedSeats: number){}
 }

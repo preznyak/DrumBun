@@ -28,13 +28,20 @@ export class TripListComponent implements OnInit {
     this.subscription = this.communicationService.notifyObservable$.subscribe((res) => {
       if (res.hasOwnProperty('type') && res.type === 'offers') {
         this.needData = false;
-        this.offers = this.offerService.getOffers();
-        // this.offerService.fetchData(res.from, res.to, res.type, res.date, res.time);
+        this.offerService.fetchData(res.from, res.to, res.type, res.date, res.time)
+        .subscribe(
+          (response: OfferModel[]) => this.offers = response,
+          (error) => console.log(error)
+        )
       }
       if (res.hasOwnProperty('type') && res.type === 'needs') {
         this.needData = true;
-        this.needs = this.needService.getNeeds();
-        // this.needService.fetchData(res.from, res.to, res.type, res.date, res.time);
+        // this.needs = this.needService.getNeeds();
+        this.needService.fetchData(res.from, res.to, res.type, res.date, res.time)
+          .subscribe(
+            (response: NeedModel[]) => this.needs = response,
+            (error) => console.log(error)
+          )
       }
     });
   }

@@ -18,15 +18,15 @@ export class OfferService{
   }
 
   fetchData(from: string, to: string, type: string, date: string, time: string) {
-    return this.httpClient.get(this.apiUrl + "/fetchoffers/" + from + "/" + to + "/" + type + "/" + date + "/" + time)
-      .subscribe(
-        (response: OfferModel[]) => this.offers = response,
-        (error) => console.log(error)
-      )
+    return this.httpClient.get("/api/offers");
   }
 
   getIn(id: number){
-    return this.httpClient.post(this.apiUrl + "/jointoride", JSON.stringify({id: id, username: this.userProfileService.getUserProfile().username}));
+    return this.httpClient.post(this.apiUrl + "/joinOffer/" + id + "/" + this.userProfileService.getUserProfile().username, JSON.stringify({id: id, username: this.userProfileService.getUserProfile().username}))
+      .subscribe(
+        (response) => console.log(response),
+        (error) => console.log(error)
+      )
   }
 
   getOffers() {
