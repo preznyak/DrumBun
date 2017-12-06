@@ -12,7 +12,7 @@
     <p class="list-group-item-text">Comments: {{need.comment}}</p>
   <div class="row" style="margin-top: 10px;">
     <div class="col-md-4">
-      <p class="list-group-item-text" style="font-size: large">Posted by: <a>{{need.userUsername}}</a></p>
+      <p class="list-group-item-text" style="font-size: large">Posted by: <a (click)="navigateToProfileOf(need.userUsername)">{{need.userUsername}}</a></p>
     </div>
     <div class="col-md-offset-4 col-md-4">
       <button class="btn btn-primary" style="float: right" (click)="giveOffer(need.id)">Give offer!</button>
