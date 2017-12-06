@@ -2,7 +2,6 @@ package hu.drumbun.controller.need.model;
 
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
-import hu.drumbun.controller.offer.model.NeedsOfferModel;
 import hu.drumbun.entities.Path;
 import hu.drumbun.service.JsonDateTimeSerializer;
 
@@ -19,7 +18,7 @@ public class NeedModel {
     @JsonSerialize(using = JsonDateTimeSerializer.class)
     private Date date;
     private String userUsername;
-    private List<NeedsOfferModel> offers;
+    private List<String> transporters;
 
     public NeedModel() {
     }
@@ -64,11 +63,11 @@ public class NeedModel {
         this.userUsername = userUsername;
     }
 
-    public List<NeedsOfferModel> getOffers() {
-        return offers;
+    public List<String> getTransporters() {
+        return transporters;
     }
 
-    public void setOffers(List<NeedsOfferModel> offers) {
-        this.offers = offers;
+    public void setTransporters(List<String> transporters) {
+        this.transporters = transporters;
     }
 }
