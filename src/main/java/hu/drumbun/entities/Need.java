@@ -44,8 +44,8 @@ public class Need implements Serializable{
     @Column(name = "date")
     private Date date;
 
-    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    private List<Offer> offers;
+    @Column
+    private List<String> transporters;
 
     /**
      * Constructor
@@ -53,15 +53,16 @@ public class Need implements Serializable{
      * @param path path
      * @param comment additional comment
      * @param date date
-     * @param offers offers
+     * @param transporters transporters
      */
-    public Need(User user, Path path, String comment, Date date, List<Offer> offers) {
+    public Need(User user, Path path, String comment, Date date, List<String> transporters) {
         this.user = user;
         this.path = path;
         this.comment = comment;
         this.date = date;
-        this.offers = offers;
+        this.transporters = transporters;
     }
+
 
     public Need() {
     }
@@ -146,12 +147,12 @@ public class Need implements Serializable{
         this.date = date;
     }
 
-    public List<Offer> getOffers() {
-        return offers;
+    public List<String> getTransporters() {
+        return transporters;
     }
 
-    public void setOffers(List<Offer> offers) {
-        this.offers = offers;
+    public void setTransporters(List<String> transporters) {
+        this.transporters = transporters;
     }
 
     /**
@@ -166,7 +167,7 @@ public class Need implements Serializable{
                 ", path=" + path +
                 ", comment='" + comment + '\'' +
                 ", date=" + date +
-                ", offers=" + offers +
+                ", transporters=" + transporters +
                 '}';
     }
 }
