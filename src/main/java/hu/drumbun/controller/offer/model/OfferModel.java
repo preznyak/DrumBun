@@ -2,7 +2,7 @@ package hu.drumbun.controller.offer.model;
 
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
-import hu.drumbun.controller.need.model.OffersNeedModel;
+import hu.drumbun.controller.user.model.UsernameModel;
 import hu.drumbun.entities.Path;
 import hu.drumbun.service.JsonDateTimeSerializer;
 
@@ -21,7 +21,7 @@ public class OfferModel {
     private String userUsername;
     private int maxSeats;
     private int occupiedSeats;
-    private List<OffersNeedModel> needs;
+    private List<UsernameModel> passengers;
 
 
     public OfferModel() {
@@ -83,12 +83,12 @@ public class OfferModel {
         this.occupiedSeats = occupiedSeats;
     }
 
-    public List<OffersNeedModel> getNeeds() {
-        return needs;
+
+    public List<UsernameModel> getPassengers() {
+        return passengers;
     }
 
-    public void setNeeds(List<OffersNeedModel> needs) {
-        this.needs = needs;
+    public void setPassengers(List<UsernameModel> passengers) {
+        this.passengers = passengers;
     }
-
 }

@@ -87,24 +87,18 @@ public class NeedServiceImpl implements NeedService{
     }
 
     @Override
-    public void createNeed(NeedModel needModel) {
+    public void createNeed(NeedModel needModel, String username) {
         Need newNeed = needModelConverter.fromNeedModelToNeed(needModel);
-        pathRepository.save(newNeed.getPath());
+        newNeed.setUser(userRepository.findByUsername(username));
         needRepository.save(newNeed);
     }
 
     @Override
     public void receiveOffer(long needId, String username) {
         Need need = needRepository.findOne(needId);
-        User user = userRepository.findByUsername(username);
-        Offer newOffer = new Offer();
-        newOffer.setUser(user);
-        newOffer.setDate(need.getDate());
-        newOffer.setPath(need.getPath());
-        newOffer.setMaxSeats(3);
-        List<Offer> offers = need.getOffers();
-        offers.add(newOffer);
-        need.setOffers(offers);
+        List<User> transporters = need.getTransporters();
+        transporters.add(userRepository.findByUsername(username));
+        need.setTransporters(transporters);
         needRepository.save(need);
     }
 

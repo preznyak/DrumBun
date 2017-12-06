@@ -107,23 +107,13 @@ public class OfferServiceImpl implements OfferService {
         offerRepository.save(newOffer);
     }
 
-    @Override
-    public void addNeed(long offerId,NeedModel needModel) {
-        Offer offer = offerRepository.findOne(offerId);
-        Need need = needModelConverter.fromNeedModelToNeed(needModel);
-        List<Need> needs = offer.getNeeds();
-        needs.add(need);
-        offer.setOccupiedSeats(offer.getOccupiedSeats()+1);
-        offer.setNeeds(needs);
-        offerRepository.save(offer);
-    }
 
     @Override
     public void joinToOffer(long offerId, String username) {
         Offer offer = offerRepository.findOne(offerId);
-        User user = userRepository.findByUsername(username);
-        Need newNeed = new Need(user,offer.getPath(),"",offer.getDate(),new ArrayList<Offer>());
-        offer.getNeeds().add(newNeed);
+        List<User> passengers = offer.getPassengers();
+        passengers.add(userRepository.findByUsername(username));
+        offer.setPassengers(passengers);
         offer.setOccupiedSeats(offer.getOccupiedSeats()+1);
         offerRepository.save(offer);
     }

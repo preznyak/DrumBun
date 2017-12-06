@@ -49,12 +49,6 @@ public class OfferController {
         offerService.createOffer(offerModel, username);
     }
 
-    @RequestMapping(method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE, value = "/add/{offerId}")
-    public ResponseEntity<?> addNewNeedToOffer(@PathVariable long offerId,@RequestBody NeedModel needModel){
-        offerService.addNeed(offerId,needModel);
-        return new ResponseEntity<>("Offer added.", HttpStatus.OK);
-    }
-
     @RequestMapping(method = RequestMethod.POST, value = "/joinOffer/{offerId}/{username}")
     public ResponseEntity<?> joinToOffer(@PathVariable long offerId, @PathVariable String username){
         offerService.joinToOffer(offerId,username);

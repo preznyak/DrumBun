@@ -51,8 +51,8 @@ public class Offer implements Serializable{
     @Column(name = "date", nullable = false)
     private Date date;
 
-    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, targetEntity = Need.class)
-    private List<Need> needs;
+    @OneToMany
+    private List<User> passengers;
 
     @Column
     private int maxSeats;
@@ -66,20 +66,21 @@ public class Offer implements Serializable{
      * @param path path
      * @param comment comment
      * @param date start time
-     * @param needs needs
+     * @param passengers passengers
      * @param maxSeats maxSeats
      * @param occupiedSeats occupied seats
      */
 
-    public Offer(User user, Path path, String comment, Date date, List<Need> needs, int maxSeats, int occupiedSeats) {
+    public Offer(User user, Path path, String comment, Date date, List<User> passengers, int maxSeats, int occupiedSeats) {
         this.user = user;
         this.path = path;
         this.comment = comment;
         this.date = date;
-        this.needs = needs;
+        this.passengers = passengers;
         this.maxSeats = maxSeats;
         this.occupiedSeats = occupiedSeats;
     }
+
 
     public Offer() {
     }
@@ -164,12 +165,12 @@ public class Offer implements Serializable{
         this.occupiedSeats = occupiedSeats;
     }
 
-    public List<Need> getNeeds() {
-        return needs;
+    public List<User> getPassengers() {
+        return passengers;
     }
 
-    public void setNeeds(List<Need> needs) {
-        this.needs = needs;
+    public void setPassengers(List<User> passengers) {
+        this.passengers = passengers;
     }
 
     public int getMaxSeats() {
@@ -192,7 +193,7 @@ public class Offer implements Serializable{
                 ", path=" + path +
                 ", comment='" + comment + '\'' +
                 ", date=" + date +
-                ", needs=" + needs +
+                ", passengers=" + passengers +
                 ", maxSeats=" + maxSeats +
                 ", occupiedSeats=" + occupiedSeats +
                 '}';
