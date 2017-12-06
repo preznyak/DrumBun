@@ -42,9 +42,9 @@ public class NeedController {
         needService.updateNeed(needModel);
     }
 
-    @RequestMapping(method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE, value = "/new")
-    void createNeed(@RequestBody NeedModel needModel){
-        needService.createNeed(needModel);
+    @RequestMapping(method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE, value = "/new/{username}")
+    void createNeed(@RequestBody NeedModel needModel, @PathVariable String username){
+        needService.createNeed(needModel,username);
     }
 
     @RequestMapping(method = RequestMethod.POST, value = "/takeOffer/{needId}/{username}")
