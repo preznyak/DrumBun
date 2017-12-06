@@ -1,5 +1,6 @@
 package hu.drumbun.controller.offer;
 
+import hu.drumbun.controller.need.model.NeedModel;
 import hu.drumbun.controller.offer.model.OfferModel;
 import hu.drumbun.service.offer.OfferService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,10 +9,11 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Date;
 import java.util.List;
 
 @RestController
-@RequestMapping("/offers")
+@RequestMapping("/api/offers")
 public class OfferController {
 
     @Autowired
@@ -42,8 +44,26 @@ public class OfferController {
         offerService.updateOffer(offerModel);
     }
 
-    @RequestMapping(method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE, value = "/new")
-    void createOffer(@RequestBody OfferModel offerModel){
-        offerService.createOffer(offerModel);
+    @RequestMapping(method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE, value = "/new/{username}")
+    void createOffer(@RequestBody OfferModel offerModel, @PathVariable String username){
+        offerService.createOffer(offerModel, username);
+    }
+
+    @RequestMapping(method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE, value = "/add/{offerId}")
+    public ResponseEntity<?> addNewNeedToOffer(@PathVariable long offerId,@RequestBody NeedModel needModel){
+        offerService.addNeed(offerId,needModel);
+        return new ResponseEntity<>("Offer added.", HttpStatus.OK);
+    }
+
+    @RequestMapping(method = RequestMethod.POST, value = "/joinOffer/{offerId}/{username}")
+    public ResponseEntity<?> joinToOffer(@PathVariable long offerId, @PathVariable String username){
+        offerService.joinToOffer(offerId,username);
+        return new ResponseEntity<>("Joined successfully.",HttpStatus.OK);
+    }
+
+    @RequestMapping(method = RequestMethod.GET, value = "/find/{start}/{destination}/{date}")
+    public ResponseEntity<?> findOffers(@PathVariable String start, @PathVariable String destination, @PathVariable String date){
+
+        return new ResponseEntity<>(offerService.findByAll(start,destination,date), HttpStatus.OK);
     }
 }

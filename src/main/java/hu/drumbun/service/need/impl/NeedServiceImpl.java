@@ -2,7 +2,9 @@ package hu.drumbun.service.need.impl;
 
 import hu.drumbun.controller.need.model.NeedModel;
 import hu.drumbun.entities.Need;
+import hu.drumbun.entities.Offer;
 import hu.drumbun.repository.need.NeedRepository;
+import hu.drumbun.repository.offer.OfferRepository;
 import hu.drumbun.repository.path.PathRepository;
 import hu.drumbun.service.need.NeedService;
 import hu.drumbun.service.need.converter.NeedModelConverter;
@@ -18,12 +20,14 @@ public class NeedServiceImpl implements NeedService{
 
     private final NeedRepository needRepository;
     private final PathRepository pathRepository;
+    private final OfferRepository offerRepository;
     private final NeedModelConverter needModelConverter;
 
     @Autowired
-    public NeedServiceImpl(NeedRepository needRepository, PathRepository pathRepository, NeedModelConverter needModelConverter) {
+    public NeedServiceImpl(NeedRepository needRepository, PathRepository pathRepository, OfferRepository offerRepository, NeedModelConverter needModelConverter) {
         this.needRepository = needRepository;
         this.pathRepository = pathRepository;
+        this.offerRepository = offerRepository;
         this.needModelConverter = needModelConverter;
     }
 
@@ -80,5 +84,16 @@ public class NeedServiceImpl implements NeedService{
         Need newNeed = needModelConverter.fromNeedModelToNeed(needModel);
         pathRepository.save(newNeed.getPath());
         needRepository.save(newNeed);
+    }
+
+    @Override
+    public void receiveOffer(long offerId, long needId) {
+        Offer offer = offerRepository.findOne(offerId);
+        Need need = needRepository.findOne(needId);
+        List<Offer> offers = need.getOffers();
+        offers.add(offer);
+        need.setUser(offer.getUser());
+        need.setOffers(offers);
+        needRepository.save(need);
     }
 }

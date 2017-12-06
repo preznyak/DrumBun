@@ -20,13 +20,16 @@ import {User} from "./_models/user.model";
 import {CarouselModule} from 'angular4-carousel';
 import {SlideComponent} from './slide/slide.component';
 import {TripListComponent} from './home/trip-list/trip-list.component';
-import {TripItemComponent} from './home/trip-list/trip-item/trip-item.component';
+import {NeedItemComponent} from './home/trip-list/need-item/need-item.component';
 import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
 import {HttpModule} from "@angular/http";
 import {UserService} from "./_shared/user.service";
 import {TokenInterceptor} from "./_shared/token.interceptor";
 import {TokenService} from "./_shared/token.service";
 import {UserprofileService} from "./_shared/userprofile.service";
+import {NeedService} from "./_shared/need.service";
+import {OfferService} from "./_shared/offer.service";
+import { OfferItemComponent } from './home/trip-list/offer-item/offer-item.component';
 
 
 @NgModule({
@@ -44,7 +47,8 @@ import {UserprofileService} from "./_shared/userprofile.service";
     OffersComponent,
     SlideComponent,
     TripListComponent,
-    TripItemComponent
+    NeedItemComponent,
+    OfferItemComponent
   ],
   imports: [
     BrowserModule,
@@ -58,6 +62,8 @@ import {UserprofileService} from "./_shared/userprofile.service";
     AuthenticationService,
     AuthenticationGuardService,
     UserService,
+    NeedService,
+    OfferService,
     UserprofileService,
     User,
     TokenInterceptor,

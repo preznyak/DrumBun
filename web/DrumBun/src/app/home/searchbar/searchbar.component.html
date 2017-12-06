@@ -1,5 +1,5 @@
 <div class="list-group-item" style="margin-top: 1%">
-  <form class="form-inline" (ngSubmit)="justLog(search)" #search="ngForm" style=" display: inline-block">
+  <form class="form-inline" (ngSubmit)="fetchData()" #search="ngForm" style=" display: inline-block">
 
     <div class="form-group">
       <label for="fromLocation">From:</label>
@@ -15,7 +15,7 @@
       <label for="searchType">Type:</label>
       <select type="searchType" id="searchType" name="searchType" ngModel class="form-control" required>
         <option value="offers">Offers</option>
-        <option value="requests">Requests</option>
+        <option value="needs">Needs</option>
       </select>
     </div>
 
@@ -25,7 +25,14 @@
 
     </div>
 
-    <button type="submit" class="btn btn-default" [disabled]="!search.valid" (click)="fetchData()">Submit</button>
+    <div class="form-group">
+      <label for="time">Time</label>
+      <input class="form-control" type="time" ngModel name="time" id="time" required>
+
+    </div>
+
+
+    <button type="submit" class="btn btn-default" [disabled]="!search.valid">Submit</button>
 
   </form>
 </div>
