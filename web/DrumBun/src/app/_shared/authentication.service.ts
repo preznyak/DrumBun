@@ -21,6 +21,7 @@ export class AuthenticationService {
   loginUser(username: String, password: String) {
     console.log("before login user" + username + password);
     return this.http.post(this.apiUrl + "/login", JSON.stringify({username: username, password: password}))
+    // return this.http.post(/api/ + "/login", JSON.stringify({username: username, password: password}))
       .subscribe(
         (response) => {
           this.tokenService.token = response.text();

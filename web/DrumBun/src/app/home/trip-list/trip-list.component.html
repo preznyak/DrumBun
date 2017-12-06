@@ -1,8 +1,15 @@
 <div class="row">
   <div class="col-xs-12">
-    <app-trip-item
-      *ngFor="let tripElement of trips"
-      [trip]="tripElement"></app-trip-item>
+    <div *ngIf="needData">
+    <app-need-item
+      *ngFor="let needElement of needs"
+      [need]="needElement"></app-need-item>
+   </div>
+    <div *ngIf="!needData">
+      <app-offer-item
+        *ngFor="let offerElement of offers"
+        [offer]="offerElement"></app-offer-item>
+    </div>
   </div>
 </div>
 
