@@ -44,7 +44,7 @@ public class Need implements Serializable{
     @Column(name = "date")
     private Date date;
 
-    @ManyToMany(cascade = CascadeType.ALL)
+    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<Offer> offers;
 
     /**
