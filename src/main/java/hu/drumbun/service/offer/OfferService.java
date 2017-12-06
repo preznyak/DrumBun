@@ -13,9 +13,11 @@ public interface OfferService {
     void deleteOfferById(long id);
     List<OfferModel> findByPath_Start(String start);
     List<OfferModel> findByPath_Destination(String destination);
-    List<OfferModel> findByStartTimeBefore(Date date);
-    List<OfferModel> findByStartTimeAfter(Date date);
+    List<OfferModel> findByDateBefore(Date date);
+    List<OfferModel> findByDateAfter(Date date);
     void updateOffer(OfferModel offerModel);
     void createOffer(OfferModel offerModel, String username);
     void addNeed(long offerId,NeedModel needModel);
+
+    void joinToOffer(long offerId, String username);
 }
