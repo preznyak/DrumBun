@@ -19,12 +19,13 @@ export class NeedService{
 
 
   fetchData(from: string, to: string, type: string, date: string, time: string) {
-    // return this.httpClient.get(this.apiUrl + "/fetchneeds/" + from + "/" + to + "/" + type + "/" + date + "/" + time)
-    return this.httpClient.get("/api/needs");
+    return this.httpClient.get("/api/needs/find/" + from + "/" + to + "/" + date + "T" + time);
+    // return this.httpClient.get("/api/needs");
   }
 
+  //TODO ezt meg bekell poccinteni
   giveOffer(id: number){
-    this.httpClient.post(this.apiUrl + "/giveoffer", JSON.stringify({id: id, username: this.userProfileService.getUserProfile().username}))
+    this.httpClient.post("/api/needs/takeOffer/" + id + "/" + this.userProfileService.getUserProfile().username, JSON.stringify({id: id, username: this.userProfileService.getUserProfile().username}))
       .subscribe(
         (response) => console.log(response),
         (error) => console.log(error)

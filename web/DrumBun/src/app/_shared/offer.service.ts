@@ -18,11 +18,12 @@ export class OfferService{
   }
 
   fetchData(from: string, to: string, type: string, date: string, time: string) {
-    return this.httpClient.get("/api/offers");
+    return this.httpClient.get("/api/offers/find/" + from + "/" + to + "/" + date + "T" +  time);
+    // return this.httpClient.get("/api/offers");
   }
 
   getIn(id: number){
-    return this.httpClient.post(this.apiUrl + "/joinOffer/" + id + "/" + this.userProfileService.getUserProfile().username, JSON.stringify({id: id, username: this.userProfileService.getUserProfile().username}))
+    return this.httpClient.post("/api/offers/joinOffer/" + id + "/" + this.userProfileService.getUserProfile().username, JSON.stringify({id: id, username: this.userProfileService.getUserProfile().username}))
       .subscribe(
         (response) => console.log(response),
         (error) => console.log(error)
