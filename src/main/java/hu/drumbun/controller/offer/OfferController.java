@@ -80,7 +80,7 @@ public class OfferController {
     public ResponseEntity<?> findOffers(@PathVariable String start, @PathVariable String destination, @PathVariable String date){
         List<OfferModel> foundOffers = offerService.findByAll(start,destination,date);
         if(foundOffers.isEmpty()){
-            return new ResponseEntity<>("No offers found. ", HttpStatus.OK);
+            return new ResponseEntity<>("No offers found. ", HttpStatus.BAD_REQUEST);
         } else {
             return new ResponseEntity<>(offerService.findByAll(start, destination, date), HttpStatus.OK);
         }
