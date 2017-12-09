@@ -13,4 +13,5 @@ public class UsernameModel {
     public void setUsername(String username) {
         this.username = username;
     }
+
 }

@@ -91,4 +91,6 @@ public class OfferModel {
     public void setPassengers(List<UsernameModel> passengers) {
         this.passengers = passengers;
     }
+
+
 }

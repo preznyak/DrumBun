@@ -1,23 +1,33 @@
 package hu.drumbun.controller.offer;
 
-import hu.drumbun.controller.need.model.NeedModel;
+import hu.drumbun.commons.ValidatorResult;
 import hu.drumbun.controller.offer.model.OfferModel;
 import hu.drumbun.service.offer.OfferService;
+import hu.drumbun.service.offer.validator.CreateOfferModelValidator;
+import hu.drumbun.service.offer.validator.JoinOfferValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Date;
 import java.util.List;
 
 @RestController
 @RequestMapping("/api/offers")
 public class OfferController {
 
+
+    private final OfferService offerService;
+    private final CreateOfferModelValidator createOfferModelValidator;
+    private final JoinOfferValidator joinOfferValidator;
+
     @Autowired
-    OfferService offerService;
+    public OfferController(OfferService offerService, CreateOfferModelValidator createOfferModelValidator, JoinOfferValidator joinOfferValidator) {
+        this.offerService = offerService;
+        this.createOfferModelValidator = createOfferModelValidator;
+        this.joinOfferValidator = joinOfferValidator;
+    }
 
     @RequestMapping(method = RequestMethod.GET,produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<?> findAllOffers(){
@@ -45,19 +55,34 @@ public class OfferController {
     }
 
     @RequestMapping(method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE, value = "/new/{username}")
-    void createOffer(@RequestBody OfferModel offerModel, @PathVariable String username){
-        offerService.createOffer(offerModel, username);
+    public ResponseEntity<?> createOffer(@RequestBody OfferModel offerModel, @PathVariable String username){
+        ValidatorResult result = createOfferModelValidator.validate(offerModel,username);
+        if(result.isValid()){
+            offerService.createOffer(offerModel, username);
+            return new ResponseEntity<>("Offer created.",HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>(result.getMessage(), HttpStatus.BAD_REQUEST);
+        }
     }
 
     @RequestMapping(method = RequestMethod.POST, value = "/joinOffer/{offerId}/{username}")
     public ResponseEntity<?> joinToOffer(@PathVariable long offerId, @PathVariable String username){
-        offerService.joinToOffer(offerId,username);
-        return new ResponseEntity<>("Joined successfully.",HttpStatus.OK);
+        ValidatorResult result = joinOfferValidator.validate(offerService.findById(offerId),username);
+        if(result.isValid()){
+            offerService.joinToOffer(offerId,username);
+            return new ResponseEntity<>("Joined successfully.",HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>(result.getMessage(), HttpStatus.BAD_REQUEST);
+        }
     }
 
     @RequestMapping(method = RequestMethod.GET, value = "/find/{start}/{destination}/{date}")
     public ResponseEntity<?> findOffers(@PathVariable String start, @PathVariable String destination, @PathVariable String date){
-
-        return new ResponseEntity<>(offerService.findByAll(start,destination,date), HttpStatus.OK);
+        List<OfferModel> foundOffers = offerService.findByAll(start,destination,date);
+        if(foundOffers.isEmpty()){
+            return new ResponseEntity<>("No offers found. ", HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>(offerService.findByAll(start, destination, date), HttpStatus.OK);
+        }
     }
 }
