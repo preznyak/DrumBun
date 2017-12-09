@@ -98,9 +98,6 @@ public class OfferServiceImpl implements OfferService {
 
     @Override
     public void createOffer(OfferModel offerModel, String username) {
-        /**
-         * future task
-         */
         Offer newOffer = offerModelConverter.fromOfferModelToOffer(offerModel);
         newOffer.setUser(userRepository.findByUsername(username));
         pathRepository.save(newOffer.getPath());
