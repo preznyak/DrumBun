@@ -7,11 +7,12 @@ import {UserprofileService} from "./userprofile.service";
 export class OfferService{
   private apiUrl = 'http://localhost:8080';
 
-  private offers: OfferModel[] = [
-    new OfferModel(1, new Path(1,"Szekelyhid","Dioszeg","Nagyvarad"),"kovaxarny","2017-12-05 17:03","Ez itt a komment helye",["ecetke","asd"],4,3),
-    new OfferModel(2, new Path(1,"Misifalva","Dioszeg","Nagyvarad"),"kovaxarny","2017-12-05 17:03","Ez itt a komment helye",["ecetke","asd"],4,3),
-    new OfferModel(3, new Path(1,"Karoly","Dioszeg","Nagyvarad"),"kovaxarny","2017-12-05 17:03","Ez itt a komment helye",["ecetke","asd"],4,3)
-  ];
+  private offers: OfferModel[];
+    // = [
+  //   new OfferModel(1, new Path(1,"Szekelyhid","Dioszeg","Nagyvarad"),"kovaxarny","2017-12-05 17:03","Ez itt a komment helye",["ecetke","asd"],4,3),
+  //   new OfferModel(2, new Path(1,"Misifalva","Dioszeg","Nagyvarad"),"kovaxarny","2017-12-05 17:03","Ez itt a komment helye",["ecetke","asd"],4,3),
+  //   new OfferModel(3, new Path(1,"Karoly","Dioszeg","Nagyvarad"),"kovaxarny","2017-12-05 17:03","Ez itt a komment helye",["ecetke","asd"],4,3)
+  // ];
 
   constructor(private httpClient: HttpClient,
               private userProfileService: UserprofileService) {

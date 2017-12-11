@@ -4,7 +4,7 @@ export class OfferModel{
               public userUsername: string,
               public date: string,
               public comment: string,
-              public passangers: string[],
+              public passengers: Passengers[],
               public maxSeats: number,
               public occupiedSeats: number){}
 }
@@ -15,4 +15,8 @@ export class Path{
               public enroute: string,
               public destination: string){
   }
+}
+
+export class Passengers{
+  constructor(public username: string){}
 }
