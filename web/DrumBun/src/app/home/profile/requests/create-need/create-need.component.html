@@ -1,0 +1,58 @@
+<div class="row" style="padding-top: 15px">
+  <h3>New Offer:
+    <button class="btn btn-primary" style="float: right" (click)="submitForm()">Submit</button></h3>
+</div>
+<hr>
+<div>
+
+  <form #newNeedForm="ngForm">
+    <div id="path" ngModelGroup="path">
+      <div class="form-group row">
+        <label for="start" class="col-md-2">Start</label>
+        <div class="col-md-10">
+          <input class="form-control" type="text" ngModel name="start" id="start">
+        </div>
+      </div>
+
+      <div class="form-group row">
+        <label for="enroute" class="col-md-2">Enroute</label>
+        <div class="col-md-10">
+          <input class="form-control" type="text" ngModel name="enroute" id="enroute">
+        </div>
+      </div>
+
+      <div class="form-group row">
+        <label for="destination" class="col-md-2">Destination</label>
+        <div class="col-md-10">
+          <input class="form-control" type="text" ngModel name="destination" id="destination">
+        </div>
+      </div>
+    </div>
+    <div class="form-group row">
+      <div class="col-md-10">
+        <input class="form-control" type="hidden" ngModel name="userUsername" id="userUsername">
+      </div>
+    </div>
+    <div class="form-group row">
+      <label for="date" class="col-md-2">Date</label>
+      <div class="col-md-4">
+        <input class="form-control" type="date" ngModel name="date" id="date">
+      </div>
+
+      <label for="time" class="col-md-1">Time</label>
+      <div class="col-md-5">
+        <input class="form-control" type="time" ngModel name="time" id="time" required>
+      </div>
+
+
+    </div>
+
+    <div class="form-group row">
+      <label for="comment" class="col-md-2">Comment</label>
+      <div class="col-md-10">
+        <textarea class="form-control" type="text" ngModel name="comment" id="comment"></textarea>
+      </div>
+    </div>
+
+  </form>
+</div>

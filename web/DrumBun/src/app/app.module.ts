@@ -34,6 +34,7 @@ import { ForeignProfileComponent } from './home/profile/foreign-profile/foreign-
 import { UserOffersComponent } from './home/profile/offers/user-offers/user-offers.component';
 import { UserNeedsComponent } from './home/profile/requests/user-needs/user-needs.component';
 import { CreateOfferComponent } from './home/profile/offers/create-offer/create-offer.component';
+import { CreateNeedComponent } from './home/profile/requests/create-need/create-need.component';
 
 
 @NgModule({
@@ -56,7 +57,8 @@ import { CreateOfferComponent } from './home/profile/offers/create-offer/create-
     ForeignProfileComponent,
     UserOffersComponent,
     UserNeedsComponent,
-    CreateOfferComponent
+    CreateOfferComponent,
+    CreateNeedComponent
   ],
   imports: [
     BrowserModule,

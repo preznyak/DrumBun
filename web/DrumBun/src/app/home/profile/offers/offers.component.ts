@@ -26,7 +26,7 @@ export class OffersComponent implements OnInit {
   }
 
   newOffer(){
-    this.router.navigate(['create-offer']);
+    this.router.navigate(['create-need']);
     console.log("new Offer Clicked");
   }
 

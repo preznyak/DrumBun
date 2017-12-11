@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {NeedModel} from "../../../_models/need.model";
 import {HttpClient} from "@angular/common/http";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-requests',
@@ -10,7 +11,8 @@ import {HttpClient} from "@angular/common/http";
 export class RequestsComponent implements OnInit {
   needs: NeedModel[];
 
-  constructor(private httpClient: HttpClient) {
+  constructor(private httpClient: HttpClient,
+              private router: Router) {
   }
 
   ngOnInit() {
@@ -23,7 +25,7 @@ export class RequestsComponent implements OnInit {
   }
 
   newNeed(){
-    //TODO new need.
+    this.router.navigate(['create-need']);
     console.log("new Need Clicked");
   }
 
