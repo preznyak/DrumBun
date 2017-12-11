@@ -32,6 +32,7 @@ import {OfferService} from "./_shared/offer.service";
 import { OfferItemComponent } from './home/trip-list/offer-item/offer-item.component';
 import { ForeignProfileComponent } from './home/profile/foreign-profile/foreign-profile.component';
 import { UserOffersComponent } from './home/profile/offers/user-offers/user-offers.component';
+import { UserNeedsComponent } from './home/profile/requests/user-needs/user-needs.component';
 
 
 @NgModule({
@@ -52,7 +53,8 @@ import { UserOffersComponent } from './home/profile/offers/user-offers/user-offe
     NeedItemComponent,
     OfferItemComponent,
     ForeignProfileComponent,
-    UserOffersComponent
+    UserOffersComponent,
+    UserNeedsComponent
   ],
   imports: [
     BrowserModule,
