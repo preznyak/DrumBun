@@ -7,11 +7,12 @@ import {UserprofileService} from "./userprofile.service";
 export class NeedService{
   private apiUrl = 'http://localhost:8080';
 
-  private needs: NeedModel[] = [
-    new NeedModel(1, new Path(1,"Szekelyhid","Dioszeg","Nagyvarad"),"kovaxarny","2017-12-05 17:03","Ez itt a komment helye",["ecetke","asd"]),
-    new NeedModel(2, new Path(1,"Mihalyfalva","Dioszeg","Nagyvarad"),"kovaxarny","2017-12-05 17:03","Ez itt a komment helye",["ecetke","asd"]),
-    new NeedModel(3, new Path(1,"Karoly","Dioszeg","Nagyvarad"),"kovaxarny","2017-12-05 17:03","Ez itt a komment helye",["ecetke","asd"])
-  ];
+  private needs: NeedModel[];
+  // = [
+  //   new NeedModel(1, new Path(1,"Szekelyhid","Dioszeg","Nagyvarad"),"kovaxarny","2017-12-05 17:03","Ez itt a komment helye",["ecetke","asd"]),
+  //   new NeedModel(2, new Path(1,"Mihalyfalva","Dioszeg","Nagyvarad"),"kovaxarny","2017-12-05 17:03","Ez itt a komment helye",["ecetke","asd"]),
+  //   new NeedModel(3, new Path(1,"Karoly","Dioszeg","Nagyvarad"),"kovaxarny","2017-12-05 17:03","Ez itt a komment helye",["ecetke","asd"])
+  // ];
 
   constructor(private httpClient: HttpClient,
               private userProfileService: UserprofileService) {

@@ -4,7 +4,7 @@ export class NeedModel{
               public userUsername: string,
               public date: string,
               public comment: string,
-              public transporters: string[]){}
+              public transporters: Transporters[]){}
 }
 
 export class Path{
@@ -13,4 +13,8 @@ export class Path{
               public enroute: string,
               public destination: string){
   }
+}
+
+export class Transporters{
+  constructor(public username: string){}
 }

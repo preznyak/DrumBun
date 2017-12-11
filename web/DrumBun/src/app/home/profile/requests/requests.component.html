@@ -1,3 +1,12 @@
-<p>
-  requests works!
-</p>
+<div class="row">
+  <h3>
+    My Needs:
+    <button class="btn btn-primary" style="float: right" (click)="newNeed()">Create New Need</button>
+  </h3>
+
+</div>
+<hr>
+
+<app-user-needs
+  *ngFor="let needElement of needs"
+  [need]="needElement"></app-user-needs>

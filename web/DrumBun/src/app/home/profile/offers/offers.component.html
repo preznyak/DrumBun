@@ -1,3 +1,12 @@
-<p>
-  offers works!
-</p>
+<div class="row">
+  <h3>
+    My Offers:
+    <button class="btn btn-primary" style="float: right" (click)="newOffer()">Create New Offer</button>
+  </h3>
+
+</div>
+<hr>
+
+<app-user-offers
+  *ngFor="let offerElement of offers"
+  [offer]="offerElement"></app-user-offers>

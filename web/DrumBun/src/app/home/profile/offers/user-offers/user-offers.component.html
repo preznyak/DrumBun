@@ -12,12 +12,17 @@
   <p class="list-group-item-text">Available Seats: {{offer.maxSeats - offer.occupiedSeats}}</p>
   <p class="list-group-item-text">Comments: {{offer.comment}}</p>
   <div class="row" style="margin-top: 10px;">
-    <div class="col-md-4">
-      <p class="list-group-item-text" style="font-size: large">Posted by: <a (click)="navigateToProfileOf(offer.userUsername)" style="cursor: pointer">{{offer.userUsername}}</a></p>
+    <div class="col-md-8">
+      <p>People who joined: </p>
+      <ul *ngIf="offer.passengers != null">
+        <li *ngFor="let passengers of offer.passengers">
+          <a (click)="seePassengerProfile(passengers.username)" style="cursor: pointer">{{ passengers.username }}</a>
+        </li>
+      </ul>
+      <p *ngIf="offer.passengers[0] == null">No passengers yet. </p>
     </div>
-
-    <div class="col-md-offset-4 col-md-4">
-      <button class="btn btn-primary" style="float: right" (click)="getIn(offer.id)">Join!</button>
+    <div class="col-md-4">
+      <button class="btn btn-danger" style="float: right" (click)="deleteOffer(offer.id)">Delete</button>
     </div>
   </div>
 </a>
