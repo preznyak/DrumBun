@@ -33,6 +33,7 @@ import { OfferItemComponent } from './home/trip-list/offer-item/offer-item.compo
 import { ForeignProfileComponent } from './home/profile/foreign-profile/foreign-profile.component';
 import { UserOffersComponent } from './home/profile/offers/user-offers/user-offers.component';
 import { UserNeedsComponent } from './home/profile/requests/user-needs/user-needs.component';
+import { CreateOfferComponent } from './home/profile/offers/create-offer/create-offer.component';
 
 
 @NgModule({
@@ -54,7 +55,8 @@ import { UserNeedsComponent } from './home/profile/requests/user-needs/user-need
     OfferItemComponent,
     ForeignProfileComponent,
     UserOffersComponent,
-    UserNeedsComponent
+    UserNeedsComponent,
+    CreateOfferComponent
   ],
   imports: [
     BrowserModule,

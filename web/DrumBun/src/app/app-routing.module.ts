@@ -10,11 +10,13 @@ import {RegisterComponent} from './register/register.component';
 import {AuthenticationGuardService} from "./_shared/authentication-guard.service";
 import {HomeComponent} from "./home/home.component";
 import {ForeignProfileComponent} from "./home/profile/foreign-profile/foreign-profile.component";
+import {CreateOfferComponent} from "./home/profile/offers/create-offer/create-offer.component";
 
 const appRoutes: Routes = [
   {path: 'home', component: HomeComponent},
   {path: 'myrequests', component: RequestsComponent, canActivate: [AuthenticationGuardService]},
   {path: 'myoffers', component: OffersComponent, canActivate: [AuthenticationGuardService]},
+  {path: 'create-offer', component: CreateOfferComponent, canActivate: [AuthenticationGuardService]},
   {path: 'profile', component: ProfileComponent}, //, canActivate: [AuthenticationGuardService]
   {path: 'profileof/:username', component: ForeignProfileComponent},
   {path: 'profile-edit', component: ProfileEditComponent}, //, canActivate: [AuthenticationGuardService]

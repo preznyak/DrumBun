@@ -1,16 +1,19 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, Injectable, OnInit} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {OfferModel} from "../../../_models/offer.model";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-offers',
   templateUrl: './offers.component.html',
   styleUrls: ['./offers.component.css']
 })
+@Injectable()
 export class OffersComponent implements OnInit {
   offers: OfferModel[];
 
-  constructor(private httpClient: HttpClient) {
+  constructor(private httpClient: HttpClient,
+              private router: Router) {
   }
 
   ngOnInit() {
@@ -23,7 +26,7 @@ export class OffersComponent implements OnInit {
   }
 
   newOffer(){
-    //TODO new offer.
+    this.router.navigate(['create-offer']);
     console.log("new Offer Clicked");
   }
 
