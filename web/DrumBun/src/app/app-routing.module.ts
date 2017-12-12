@@ -15,7 +15,7 @@ import {CreateNeedComponent} from "./home/profile/requests/create-need/create-ne
 
 const appRoutes: Routes = [
   {path: 'home', component: HomeComponent},
-  {path: 'myrequests', component: RequestsComponent, canActivate: [AuthenticationGuardService]},
+  {path: 'myneeds', component: RequestsComponent, canActivate: [AuthenticationGuardService]},
   {path: 'myoffers', component: OffersComponent, canActivate: [AuthenticationGuardService]},
   {path: 'create-offer', component: CreateOfferComponent, canActivate: [AuthenticationGuardService]},
   {path: 'create-need', component: CreateNeedComponent, canActivate: [AuthenticationGuardService]},

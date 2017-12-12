@@ -33,8 +33,8 @@ export class CreateNeedComponent implements OnInit {
 
     this.httpClient.put("/api/needs/new", this.data)
       .subscribe(
-      (response) => this.router.navigate(['/myrequests']),
-      (error) => this.router.navigate(['/myrequests'])
+      (response) => this.router.navigate(['/myneeds']),
+      (error) => this.router.navigate(['/myneeds'])
     )
 
 }
