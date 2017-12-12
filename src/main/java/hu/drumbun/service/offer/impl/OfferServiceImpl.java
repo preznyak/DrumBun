@@ -133,4 +133,11 @@ public class OfferServiceImpl implements OfferService {
     public void removeOfferById(long id) {
         offerRepository.delete(id);
     }
+
+    @Override
+    public List<OfferModel> findByUsername(String username) {
+        return offerRepository.findByUser_Username(username).stream()
+                .map(offerModelConverter::fromOfferToOfferModel)
+                .collect(Collectors.toList());
+    }
 }
