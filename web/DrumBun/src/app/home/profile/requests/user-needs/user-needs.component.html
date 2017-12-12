@@ -21,7 +21,7 @@
       <p *ngIf="need.transporters[0] == null">No offers yet. </p>
     </div>
     <div class="col-md-4">
-      <button class="btn btn-danger" style="float: right" (click)="deleteNeed(need.id)">Delete</button>
+      <button class="btn btn-danger" style="float: right" (click)="deleteNeed(need.id)" [disabled]="deleted">Delete</button>
     </div>
   </div>
 </a>

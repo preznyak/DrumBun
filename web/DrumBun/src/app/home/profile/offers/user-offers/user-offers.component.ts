@@ -10,6 +10,7 @@ import {HttpClient} from "@angular/common/http";
 })
 export class UserOffersComponent implements OnInit {
   @Input() offer: OfferModel;
+  deleted: boolean = false;
 
   constructor(private router: Router,
               private httpClient: HttpClient) { }
@@ -23,9 +24,14 @@ export class UserOffersComponent implements OnInit {
 
   deleteOffer(id: number){
     console.log("delete offer: "+ id);
-    this.httpClient.post("/api/offers/delete/" + id, JSON.stringify({id: id}))
+    this.httpClient.delete("/api/offers/delete/" + id, JSON.stringify({id: id}))
       .subscribe(
-        (response) => this.router.navigate(['myoffers'])
+        (response) => {
+          this.deleted = true;
+        },
+        (error) => {
+          this.deleted = true;
+        }
       )
   }
 

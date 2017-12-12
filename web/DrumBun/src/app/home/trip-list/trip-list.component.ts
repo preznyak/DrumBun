@@ -15,6 +15,7 @@ export class TripListComponent implements OnInit {
   needs: NeedModel[];
   offers: OfferModel[];
   needData: boolean;
+  errorMessage: string;
 
 
   private subscription: Subscription;
@@ -31,7 +32,7 @@ export class TripListComponent implements OnInit {
         this.offerService.fetchData(res.from, res.to, res.type, res.date, res.time)
         .subscribe(
           (response: OfferModel[]) => this.offers = response,
-          (error) => console.log(error)
+          (error) => this.errorMessage = error.error
         )
       }
       if (res.hasOwnProperty('type') && res.type === 'needs') {
@@ -40,7 +41,7 @@ export class TripListComponent implements OnInit {
         this.needService.fetchData(res.from, res.to, res.type, res.date, res.time)
           .subscribe(
             (response: NeedModel[]) => this.needs = response,
-            (error) => console.log(error)
+            (error) => this.errorMessage = error.error
           )
       }
     });

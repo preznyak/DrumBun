@@ -22,7 +22,7 @@
       <p *ngIf="offer.passengers[0] == null">No passengers yet. </p>
     </div>
     <div class="col-md-4">
-      <button class="btn btn-danger" style="float: right" (click)="deleteOffer(offer.id)">Delete</button>
+      <button class="btn btn-danger" style="float: right" (click)="deleteOffer(offer.id)" [disabled]="deleted">Delete</button>
     </div>
   </div>
 </a>

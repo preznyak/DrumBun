@@ -120,4 +120,11 @@ public class NeedServiceImpl implements NeedService{
     public void removeNeedById(long id) {
         needRepository.delete(id);
     }
+
+    @Override
+    public List<NeedModel> findByUsername(String username) {
+        return needRepository.findByUser_Username(username).stream()
+                .map(needModelConverter::fromNeedtoNeedModel)
+                .collect(Collectors.toList());
+    }
 }

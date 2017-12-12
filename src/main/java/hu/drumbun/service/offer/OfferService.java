@@ -18,6 +18,7 @@ public interface OfferService {
     void updateOffer(OfferModel offerModel);
     void createOffer(OfferModel offerModel, String username);
     void removeOfferById(long id);
+    List<OfferModel> findByUsername(String username);
 
     void joinToOffer(long offerId, String username);
     List<OfferModel> findByAll(String start, String destination, String date);

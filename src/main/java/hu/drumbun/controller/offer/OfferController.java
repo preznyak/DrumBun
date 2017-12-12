@@ -91,4 +91,13 @@ public class OfferController {
         offerService.removeOfferById(offerId);
         return new ResponseEntity<>("Offer deleted.", HttpStatus.OK);
     }
+    @RequestMapping(method = RequestMethod.GET, value = "/myOffers/{username}")
+    public ResponseEntity<?> findMyOffers(@PathVariable String username){
+        List<OfferModel> myOffers=offerService.findByUsername(username);
+        if(myOffers.isEmpty()){
+            return new ResponseEntity<>("You have no offers created.", HttpStatus.BAD_REQUEST);
+        }
+        return new ResponseEntity<>(myOffers, HttpStatus.OK);
+    }
+
 }

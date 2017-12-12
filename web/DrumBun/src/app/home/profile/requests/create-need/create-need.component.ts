@@ -31,7 +31,8 @@ export class CreateNeedComponent implements OnInit {
     this.data.comment = this.needForm.value.comment;
     delete this.data["time"];
 
-    this.httpClient.put("/api/needs/new", this.data)
+
+    this.httpClient.post("/api/needs/new/" + this.data.userUsername, this.data)
       .subscribe(
       (response) => this.router.navigate(['/myneeds']),
       (error) => this.router.navigate(['/myneeds'])

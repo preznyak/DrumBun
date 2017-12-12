@@ -6,7 +6,7 @@
 
 </div>
 <hr>
-
+<h4 *ngIf="needs == null">{{errorMessage}}</h4>
 <app-user-needs
   *ngFor="let needElement of needs"
   [need]="needElement"></app-user-needs>

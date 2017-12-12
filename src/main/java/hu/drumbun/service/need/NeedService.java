@@ -16,6 +16,7 @@ public interface NeedService {
     void updateNeed(NeedModel needModel);
     void createNeed(NeedModel needModel, String username);
     void removeNeedById(long id);
+    List<NeedModel> findByUsername(String username);
 
 
     void receiveOffer(long needId, String username);
