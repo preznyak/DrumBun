@@ -44,7 +44,7 @@ public class Need implements Serializable{
     @Column(name = "date")
     private Date date;
 
-    @OneToMany(fetch = FetchType.EAGER, targetEntity = User.class)
+    @ManyToMany(fetch = FetchType.EAGER, targetEntity = User.class)
     private List<User> transporters;
 
     /**

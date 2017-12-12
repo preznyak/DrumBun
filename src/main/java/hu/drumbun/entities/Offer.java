@@ -51,7 +51,7 @@ public class Offer implements Serializable{
     @Column(name = "date", nullable = false)
     private Date date;
 
-    @OneToMany
+    @ManyToMany
     private List<User> passengers;
 
     @Column
