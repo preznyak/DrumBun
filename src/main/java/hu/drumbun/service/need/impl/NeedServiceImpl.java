@@ -115,4 +115,9 @@ public class NeedServiceImpl implements NeedService{
                 .map(needModelConverter::fromNeedtoNeedModel)
                 .collect(Collectors.toList());
     }
+
+    @Override
+    public void removeNeedById(long id) {
+        needRepository.delete(id);
+    }
 }

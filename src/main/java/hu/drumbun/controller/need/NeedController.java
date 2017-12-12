@@ -3,13 +3,13 @@ package hu.drumbun.controller.need;
 import hu.drumbun.commons.ValidatorResult;
 import hu.drumbun.controller.need.model.NeedModel;
 import hu.drumbun.service.need.NeedService;
+import hu.drumbun.service.need.converter.NeedModelConverter;
 import hu.drumbun.service.need.validator.CreateNeedRequestValidator;
 import hu.drumbun.service.need.validator.TakeOfferRequestValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.access.method.P;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -21,12 +21,14 @@ public class NeedController {
     private final NeedService needService;
     private final TakeOfferRequestValidator takeOfferRequestValidator;
     private final CreateNeedRequestValidator createNeedRequestValidator;
+    private final NeedModelConverter needModelConverter;
 
     @Autowired
-    public NeedController(NeedService needService, TakeOfferRequestValidator takeOfferRequestValidator, CreateNeedRequestValidator createNeedRequestValidator) {
+    public NeedController(NeedService needService, TakeOfferRequestValidator takeOfferRequestValidator, CreateNeedRequestValidator createNeedRequestValidator, NeedModelConverter needModelConverter) {
         this.needService = needService;
         this.takeOfferRequestValidator = takeOfferRequestValidator;
         this.createNeedRequestValidator = createNeedRequestValidator;
+        this.needModelConverter = needModelConverter;
     }
 
     @RequestMapping(method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
@@ -84,6 +86,12 @@ public class NeedController {
         } else {
             return new ResponseEntity<>(needModels, HttpStatus.OK);
         }
+    }
+
+    @RequestMapping(method = RequestMethod.DELETE, value = "/delete/{needId}")
+    public ResponseEntity<?> deleteNeed(@PathVariable long needId){
+        needService.removeNeedById(needId);
+        return new ResponseEntity<>("Need deleted.", HttpStatus.OK);
     }
 
 }

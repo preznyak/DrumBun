@@ -128,4 +128,9 @@ public class OfferServiceImpl implements OfferService {
                 .map(offerModelConverter::fromOfferToOfferModel)
                 .collect(Collectors.toList());
     }
+
+    @Override
+    public void removeOfferById(long id) {
+        offerRepository.delete(id);
+    }
 }

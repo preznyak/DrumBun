@@ -85,4 +85,10 @@ public class OfferController {
             return new ResponseEntity<>(offerService.findByAll(start, destination, date), HttpStatus.OK);
         }
     }
+
+    @RequestMapping(method = RequestMethod.DELETE, value = "/delete/{offerId}")
+    public ResponseEntity<?> deleteOffer(@PathVariable long offerId){
+        offerService.removeOfferById(offerId);
+        return new ResponseEntity<>("Offer deleted.", HttpStatus.OK);
+    }
 }
