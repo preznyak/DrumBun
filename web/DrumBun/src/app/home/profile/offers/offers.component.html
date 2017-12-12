@@ -6,7 +6,7 @@
 
 </div>
 <hr>
-
+<h4 *ngIf="offer == null">{{errorMessage}}</h4>
 <app-user-offers
   *ngFor="let offerElement of offers"
   [offer]="offerElement"></app-user-offers>

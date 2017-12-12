@@ -10,6 +10,7 @@ import {Router} from "@angular/router";
 })
 export class UserNeedsComponent implements OnInit {
   @Input() need: NeedModel;
+  deleted: boolean = false;
 
   constructor(private router: Router,
               private httpClient: HttpClient) { }
@@ -21,11 +22,17 @@ export class UserNeedsComponent implements OnInit {
     this.router.navigate(['profileof/' + username]);
   }
 
+
   deleteNeed(id: number){
     console.log("delete need: "+ id);
-    this.httpClient.post("/api/needs/delete/" + id, JSON.stringify({id: id}))
+    this.httpClient.delete("/api/needs/delete/" + id, JSON.stringify({id: id}))
       .subscribe(
-        (response) => this.router.navigate(['myrequests'])
+        (response) => {
+          this.deleted = true;
+        },
+        (error) => {
+          this.deleted = true;
+        }
       )
   }
 

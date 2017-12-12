@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {NeedModel} from "../../../_models/need.model";
 import {HttpClient} from "@angular/common/http";
 import {Router} from "@angular/router";
+import {UserprofileService} from "../../../_shared/userprofile.service";
 
 @Component({
   selector: 'app-requests',
@@ -10,17 +11,19 @@ import {Router} from "@angular/router";
 })
 export class RequestsComponent implements OnInit {
   needs: NeedModel[];
+  errorMessage: string;
 
   constructor(private httpClient: HttpClient,
-              private router: Router) {
+              private router: Router,
+              private userProfile: UserprofileService) {
   }
 
   ngOnInit() {
-    this.httpClient.get("/api/needs")
+    this.httpClient.get("/api/needs/myNeeds/" + this.userProfile.getUserProfile().username)
       .subscribe(
         (response: NeedModel[]) => {this.needs = response;
           console.log(this.needs);},
-        (error) => console.log(error)
+        (error) => this.errorMessage = error.error
       );
   }
 

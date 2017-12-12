@@ -15,7 +15,8 @@
       <p class="list-group-item-text" style="font-size: large">Posted by: <a (click)="navigateToProfileOf(need.userUsername)" style="cursor: pointer">{{need.userUsername}}</a></p>
     </div>
     <div class="col-md-offset-4 col-md-4">
-      <button class="btn btn-primary" style="float: right" (click)="giveOffer(need.id)">Give offer!</button>
+
+      <button class="btn btn-primary" style="float: right" (click)="giveOffer(need.id)" [disabled]="offerGiven" title="Already offered">Give offer!</button>
     </div>
   </div>
 </a>
