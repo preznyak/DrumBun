@@ -25,6 +25,7 @@ export class NeedItemComponent implements OnInit {
       if (this.userProfile.getUserProfile().username == this.need.transporters[i].username){
         this.offerGiven = true;
       }
+
     }
   }
 
