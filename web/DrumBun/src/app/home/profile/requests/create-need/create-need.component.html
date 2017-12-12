@@ -1,6 +1,6 @@
 <div class="row" style="padding-top: 15px">
   <h3>New Offer:
-    <button class="btn btn-primary" style="float: right" (click)="submitForm()">Submit</button></h3>
+    <button class="btn btn-primary" style="float: right" (click)="submitForm()" [disabled]="!newNeedForm.valid">Submit</button></h3>
 </div>
 <hr>
 <div>
@@ -10,7 +10,7 @@
       <div class="form-group row">
         <label for="start" class="col-md-2">Start</label>
         <div class="col-md-10">
-          <input class="form-control" type="text" ngModel name="start" id="start">
+          <input class="form-control" type="text" ngModel name="start" id="start" required>
         </div>
       </div>
 
@@ -24,19 +24,19 @@
       <div class="form-group row">
         <label for="destination" class="col-md-2">Destination</label>
         <div class="col-md-10">
-          <input class="form-control" type="text" ngModel name="destination" id="destination">
+          <input class="form-control" type="text" ngModel name="destination" id="destination" required>
         </div>
       </div>
     </div>
     <div class="form-group row">
       <div class="col-md-10">
-        <input class="form-control" type="hidden" ngModel name="userUsername" id="userUsername">
+        <input class="form-control" type="hidden" ngModel name="userUsername" id="userUsername" >
       </div>
     </div>
     <div class="form-group row">
       <label for="date" class="col-md-2">Date</label>
       <div class="col-md-4">
-        <input class="form-control" type="date" ngModel name="date" id="date">
+        <input class="form-control" type="date" ngModel name="date" id="date" required>
       </div>
 
       <label for="time" class="col-md-1">Time</label>
