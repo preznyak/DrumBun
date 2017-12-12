@@ -94,4 +94,13 @@ public class NeedController {
         return new ResponseEntity<>("Need deleted.", HttpStatus.OK);
     }
 
+    @RequestMapping(method = RequestMethod.GET, value = "/myNeeds/{username}")
+    public ResponseEntity<?> findMyNeeds(@PathVariable String username){
+        List<NeedModel> myNeeds=needService.findByUsername(username);
+        if(myNeeds.isEmpty()){
+            return new ResponseEntity<>("You have no needs created.", HttpStatus.BAD_REQUEST);
+        }
+        return new ResponseEntity<>(myNeeds, HttpStatus.OK);
+    }
+
 }
