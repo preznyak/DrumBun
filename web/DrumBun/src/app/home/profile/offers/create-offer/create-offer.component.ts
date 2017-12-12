@@ -32,7 +32,7 @@ export class CreateOfferComponent implements OnInit {
     this.data.maxSeats = this.offerForm.value.maxSeats;
     delete this.data["time"];
 
-    this.httpClient.put("/api/offers/new", this.data
+    this.httpClient.put("/api/offers/new/" + this.data.userUsername, this.data
     ).subscribe(
       (response) => this.router.navigate(['/myoffers']),
       (error) => this.router.navigate(['/myoffers'])
