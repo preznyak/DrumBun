@@ -14,6 +14,8 @@ import {UserprofileService} from "../../../_shared/userprofile.service";
 export class NeedItemComponent implements OnInit {
   @Input() need: NeedModel;
   offerGiven: boolean = false;
+  informationText: string;
+
 
   constructor(private needService: NeedService,
               private router: Router,
@@ -21,9 +23,14 @@ export class NeedItemComponent implements OnInit {
   }
 
   ngOnInit() {
+    if (this.need.userUsername == this.userProfile.getUserProfile().username){
+      this.offerGiven = true;
+      this.informationText = "This is your need";
+    }
     for (var i=0; i<this.need.transporters.length; i++){
       if (this.userProfile.getUserProfile().username == this.need.transporters[i].username){
         this.offerGiven = true;
+        this.informationText = "Offer given";
       }
 
     }
