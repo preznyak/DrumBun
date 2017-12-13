@@ -13,15 +13,21 @@ import {UserprofileService} from "../../../_shared/userprofile.service";
 export class OfferItemComponent implements OnInit {
   @Input() offer: OfferModel;
   joined: boolean = false;
+  informationText: string;
 
   constructor(private offerService: OfferService,
               private router: Router,
               private userProfile: UserprofileService) { }
 
   ngOnInit() {
+    if (this.offer.userUsername == this.userProfile.getUserProfile().username){
+      this.joined = true;
+      this.informationText = "This is your offer";
+    }
     for (var i=0; i<this.offer.passengers.length; i++){
       if (this.userProfile.getUserProfile().username == this.offer.passengers[i].username){
         this.joined = true;
+        this.informationText = "Already joined";
       }
     }
   }

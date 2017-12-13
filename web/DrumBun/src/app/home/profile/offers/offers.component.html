@@ -1,7 +1,7 @@
 <div class="row">
   <h3>
     My Offers:
-    <button class="btn btn-primary" style="float: right" (click)="newOffer()">Create New Offer</button>
+    <button class="btn btn-primary" style="float: right" (click)="newOffer()" [disabled]="disabled" title="{{noNewOffer}}">Create New Offer</button>
   </h3>
 
 </div>

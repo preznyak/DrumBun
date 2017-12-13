@@ -14,14 +14,14 @@ import {CreateOfferComponent} from "./home/profile/offers/create-offer/create-of
 import {CreateNeedComponent} from "./home/profile/requests/create-need/create-need.component";
 
 const appRoutes: Routes = [
-  {path: 'home', component: HomeComponent},
+  {path: 'home', component: HomeComponent, canActivate: [AuthenticationGuardService]},
   {path: 'myneeds', component: RequestsComponent, canActivate: [AuthenticationGuardService]},
   {path: 'myoffers', component: OffersComponent, canActivate: [AuthenticationGuardService]},
   {path: 'create-offer', component: CreateOfferComponent, canActivate: [AuthenticationGuardService]},
   {path: 'create-need', component: CreateNeedComponent, canActivate: [AuthenticationGuardService]},
-  {path: 'profile', component: ProfileComponent}, //, canActivate: [AuthenticationGuardService]
-  {path: 'profileof/:username', component: ForeignProfileComponent},
-  {path: 'profile-edit', component: ProfileEditComponent}, //, canActivate: [AuthenticationGuardService]
+  {path: 'profile', component: ProfileComponent, canActivate: [AuthenticationGuardService]},
+  {path: 'profileof/:username', component: ForeignProfileComponent, canActivate: [AuthenticationGuardService]},
+  {path: 'profile-edit', component: ProfileEditComponent, canActivate: [AuthenticationGuardService]},
   {path: 'search', redirectTo: 'home'},
   {path: 'login', component: LoginComponent},
   {path: 'register', component: RegisterComponent},
