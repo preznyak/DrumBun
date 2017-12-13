@@ -13,7 +13,7 @@ import {UserprofileService} from "../../../_shared/userprofile.service";
 @Injectable()
 export class NeedItemComponent implements OnInit {
   @Input() need: NeedModel;
-  offerGiven: boolean = false;
+  disabled: boolean = false;
   informationText: string;
 
 
@@ -23,13 +23,17 @@ export class NeedItemComponent implements OnInit {
   }
 
   ngOnInit() {
+    if (this.userProfile.getUserProfile().userProfile.driverLicense == "No"){
+      this.disabled = true;
+      this.informationText = "You can't give offer without license";
+    }
     if (this.need.userUsername == this.userProfile.getUserProfile().username){
-      this.offerGiven = true;
+      this.disabled = true;
       this.informationText = "This is your need";
     }
     for (var i=0; i<this.need.transporters.length; i++){
       if (this.userProfile.getUserProfile().username == this.need.transporters[i].username){
-        this.offerGiven = true;
+        this.disabled = true;
         this.informationText = "Offer given";
       }
 
@@ -37,7 +41,7 @@ export class NeedItemComponent implements OnInit {
   }
 
   giveOffer(index: number){
-    this.offerGiven = true;
+    this.disabled = true;
     this.needService.giveOffer(index);
   }
 
