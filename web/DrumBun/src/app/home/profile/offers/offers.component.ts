@@ -13,6 +13,9 @@ import {UserprofileService} from "../../../_shared/userprofile.service";
 export class OffersComponent implements OnInit {
   offers: OfferModel[];
   errorMessage: string;
+  noNewOffer: string;
+  disabled: boolean = false;
+
 
   constructor(private httpClient: HttpClient,
               private router: Router,
@@ -20,6 +23,10 @@ export class OffersComponent implements OnInit {
   }
 
   ngOnInit() {
+    if (this.userProfile.getUserProfile().userProfile.driverLicense == "No"){
+      this.noNewOffer = "Without driver license you cant create offers.";
+      this.disabled = true;
+    }
     this.httpClient.get("/api/offers/myOffers/" + this.userProfile.getUserProfile().username)
       .subscribe(
         (response: OfferModel[]) => {this.offers = response;
